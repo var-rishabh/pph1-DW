@@ -30,5 +30,5 @@ app.listen(process.env.PORT, (err) => {
   if (err) {
     console.log(`Error: ${err}`.red);
   }
-  console.log(`Server running on PORT ${process.env.PORT}`.yellow);
+  console.log(`Server running on PORT ${process.env.PORT}`.yellow.underline);
 });
