@@ -1,3 +1,12 @@
+:root {
+  --primary-color: #352429;
+  --secondary-color: #452E35;
+  --text-color-main: #000000;
+  --text-color-secondary: #ffffff;
+  --heading-color-main: #124975;
+  --heading-color-secondary: #352429;
+}
+
 * {
   margin: 0;
 }
