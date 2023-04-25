@@ -11,21 +11,24 @@ import Checkout from './components/Checkout/Checkout';
 import Gallery from './components/Gallery/Gallery';
 import Login from './components/Login/Login';
 import Register from "./components/Register/Register";
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={ <Home />} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/login" element= {<Login/>} />
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/product" element={<ProductCatalogue/>} />
-        <Route path="/product/:id" element={<Product/>} />
-        <Route path="/process" element={<Process/>} />
-        <Route path="/order" element={<Order/>} />
-        <Route path="/checkout" element={<Checkout/>} />
-        <Route path="/gallery" element={<Gallery/>} />
+        <Route path="/" element={<Layout />} >
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/product" element={<ProductCatalogue />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/gallery" element={<Gallery />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
