@@ -1,0 +1,48 @@
+.footer-sub__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 1% 10%;
+}
+
+.footer-sub__text {
+  font-family: "ColorTube", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 38px;
+  color: var(--text-color-secondary);
+}
+
+.footer-sub__download {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5% 4% 0.5% 2%;
+  width: 14%;
+  border-radius: 6px;
+  background-color: var(--white-color);
+  text-decoration: none;
+}
+
+.footer-sub__download:hover {
+  background-color: var(--white-color);
+  text-decoration: none;
+}
+
+.footer-sub__download--text--small {
+  font-family: "Cormorant", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--text-color-main);
+}
+
+.footer-sub__download--text--large {
+  font-family: "Cormorant", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--text-color-main);
+}
