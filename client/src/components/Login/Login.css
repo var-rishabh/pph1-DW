@@ -1,6 +1,6 @@
 .login__form--forgot {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   margin: -2% 0 0 0;
   font-family: "Rubik", sans-serif;
@@ -8,17 +8,17 @@
   font-weight: 400;
   font-size: 19px;
   line-height: 23px;
-  color: #1c2144;
+  color: var(--text-color-blue);
 }
 
 .login__form--forgot a {
   text-decoration: none;
-  color: #1c2144;
+  color: var(--text-color-blue);
 }
 
 .login__form--signup {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   margin: 2% 0 0 0;
   font-family: "Rubik", sans-serif;
@@ -40,5 +40,5 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
-  color: #1c2144;
+  color: var(--text-color-blue);
 }
