@@ -1,18 +1,24 @@
 import React from 'react';
-import "./Login.css";
+import "./Signup.css";
 import mainLogo from "../../Assets/mainLogo.png";
 import OAuth from '../OAuth/OAuth';
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const handleLogin = (e) => {
+  const [confirmPassword, setConfirmPassword] = React.useState('');
+  const handleSignup = (e) => {
     e.preventDefault();
-    console.log(
-      {
-        email: email,
-        password: password,
-      }
-    );
+    if (password === confirmPassword) {
+      console.log('passwords match');
+      console.log(
+        {
+          email: email,
+          password: password,
+        }
+      );
+    } else {
+      console.log('passwords do not match');
+    }
   }
   return (
     <>
@@ -20,7 +26,7 @@ const Login = () => {
         <img src={mainLogo} alt='logo' />
       </div>
       <div className='auth--heading'>
-        Login
+        Sign Up
       </div>
       <div className='auth__form--container'>
         {/* Login Form with Google Oauth and Phone OTP */}
@@ -28,29 +34,23 @@ const Login = () => {
         <div className='auth__form--or'>
           <div className='auth__form--or--text'>or</div>
         </div>
-        <form className='auth__form' onSubmit={handleLogin}>
+        <form className='auth__form' onSubmit={handleSignup}>
           <div className='auth__form--input'>
             <input type='text' placeholder='Email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className='auth__form--input'>
             <input type='password' placeholder='Password' name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <div className='login__form--forgot'>
-            <a href='/forgot'>Forgot Password?</a>
+          <div className='auth__form--input'>
+            <input type='password' placeholder='Confirm Password' name='confirmPassword' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
           </div>
           <div className='auth__form--button'>
-            <button type='submit'>Login</button>
+            <button type='submit'>Sign up</button>
           </div>
         </form>
-        <div className='login__form--signup'>
-          <div className='login__form--signup--text'>Don’t you have an account?</div>
-          <div className='login__form--signup--link'>
-            <a href='/signup'>Sign Up</a>
-          </div>
-        </div>
       </div>
     </>
   )
 }
 
-export default Login;
+export default Signup;

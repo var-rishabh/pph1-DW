@@ -6,6 +6,7 @@
   position: absolute;
   max-width: 100%;
   width: 80%;
+  height: 1%;
   left: 0;
   top: 0;
   background: var(--secondary-color);

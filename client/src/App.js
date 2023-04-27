@@ -10,8 +10,12 @@ import Order from './components/Order/Order';
 import Checkout from './components/Checkout/Checkout';
 import Gallery from './components/Gallery/Gallery';
 import Login from './components/Login/Login';
-import Register from "./components/Register/Register";
+import Signup from "./components/Signup/Signup";
 import Layout from './components/Layout/Layout';
+import Location from './components/Signup/Location';
+import Auth from './components/Auth/Auth';
+import Forgot from './components/Forgot/Forgot';
+import PhoneAuth from './components/PhoneAuth/PhoneAuth';
 
 function App() {
   return (
@@ -27,8 +31,15 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/gallery" element={<Gallery />} />
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Auth />} >
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/location" element={<Location />} />
+          <Route path="/forgot" element={<Forgot/>}/>
+          <Route path="/phone" element={<PhoneAuth />} />
+        </Route>
+        {/* 404 Not Found */}
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </Router>
   );
