@@ -1,0 +1,44 @@
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 10%;
+  background-color: var(--white-color);
+}
+
+.testimonial__title {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 71px;
+  color: var(--heading-color-secondary);
+}
+
+.testimonial__text {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--text-color-darkbrown);
+  padding: 3% 0;
+}
+
+.testimonial__messages {
+    display: flex;
+    width: 100%;
+}
+
+.testimonial__messages--one {
+    width: 40%;
+    padding-top: 10%;
+}
+.testimonial__messages--two {
+    width: 40%;
+    padding-bottom: 10%;
+}
+.testimonial__messages--three {
+    width: 40%;
+    padding-top: 10%;
+}
