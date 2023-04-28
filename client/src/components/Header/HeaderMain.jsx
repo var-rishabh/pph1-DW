@@ -5,6 +5,7 @@ import profileSample from "../../Assets/profileSample.jpg";
 
 const HeaderMain = () => {
   return (
+    <>
     <div className="header-main">
       <div className="header-main__icon">
         <img src={Icon} alt="icon" onClick={() => window.location.href = '/'} />
@@ -35,6 +36,9 @@ const HeaderMain = () => {
         </a>
       </div>
     </div>
+    {/* Cover the space taken by header */}
+    <div className="header-main__cover"></div>
+    </>
   );
 }
 
