@@ -3,7 +3,7 @@
   flex-direction: row;
   padding: 1% 10%;
   color: var(--text-color-secondary);
-  position: absolute;
+  position: fixed;
   max-width: 100%;
   width: 80%;
   height: 1%;

@@ -6,7 +6,6 @@ import About from './components/About/About';
 import ProductCatalogue from './components/Product/ProductCatalogue';
 import Product from './components/Product/Product';
 import Process from './components/Process/Process';
-import Order from './components/Order/Order';
 import Checkout from './components/Checkout/Checkout';
 import Gallery from './components/Gallery/Gallery';
 import Login from './components/Login/Login';
@@ -27,7 +26,6 @@ function App() {
           <Route path="/product" element={<ProductCatalogue />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/process" element={<Process />} />
-          <Route path="/order" element={<Order />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/gallery" element={<Gallery />} />
         </Route>

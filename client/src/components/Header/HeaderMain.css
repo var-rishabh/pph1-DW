@@ -1,7 +1,7 @@
 .header-main {
   display: flex;
   flex-direction: row;
-  position: absolute;
+  position: fixed;
   top: 5%;
   left: 0;
   padding: 1% 7%;
@@ -76,4 +76,9 @@
   height: 40px;
   border-radius: 50%;
   border: 1px solid var(--profile-border-color);
+}
+
+.header-main__cover {
+  height: 17vh;
+  justify-content: space-between;
 }

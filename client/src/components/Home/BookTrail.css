@@ -1,0 +1,38 @@
+.book-trail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10% 10%;
+  background-color: var(--white-color);
+  text-align: center;
+}
+
+.book-trail__title {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 90px;
+  color: var(--heading-color-secondary);
+}
+
+.book-trail__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1% 3%;
+  background-color: var(--button-color-secondary);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+.book-trail__button a {
+  text-decoration: none;
+  color: var(--white-color);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+}
