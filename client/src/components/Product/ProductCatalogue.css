@@ -1,0 +1,39 @@
+.product-catalogue{
+    width: 100%;
+}
+
+.product-catalogue__hero{
+    background: url(../../Assets/productHero.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 3.5% 10%;
+}
+
+.product-catalogue__hero--content{
+    width: 42%;
+}
+
+.product-catalogue__hero--title{
+    font-family: 'ColorTube', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 45px;
+    color: var(--text-color-secondary);
+}
+
+.product-catalogue__hero--text{
+    margin-top: 1%;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: var(--text-color-secondary);
+}
+
+.product-catalogue__products{
+    display: flex;
+    flex-direction: column;
+    padding: 1% 10%;
+}

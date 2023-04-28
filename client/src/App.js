@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import ProductCatalogue from './components/Product/ProductCatalogue';

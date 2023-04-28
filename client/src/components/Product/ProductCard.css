@@ -1,0 +1,92 @@
+.product-card {
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 0;
+  padding: 0 8% 0 0;
+  box-shadow: 0px 0px 17px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
+
+.product-card__image {
+  width: 30%;
+}
+
+.product-card__image img {
+  width: calc(344px - 0.1*(344px));
+  height:calc(397px - 0.1*(397px));
+}
+
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 5% 0;
+}
+
+.product-card__content--title {
+  font-family: "ColorTube", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 29px;
+  color: var(--heading-color-secondary);
+}
+
+.product-card__content--description {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--heading-color-secondary);
+}
+
+.product-card__content--buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+}
+
+.product-card__content--order {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 2% 10%;
+    background-color: var(--button-color-secondary);
+    color: var(--text-color-secondary);
+    cursor: pointer;
+}
+
+.product-card__content--order:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color-secondary);
+}
+
+/* Cause a ripple animation on click */
+.product-card__content--order:active {
+    background-color: var(--secondary-color);
+    color: var(--text-color-secondary);
+    transform: scale(0.98);
+}
+
+.product-card__content--cart {
+    border-radius: 4px;
+    padding: 2%;
+    background-color: #939393;
+    cursor: pointer;
+}
+
+.product-card__content--cart:hover {
+    background-color: #939393;
+}
+
+/* Cause a ripple animation on click */
+.product-card__content--cart:active {
+    background-color: #939393;
+    transform: scale(0.98);
+}

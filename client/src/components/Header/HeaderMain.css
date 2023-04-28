@@ -4,9 +4,10 @@
   position: fixed;
   top: 5%;
   left: 0;
-  padding: 1% 7%;
+  padding: 0 7%;
   color: var(--primary-color);
   width: 86%;
+  height: 12vh;
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -16,6 +17,7 @@
   align-items: center;
   box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.25);
   background-color: var(--white-color);
+  z-index: 9999;
 }
 
 .header-main__menu {
@@ -71,6 +73,15 @@
   color: var(--text-color-secondary);
 }
 
+.header-main__profile--trail:hover {
+  background-color: var(--secondary-color);
+}
+
+.header-main__profile--trail:active {
+  background-color: var(--secondary-color);
+  transform: scale(0.98);
+}
+
 .header-main__profile img {
   width: 40px;
   height: 40px;
@@ -80,5 +91,4 @@
 
 .header-main__cover {
   height: 17vh;
-  justify-content: space-between;
 }

@@ -6,7 +6,7 @@
   position: fixed;
   max-width: 100%;
   width: 80%;
-  height: 1%;
+  height: 1vh;
   left: 0;
   top: 0;
   background: var(--secondary-color);
@@ -17,6 +17,7 @@
   line-height: 27px;
   align-items: center;
   justify-content: space-between;
+  z-index: 9999;
 }
 
 .header-sub a {

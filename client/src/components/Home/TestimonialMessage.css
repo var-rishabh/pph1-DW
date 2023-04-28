@@ -9,7 +9,7 @@
   text-align: center;
   justify-self: center;
   width: 75%;
-  background-color: #634850;
+  background-color: var(--tertiary-color);
   padding: 15% 15%;
   border-radius: 6px;
   font-family: "Poppins", sans-serif;
