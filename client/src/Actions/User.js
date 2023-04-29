@@ -96,9 +96,9 @@ export const loginWithEmail = (email, password) => async (dispatch) => {
 
 // Register user via email and password and redirect to home page after login which is /
 
-export const registerWithEmail = (email, password) => async (dispatch) => {
+export const registerWithEmail = (email, password, city, area) => async (dispatch) => {
     dispatch({ type: "RegisterRequest" });
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password, city, area)
         .then((result) => {
             // Redirect to home page after login
             window.location.href = "/";

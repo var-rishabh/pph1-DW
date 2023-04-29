@@ -135,3 +135,14 @@
   text-align: center;
   color: var(--text-color-primary);
 }
+
+.loadScreen {
+  display: none;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(80, 168, 220, 0.5);
+  width: 100vw;
+  height: 100vh;
+}

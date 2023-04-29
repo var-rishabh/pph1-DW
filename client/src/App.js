@@ -15,8 +15,16 @@ import Location from './components/Signup/Location';
 import Auth from './components/Auth/Auth';
 import Forgot from './components/Forgot/Forgot';
 import PhoneAuth from './components/OAuth/PhoneAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadUser } from './Actions/User';
+import { useEffect } from 'react';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   return (
     <Router>
       <Routes>
