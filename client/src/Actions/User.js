@@ -9,7 +9,8 @@ import {
     signOut,
     onAuthStateChanged,
     signInWithPhoneNumber,
-    signInWithPopup
+    signInWithPopup,
+    sendPasswordResetEmail
 } from "firebase/auth";
 
 import { toast } from 'react-toastify';
@@ -98,7 +99,7 @@ export const loginWithEmail = (email, password) => async (dispatch) => {
 
 export const registerWithEmail = (email, password, city, area) => async (dispatch) => {
     dispatch({ type: "RegisterRequest" });
-    createUserWithEmailAndPassword(auth, email, password, city, area)
+    createUserWithEmailAndPassword(auth, email, password)
         .then((result) => {
             // Redirect to home page after login
             window.location.href = "/";
@@ -124,12 +125,12 @@ export const loadUser = () => async (dispatch) => {
         if (user) {
             dispatch({
                 type: "LoadUserSuccess",
-                payload: user
+                payload: user && user.reloadUserInfo
             });
         } else {
             dispatch({
                 type: "LoadUserFailure",
-                payload: "User not found"
+                payload: "Logged out"
             });
         }
     });
@@ -155,3 +156,20 @@ export const logout = () => async (dispatch) => {
     });
 }
 
+//Forgot Password
+export const forgotPassword = (email) => async (dispatch) => {
+    dispatch({ type: "ForgotPasswordRequest" });
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            dispatch({
+                type: "ForgotPasswordSuccess",
+            });
+            toast.success("Password reset link sent to email");
+        }).catch((error) => {
+            dispatch({
+                type: "ForgotPasswordFailure",
+                payload: error.message
+            });
+            toast.error(error.message);
+        });
+}
