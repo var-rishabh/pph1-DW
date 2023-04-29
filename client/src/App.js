@@ -42,7 +42,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/gallery" element={<Gallery />} />
         </Route>
-        {user &&
+        {!user &&
           <Route path="/" element={<Auth />} >
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
