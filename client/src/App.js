@@ -18,13 +18,14 @@ import PhoneAuth from './components/OAuth/PhoneAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './Actions/User';
 import { useEffect } from 'react';
+import Profile from './components/Profile/Profile';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
-  const { user, loading } = useSelector(state => state.userReducer);
+  const { loading, isAuthenticated } = useSelector(state => state.userReducer);
 
   return loading ? (
     <div className="loading">
@@ -41,8 +42,9 @@ function App() {
           <Route path="/process" element={<Process />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/gallery" element={<Gallery />} />
+          {isAuthenticated && <Route path="/profile" element={<Profile />} />}
         </Route>
-        {!user &&
+        {!isAuthenticated &&
           <Route path="/" element={<Auth />} >
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
