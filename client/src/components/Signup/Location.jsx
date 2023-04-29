@@ -37,7 +37,7 @@ const Location = () => {
             </select>
           </div>
           <div className="auth__form--button">
-            <button type="submit" onClick={handleSignup}>Sign up</button>
+            <button type="submit" onClick={handleSignup}>Submit</button>
           </div>
         </form>
       </div>
