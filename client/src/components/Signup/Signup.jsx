@@ -2,23 +2,26 @@ import React from 'react';
 import "./Signup.css";
 import mainLogo from "../../Assets/mainLogo.png";
 import OAuth from '../OAuth/OAuth';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
   const handleSignup = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      console.log('passwords match');
-      console.log(
-        {
-          email: email,
-          password: password,
-        }
-      );
-    } else {
-      console.log('passwords do not match');
+    //Check if email and password are valid
+    if (email === '' || password === '' || confirmPassword === '') {
+      toast.error('Please fill all the fields');
+      return;
     }
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+    //Signup the user
+    navigate('/location', { state: { email, password } });
   }
   return (
     <>

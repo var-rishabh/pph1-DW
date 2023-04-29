@@ -28,3 +28,25 @@
 * {
   margin: 0;
 }
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading .loading__circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #124975;
+  border-top-color: transparent;
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(360deg);
+  }
+}

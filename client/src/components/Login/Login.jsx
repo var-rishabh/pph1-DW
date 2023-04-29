@@ -2,17 +2,15 @@ import React from 'react';
 import "./Login.css";
 import mainLogo from "../../Assets/mainLogo.png";
 import OAuth from '../OAuth/OAuth';
+import { useDispatch } from 'react-redux';
+import { loginWithEmail } from '../../Actions/User';
 const Login = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(
-      {
-        email: email,
-        password: password,
-      }
-    );
+    dispatch(loginWithEmail(email, password));
   }
   return (
     <>
