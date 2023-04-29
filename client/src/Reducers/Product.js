@@ -6,7 +6,7 @@ const initialState = {
     loading: false,
     error: null,
     productsCount: 0,
-    resPerPage: 4,
+    resPerPage: 6,
 }
 
 export const productReducer = createReducer(initialState, {
