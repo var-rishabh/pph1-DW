@@ -1,13 +1,17 @@
 import React from 'react'
 import './OAuth.css';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginWithGoogle, loginWithPhoneNumber } from '../../Actions/User';
 const OAuth = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleGoogleLogin = () => {
+        dispatch(loginWithGoogle());
         console.log('Google Login')
     }
     const handlePhoneLogin = () => {
-        console.log('Phone Login')
+        console.log('Phone Login');
         navigate('/phone');
     }
     return (
