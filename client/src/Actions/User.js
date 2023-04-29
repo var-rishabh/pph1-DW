@@ -1,8 +1,7 @@
 // Use Firbase to login, load and register user via email password, google and phone
 
-import { initializeApp } from 'firebase/app';
+import { auth } from "../firebase";
 import {
-    getAuth,
     signInWithEmailAndPassword,
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
@@ -10,25 +9,14 @@ import {
     onAuthStateChanged,
     signInWithPhoneNumber,
     signInWithPopup,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    RecaptchaVerifier,
 } from "firebase/auth";
 
 import { toast } from 'react-toastify';
 
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDuIDBnXIkmjsyS1hVY2747l8lCpX6PlyE",
-    authDomain: "dudhwala-34f58.firebaseapp.com",
-    projectId: "dudhwala-34f58",
-    storageBucket: "dudhwala-34f58.appspot.com",
-    messagingSenderId: "718474174092",
-    appId: "1:718474174092:web:e8a89c7cb9d0c4d6df25a9",
-    measurementId: "G-B42FG3YHEJ"
-};
 
-// Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
 
 
 // Login user via Google OAuth and redirect to home page after login which is /
@@ -53,11 +41,36 @@ export const loginWithGoogle = () => async (dispatch) => {
         });
 };
 
-// Login user via phone number dont ask for phone number or recaptcha with popup and redirect to home page after login which is /
+// Login user via phone number and ask for OTP and redirect to home page after login which is /
+// Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'settings')
+// Fix for above error
+// https://stackoverflow.com/questions/68485741/firebase-auth-uncaught-in-promise-typeerror-cannot-read-properties-of-undef
 
-export const loginWithPhone = (phoneNumber, appVerifier) => async (dispatch) => {
-    dispatch({ type: "LoginRequest" });
-    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+export const loginWithPhone = (phone) => async (dispatch) => {
+    const appVerifier = new RecaptchaVerifier('recaptcha-container',{
+        'size': 'invisible',
+    }, auth);
+    signInWithPhoneNumber(auth, phone, appVerifier)
+        .then((result) => {
+            // Redirect to /verify-phone page after login
+            window.confirmationResult = result;
+
+        }).catch((error) => {
+            dispatch({
+                type: "LoginFailure",
+                payload: error.message
+            });
+            toast.error(error.message);
+        });
+}
+
+// Verify OTP and redirect to home page after login which is / dont have confirmationResult
+// Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'confirm')
+// Fix for above error
+
+export const verifyOTP = (otp) => async (dispatch) => {
+    const confirmationResult = window.confirmationResult;
+    confirmationResult.confirm(otp)
         .then((result) => {
             // Redirect to home page after login
             window.location.href = "/";
