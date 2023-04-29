@@ -2,7 +2,9 @@ import React from 'react'
 
 const PhoneAuth = () => {
   return (
-    <div>PhoneAuth</div>
+    <div>
+      
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import ProductCatalogue from './components/Product/ProductCatalogue';
@@ -14,7 +14,7 @@ import Layout from './components/Layout/Layout';
 import Location from './components/Signup/Location';
 import Auth from './components/Auth/Auth';
 import Forgot from './components/Forgot/Forgot';
-import PhoneAuth from './components/PhoneAuth/PhoneAuth';
+import PhoneAuth from './components/OAuth/PhoneAuth';
 
 function App() {
   return (

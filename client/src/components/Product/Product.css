@@ -1,0 +1,11 @@
+.product{
+    display: flex;
+}
+
+
+/* Products CSS*/
+.product-catalogue__products{
+    display: flex;
+    flex-direction: column;
+    padding: 1% 10%;
+}

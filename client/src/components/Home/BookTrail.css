@@ -26,7 +26,10 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 }
-
+.book-trail__button:active {
+  color: var(--white-color);
+  transform: scale(0.98);
+}
 .book-trail__button a {
   text-decoration: none;
   color: var(--white-color);
@@ -36,3 +39,9 @@
   font-size: 18px;
   line-height: 27px;
 }
+
+.book-trail__button a:hover {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
