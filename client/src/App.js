@@ -24,8 +24,13 @@ function App() {
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
+  const { user, loading } = useSelector(state => state.userReducer);
 
-  return (
+  return loading ? (
+    <div className="loading">
+      <div className="loading__circle"></div>
+    </div>
+  ) : (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />} >
@@ -37,13 +42,15 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/gallery" element={<Gallery />} />
         </Route>
-        <Route path="/" element={<Auth />} >
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/forgot" element={<Forgot/>}/>
-          <Route path="/phone" element={<PhoneAuth />} />
-        </Route>
+        {!user &&
+          <Route path="/" element={<Auth />} >
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/forgot" element={<Forgot />} />
+            <Route path="/phone" element={<PhoneAuth />} />
+          </Route>
+        }
         {/* 404 Not Found */}
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
