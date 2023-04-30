@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './Actions/User';
 import { useEffect } from 'react';
 import Profile from './components/Profile/Profile';
+import VerifyOTP from './components/OAuth/VerifyOTP';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,11 +28,7 @@ function App() {
   }, [dispatch]);
   const { loading, isAuthenticated } = useSelector(state => state.userReducer);
 
-  return loading ? (
-    <div className="loading">
-      <div className="loading__circle"></div>
-    </div>
-  ) : (
+  return  (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />} >
