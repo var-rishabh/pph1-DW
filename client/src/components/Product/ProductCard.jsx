@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const ProductCard = ({ image, description, title, id }) => {
     const navigate = useNavigate();
     const handleOrder = () => {
-        navigate(`/product/${id}`);
+        window.location.href = `/product/${id}`;
     }
 
     const handleCart = () => {
