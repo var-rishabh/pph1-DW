@@ -1,11 +1,155 @@
-.product{
-    display: flex;
+.product {
+  width: 100%;
 }
 
+.product__info {
+  display: flex;
+  min-width: 100vh;
+  align-items: stretch;
+}
 
-/* Products CSS*/
-.product-catalogue__products{
-    display: flex;
-    flex-direction: column;
-    padding: 1% 10%;
+.product__info--left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 1% 4% 1% 10%;
+  background-color: var(--white-color);
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  justify-content: center;
+  align-items: center;
+}
+
+.product__info--left--title {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  padding: 1% 0;
+  color: var(--heading-color-secondary);
+}
+
+.product__info--left--buttons {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2% 0;
+}
+
+.product__info--left--buttons button {
+  outline: none;
+  cursor: pointer;
+}
+
+.product__info--left--buttons--try {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--heading-color-secondary);
+  background-color: var(--white-color);
+  border: 1px solid var(--primary-color);
+  padding: 1% 5%;
+  border-radius: 5px;
+}
+
+.product__info--left--buttons--try:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.product__info--left--buttons--buy {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--text-color-secondary);
+  background-color: var(--primary-color);
+  padding: 1% 5%;
+  border-radius: 5px;
+  border: none;
+}
+
+.product__info--left--buttons--buy:hover {
+  background-color: var(--secondary-color);
+}
+
+.product__info--left--buttons--subscribe {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--text-color-secondary);
+  background-color: var(--heading-color-secondary);
+  padding: 1% 5%;
+  border-radius: 5px;
+  border: none;
+}
+
+.product__info--left--buttons--subscribe:hover {
+  background-color: var(--secondary-color);
+}
+
+.product__info--right {
+  width: 50%;
+  padding: 1% 10% 1% 4%;
+  background-color: var(--tertiary-color);
+  color: var(--text-color-secondary);
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+}
+
+.product__info--right--title {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 60px;
+  padding: 2% 0;
+}
+
+.product__info--right--info {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 2% 0;
+}
+
+.product__info--right--description--title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 2% 0;
+}
+
+.product__info--right--description--content {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 2% 0 2% 4%;
+}
+
+.product__info--right--benefits--title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 2% 0;
+}
+
+.product__info--right--benefits--list--item {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 1% 0 1% 0;
+}
+
+.product__mayAlsoLike {
+  display: flex;
+  flex-direction: column;
+  padding: 1% 8%;
+  margin: 2%;
+}
+
+.product__mayAlsoLike--title {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 71px;
+  color: var(--text-color-primary);
+  padding: 2% 0;
 }
