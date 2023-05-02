@@ -6,6 +6,11 @@
   src: url("./Assets/fonts/ColorTube.otf");
 }
 
+@font-face {
+  font-family: "Honey Silk";
+  src: url("./Assets/fonts/Honey Silk.otf");
+}
+
 :root {
   --primary-color: #352429;
   --secondary-color: #452E35;

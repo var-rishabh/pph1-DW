@@ -33,7 +33,7 @@
 .book-trail__button a {
   text-decoration: none;
   color: var(--white-color);
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
