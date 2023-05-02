@@ -28,7 +28,7 @@ function App() {
   }, [dispatch]);
   const { loading, isAuthenticated } = useSelector(state => state.userReducer);
 
-  return  (
+  return (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />} >
@@ -39,7 +39,9 @@ function App() {
           <Route path="/process" element={<Process />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/gallery" element={<Gallery />} />
-          {isAuthenticated && <Route path="/profile" element={<Profile />} />}
+          <Route path="/profile" element={loading ? (
+            <div className="loading"><div className='loading__circle'></div></div>
+          ) : isAuthenticated ? (<Profile />) : (null)} />
         </Route>
         {!isAuthenticated &&
           <Route path="/" element={<Auth />} >
