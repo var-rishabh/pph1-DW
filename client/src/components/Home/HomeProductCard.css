@@ -1,0 +1,115 @@
+.home-product-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.home-product-card__image {
+  border-radius: 12px;
+  width: 100%;
+  height: 16rem;
+  margin-bottom: 1%;
+  background-color: var(--tertiary-color);
+}
+
+.home-product-card__image img {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home-product-card__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1% 1% 0 1%;
+}
+
+.home-product-card__title {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.home-product-card__price {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 26px;
+  /* or 153% */
+
+  text-align: center;
+
+  color: #ca2b1f;
+}
+
+.home-product-card__size {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #b2adc5;
+}
+
+.home-product-card__buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 2% 0;
+}
+
+.home-product-card__buttons button {
+  outline: none;
+  cursor: pointer;
+}
+
+.home-product-card__buttons--try {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--heading-color-secondary);
+  background-color: var(--white-color);
+  border: 1px solid var(--primary-color);
+  padding: 1% 5%;
+  border-radius: 5px;
+}
+
+.home-product-card__buttons--try:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.home-product-card__buttons--buy {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--text-color-secondary);
+  background-color: var(--primary-color);
+  padding: 1% 5%;
+  border-radius: 5px;
+  border: none;
+}
+
+.home-product-card__buttons--buy:hover {
+  background-color: var(--secondary-color);
+}
+
+.home-product-card__buttons--subscribe {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--text-color-secondary);
+  background-color: var(--heading-color-secondary);
+  padding: 1% 5%;
+  border-radius: 5px;
+  border: none;
+}
+
+.home-product-card__buttons--subscribe:hover {
+  background-color: var(--secondary-color);
+}
