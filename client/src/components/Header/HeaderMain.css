@@ -82,6 +82,12 @@
   transform: scale(0.98);
 }
 
+.header-main__profile a[href="/profile"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .header-main__profile img {
   width: 40px;
   height: 40px;
