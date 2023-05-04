@@ -17,7 +17,7 @@
   line-height: 27px;
   align-items: center;
   justify-content: space-between;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 .header-sub a {
@@ -51,4 +51,10 @@
   width: 25%;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 1000px){
+  .header-sub {
+    display: none;
+  }
 }

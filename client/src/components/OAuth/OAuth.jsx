@@ -2,7 +2,7 @@ import React from 'react'
 import './OAuth.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loginWithGoogle, loginWithPhoneNumber } from '../../Actions/User';
+import { loginWithGoogle } from '../../Actions/User';
 const OAuth = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();

@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Signup.css";
 import mainLogo from "../../Assets/mainLogo.png";
 import OAuth from '../OAuth/OAuth';
 import { toast } from 'react-toastify';

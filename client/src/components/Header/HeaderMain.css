@@ -17,7 +17,7 @@
   align-items: center;
   box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.25);
   background-color: var(--white-color);
-  z-index: 9999;
+  z-index: 9998;
 }
 
 .header-main__menu {
@@ -137,3 +137,38 @@
   height: 17vh;
 }
 
+@media screen and (max-width: 1000px){
+  .header-main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:16vh;
+    top: 0;
+  }
+
+  .header-main__menu {
+    width: 100%;
+    justify-content: space-between;
+    margin: 2% 0;
+
+  }
+
+  .header-main__menu ul {
+    width: 100%;
+    padding: 0 1%;
+    justify-content: space-between;
+  }
+  .header-main__profile {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-main__profile--button {
+    padding: 1% 2%;
+    border-radius: 5px;
+  }
+
+  .header-main__cover {
+    height: 15vh;
+  }
+}

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import "./Auth.css";
 import authLogo from "../../Assets/authLogo.svg";
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 const Auth = () => {
-  const { user, loading, error } = useSelector(state => state.userReducer);
+  const { loading } = useSelector(state => state.userReducer);
 
   //Loading screen not working
   useEffect(() => {
