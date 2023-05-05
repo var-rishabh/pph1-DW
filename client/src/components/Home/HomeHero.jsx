@@ -54,7 +54,7 @@ const HomeHero = () => {
                     <img src={home1} alt='home1' />
                 </div>
                 <div className='home-hero__right--buttons'>
-                    <button className='home-hero__right--buttons--button1' onClick={console.log("Trail")}>Book Trail</button>
+                    <button className='home-hero__right--buttons--button1'>Book Trail</button>
                     <button className='home-hero__right--buttons--button2'>GET VIP Membership</button>
                     <button className='home-hero__right--buttons--button3'>Subscribe</button>
                 </div>

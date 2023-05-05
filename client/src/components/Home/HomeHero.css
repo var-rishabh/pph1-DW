@@ -155,3 +155,32 @@
   align-self: flex-start;
   margin-left: 4%;
 }
+
+@media screen and (max-width: 1000px){
+  .home-hero {
+    flex-direction: column;
+    width: 100%;
+    padding: 4% 0;
+  }
+
+  .home-hero__left {
+    width: 90%;
+    padding: 0 5%;
+  }
+
+  .home-hero__right{
+    width: 80%;
+    padding: 2% 10%;
+    margin-bottom: 10vh;
+  }
+
+  .home-hero__right--image {
+    position: absolute;
+    margin-left: 20%;
+
+  }
+  .home-hero__right--image img {
+    height: 90%;
+    width: 90%;
+  }
+}

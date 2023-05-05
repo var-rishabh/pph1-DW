@@ -1,10 +1,8 @@
 import React from 'react';
 import cart from '../../Assets/cart.svg';
 import './ProductCard.css';
-import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ image, description, title, id }) => {
-    const navigate = useNavigate();
     const handleOrder = () => {
         window.location.href = `/product/${id}`;
     }

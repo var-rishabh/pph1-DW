@@ -1,6 +1,5 @@
 import React from 'react';
 import "./Forgot.css";
-import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../../Actions/User';
 

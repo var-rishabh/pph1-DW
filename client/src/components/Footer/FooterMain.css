@@ -102,3 +102,38 @@
     align-items: flex-start;
     width: 20%;
 }
+
+/* Make it responsive for mobile */
+
+@media screen and (max-width: 1000px){
+  .footer-main{
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 5% 10%;
+  }
+  .footer-main__description{
+    width: 100%;
+    margin: 2% 0;
+  }
+  .footer-main__description--text{
+    padding: 0;
+    margin: 5% 0;
+  }
+  .footer-main__links{
+    width: 100%;
+    margin: 2% 0;
+  }
+  .footer-main__links--list{
+    width: 100%;
+  }
+  .footer-main__contact{
+    width: 100%;
+    margin: 2% 0;
+  }
+  .footer-main__download{
+    width: 100%;
+    margin: 2% 0;
+  }
+  
+}

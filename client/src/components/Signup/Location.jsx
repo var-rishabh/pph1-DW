@@ -7,8 +7,8 @@ import { registerWithEmail } from '../../Actions/User';
 const Location = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [city, setCity] = React.useState('');
-  const [area, setArea] = React.useState('');
+  const [city, setCity] = React.useState('Delhi');
+  const [area, setArea] = React.useState('Delhi');
   const state = location.state;
   const handleSignup = (e) => {
     e.preventDefault();
