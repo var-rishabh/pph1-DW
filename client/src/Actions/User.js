@@ -111,26 +111,6 @@ export const loginWithEmail = (email, password) => async (dispatch) => {
         });
 }
 
-
-export const register = (email, password, city, area) => async (dispatch) => {
-    dispatch({ type: "RegisterRequest" });
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((result) => {
-            // Redirect to home page after login
-            window.location.href = "/";
-            dispatch({
-                type: "RegisterSuccess",
-                payload: result.user
-            });
-            toast.success("Register Successful");
-        }).catch((error) => {
-            dispatch({
-                type: "RegisterFailure",
-                payload: error.message
-            });
-            toast.error(error.message);
-        });
-}
 // Register user via email, add city and state and password and redirect to home page after login which is / 
 export const registerWithEmail = (email, password, city, area) => async (dispatch) => {
     dispatch({ type: "RegisterRequest" });
@@ -189,11 +169,11 @@ export const loadUser = () => async (dispatch) => {
             // Retrive user info from firestore
             const db = store;
             const docRef = doc(db, "users", user.uid);
-
             getDoc(docRef).then((snapshot) => {
                 if (snapshot.exists()) {
+                    const userInfo = user.reloadUserInfo;
                     const userData = {
-                        ...user.reloadedUserInfo,
+                        ...userInfo,
                         ...snapshot.data()
                     }
                     dispatch({
@@ -201,12 +181,9 @@ export const loadUser = () => async (dispatch) => {
                         payload: userData
                     });
                 } else {
-                    const userData = {
-                        ...user.reloadedUserInfo,
-                    }
                     dispatch({
                         type: "LoadUserSuccess",
-                        payload: userData
+                        payload: user.reloadUserInfo
                     });
                 }
             }).catch((error) => {
