@@ -30,6 +30,28 @@ app.get("/", async (req, res) => {
   }
 });
 
+const admin =  require("./config/firebase.config");
+
+
+app.get('/api/login', async (req, res) => {
+  const myToken = req.headers.authorization;
+  if (!myToken) {
+    return res.status(401).json({
+      status: "failure",
+      message: "API not running successfully",
+      data: null,
+    });
+  }
+
+  try {
+    const decode = await admin.auth().verifyIdToken(myToken);
+    return res.send(decode);
+  } catch (err) {
+    return res.status(500).send({msg: err.message});
+  }
+});
+
+
 app.listen(process.env.PORT, (err) => {
   if (err) {
     console.log(`Error: ${err}`.red);
