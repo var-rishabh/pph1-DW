@@ -26,12 +26,14 @@ function App() {
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
-  const { loading, isAuthenticated } = useSelector(state => state.userReducer);
-  getIdToken(auth.currentUser).then((idToken) => {
-  console.log(idToken);
-  }).catch((error) => {
-  console.log(error);
-  });
+  const { user, loading, isAuthenticated } = useSelector(state => state.userReducer);
+  if (user) {
+    getIdToken(auth.currentUser).then((idToken) => {
+      console.log(idToken);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
   return (
     <Router>
       <Routes>
