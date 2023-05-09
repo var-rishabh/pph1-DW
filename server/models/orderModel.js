@@ -21,18 +21,6 @@ const OrderSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    category: {
-        type: String,
-        required: true
-    },
-    size: {
-        type: Number,
-        required: true
-    },
-    available: {
-        type: Boolean,
-        default: false
-    },
     createdAt: {
         type: Date,
         default: Date.now()

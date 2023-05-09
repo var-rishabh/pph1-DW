@@ -5,10 +5,7 @@ const SubscriptionSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
-    vip_member: {
-        type: Boolean,
-        default: false
-    },
+    
     subscribed: {
         type: Boolean,
         default: false
