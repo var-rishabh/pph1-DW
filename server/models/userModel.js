@@ -9,11 +9,11 @@ const UserSchema = mongoose.Schema(
     },
     vip: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   { timestamps: true }
 );
 
 const User = mongoose.model("User", UserSchema);
-module.exports = User; 
+module.exports = User;

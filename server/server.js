@@ -15,6 +15,7 @@ const connectDB = require("./config/db");
 connectDB();
 
 const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 app.get("/", async (req, res) => {
   try {
@@ -33,6 +34,7 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/user", userRoutes);
+app.use("/product", productRoutes);
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
