@@ -1,0 +1,13 @@
+:root{
+  --primary: #352429;
+  --secondary: #452E35;
+  --tertiary: #634850;
+  --text: #000000;
+  --textLight: #FFFFFF;
+  --textGray: #A9A9A9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
