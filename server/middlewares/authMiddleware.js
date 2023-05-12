@@ -15,7 +15,7 @@ const checkAuth = asyncHandler(async (req, res, next) => {
       res.status(400).json({
         status: "Failure",
         message: err.message,
-        data: null
+        data: null,
       });
     }
   } else {
