@@ -16,6 +16,7 @@ connectDB();
 
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 app.get("/", async (req, res) => {
   try {
@@ -35,6 +36,7 @@ app.get("/", async (req, res) => {
 
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
+// app.use("/order", orderRoutes);
 
 app.listen(process.env.PORT, (err) => {
   if (err) {

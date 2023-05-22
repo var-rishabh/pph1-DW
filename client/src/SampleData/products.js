@@ -12,7 +12,7 @@ export const products = [
         description: "Introducing AapkaDoodhwala's pure and fresh milk, straight from our processing plant to your doorstep. Our milk is sourced from healthy cows that graze on lush green pastures, ensuring the highest quality of milk for our customers. Our milk is processed using state-of-the-art technology to ensure that all impurities are removed, and the milk is pasteurized to ensure it is free from harmful bacteria, making it safe for consumption. Our milk is homogenized to ensure that the cream is evenly distributed, giving it a smooth and creamy texture",
         price: 50,
         size: "2 Litre",
-        stock: 10,
+        in_stock: true,
         brandName: "AapkaDoodhwala",
         category: "Dairy",
         benefits: [
@@ -29,7 +29,7 @@ export const products = [
         description: "Introducing AapkaDoodhwala's pure and fresh milk, straight from our processing plant to your doorstep. Our milk is sourced from healthy buffaloes that graze on lush green pastures, ensuring the highest quality of milk for our customers. Our milk is processed using state-of-the-art technology to ensure that all impurities are removed, and the milk is pasteurized to ensure it is free from harmful bacteria, making it safe for consumption. Our milk is homogenized to ensure that the cream is evenly distributed, giving it a smooth and creamy texture",
         price: 60,
         size: "2 Litre",
-        stock: 10,
+        in_stock: false,
         brandName: "AapkaDoodhwala",
         category: "Dairy",
         benefits: [
@@ -49,7 +49,7 @@ export const products = [
         description: "Introducing AapkaDoodhwala's pure and fresh buttermilk, straight from our processing plant to your doorstep. Our buttermilk is made from fresh milk and has a tangy taste that is perfect for Indian summers. It is also low in fat and calories, making it a healthy alternative to other beverages.",
         price: 20,
         size: "1 Litre",
-        stock: 10,
+        in_stock: true,
         brandName: "AapkaDoodhwala",
         category: "Dairy",
         benefits: [
@@ -66,7 +66,7 @@ export const products = [
         description: "Introducing AapkaDoodhwala's pure and fresh buttermilk, straight from our processing plant to your doorstep. Our buttermilk is made from fresh milk and has a tangy taste that is perfect for Indian summers. It is also low in fat and calories, making it a healthy alternative to other beverages.",
         price: 1000,
         size: "1 Litre",
-        stock: 10,
+        in_stock: true,
         brandName: "AapkaDoodhwala",
         category: "Dairy",
         benefits: [
@@ -83,7 +83,7 @@ export const products = [
         description: "Introducing AapkaDoodhwala's pure and fresh buttermilk, straight from our processing plant to your doorstep. Our buttermilk is made from fresh milk and has a tangy taste that is perfect for Indian summers. It is also low in fat and calories, making it a healthy alternative to other beverages.",
         price: 1000,
         size: "1 Litre",
-        stock: 0,
+        in_stock: true,
         brandName: "AapkaDoodhwala",
         category: "Dairy",
         benefits: [

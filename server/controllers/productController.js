@@ -3,13 +3,15 @@ const Product = require("../models/productModel");
 module.exports.addProduct = async (req, res) => {
   try {
     const newProduct = new Product();
-    newProduct["name"] = req.body.name;
-    newProduct["brand_name"] = req.body.brand_name;
-    newProduct["category"] = req.body.category;
-    newProduct["price"] = req.body.price;
-    newProduct["description"] = req.body.description;
-    newProduct["sizes"] = req.body.sizes;
-    newProduct["in_stock"] = req.body.in_stock;
+    if (req.body.title) newProduct["title"] = req.body.title;
+    if (req.body.image) newProduct["image"] = req.body.image;
+    if (req.body.description) newProduct["description"] = req.body.description;
+    if (req.body.price) newProduct["price"] = req.body.price;
+    if (req.body.size) newProduct["size"] = req.body.size;
+    if (req.body.in_stock) newProduct["in_stock"] = req.body.in_stock;
+    if (req.body.brand_name) newProduct["brand_name"] = req.body.brand_name;
+    if (req.body.category) newProduct["category"] = req.body.category;
+    if (req.body.benefits) newProduct["benefits"] = req.body.benefits;
     newProduct.save();
 
     return res.status(200).json({
