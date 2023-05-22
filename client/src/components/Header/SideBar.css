@@ -27,3 +27,9 @@
   text-align: center;
   color: #efefef;
 }
+
+@media screen and (max-width: 1000px) {
+  .side-bar {
+    display: none;
+  }
+}

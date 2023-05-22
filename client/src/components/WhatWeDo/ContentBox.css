@@ -1,0 +1,44 @@
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #6e554c;
+  border-radius: 3px;
+  padding: 5% 2% 0 2%;
+  box-shadow: -34px 45px 0px -6px rgba(181, 154, 144, 0.75);
+  -webkit-box-shadow: -34px 45px 0px -6px rgba(181, 154, 144, 0.75);
+  -moz-box-shadow: -34px 45px 0px -6px rgba(181, 154, 144, 0.75);
+}
+
+.contentBox__quotestart,
+.contentBox__quoteend {
+  font-family: "Coda", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 90px;
+  color: var(--text-color-secondary);
+  opacity: 0.5;
+  line-height: 60px;
+}
+
+.contentBox__quoteend {
+  text-align: right;
+}
+
+.contentBox__quote {
+  font-family: "Poppins",sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  padding: 2% 5%;
+  color: var(--text-color-secondary);
+}
+
+@media screen and (max-width: 1000px){
+  .contentBox__quote{
+    font-size: 32px;
+    line-height: 38px;
+  }
+}

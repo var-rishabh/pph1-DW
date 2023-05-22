@@ -1,8 +1,8 @@
 import React from 'react';
 import './SideBar.css';
-import Call from '../../Assets/Call.svg';
-import cart from '../../Assets/cartMain.svg';
-import Whatsapp from '../../Assets/Whatsapp.svg';
+import Call from '../../Assets/Icons/Call.svg';
+import cart from '../../Assets/Icons/cartMain.svg';
+import Whatsapp from '../../Assets/Icons/Whatsapp.svg';
 import Links from '../../config/Links';
 
 const SideBar = () => {

@@ -36,10 +36,6 @@
   padding: 1% 0 4% 0;
 }
 
-.home-hero__left--features {
-  display: flex;
-  width: 100%;
-}
 
 .home-hero__left--button {
   display: flex;
@@ -75,6 +71,11 @@
 .home-hero__left--button a:hover {
   color: var(--white-color);
   text-decoration: none;
+}
+
+.home-hero__left--features {
+  display: flex;
+  width: 100%;
 }
 
 .home-hero__left--features--item {
@@ -156,7 +157,7 @@
   margin-left: 4%;
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
   .home-hero {
     flex-direction: column;
     width: 100%;
@@ -168,19 +169,41 @@
     padding: 0 5%;
   }
 
-  .home-hero__right{
+  .home-hero__right {
     width: 80%;
     padding: 2% 10%;
     margin-bottom: 10vh;
   }
-
+  .home-hero__left--features {
+    display: none;
+  }
   .home-hero__right--image {
     position: absolute;
     margin-left: 20%;
-
+    margin-right: 20%;
   }
   .home-hero__right--image img {
-    height: 90%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
+  }
+  .home-hero__right--buttons button {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .home-hero__right--buttons--button1 {
+    align-self: flex-end;
+  }
+
+  .home-hero__right--buttons--button2 {
+    margin-left: -8%;
+    margin-bottom: 22%;
+    align-self: flex-start;
+  }
+
+  .home-hero__right--buttons--button3 {
+    align-self: flex-end;
+    margin-right: -4%;
   }
 }

@@ -20,8 +20,6 @@ import { toast } from 'react-toastify';
 
 
 
-
-
 // Login user via Google OAuth and redirect to home page after login which is /
 export const loginWithGoogle = () => async (dispatch) => {
     dispatch({ type: "LoginRequest" });
@@ -44,11 +42,6 @@ export const loginWithGoogle = () => async (dispatch) => {
         });
 };
 
-// Login user via phone number and ask for OTP and redirect to home page after login which is /
-// Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'settings')
-// Fix for above error
-// https://stackoverflow.com/questions/68485741/firebase-auth-uncaught-in-promise-typeerror-cannot-read-properties-of-undef
-
 export const loginWithPhone = (phone) => async (dispatch) => {
     const appVerifier = new RecaptchaVerifier('recaptcha-container', {
         'size': 'invisible',
@@ -66,10 +59,6 @@ export const loginWithPhone = (phone) => async (dispatch) => {
             toast.error(error.message);
         });
 }
-
-// Verify OTP and redirect to home page after login which is / dont have confirmationResult
-// Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'confirm')
-// Fix for above error
 
 export const verifyOTP = (otp) => async (dispatch) => {
     const confirmationResult = window.confirmationResult;
@@ -161,7 +150,6 @@ export const registerWithEmail = (email, password, city, area) => async (dispatc
 
 
 // Load user from firebase and redirect to home page after login which is /
-
 export const loadUser = () => async (dispatch) => {
     dispatch({ type: "LoadUserRequest" });
     onAuthStateChanged(auth, (user) => {
@@ -203,7 +191,6 @@ export const loadUser = () => async (dispatch) => {
 }
 
 // Logout user from firebase and redirect to home page after login which is /
-
 export const logout = () => async (dispatch) => {
     dispatch({ type: "LogoutRequest" });
     signOut(auth).then(() => {
@@ -241,7 +228,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 }
 
 export const updateUserProfile = (data) => async (dispatch) => {
-    const {name, photoUrl, address, altAddress, phone, alternatePhone, city, area} = data
+    const {name, photoUrl, address, altAddress, phone, alternatePhone, city, area, email} = data
     dispatch({ type: "UpdateProfileRequest" });
     const user = auth.currentUser;
     user.updateProfile({
@@ -253,6 +240,8 @@ export const updateUserProfile = (data) => async (dispatch) => {
         const docRef = doc(db, "users", user.uid);
         if (docRef.exists()) {
             updateDoc(docRef, {
+                name: name,
+                email: user.email ? user.email : email,
                 address: address,
                 altAddress: altAddress,
                 phone: phone,

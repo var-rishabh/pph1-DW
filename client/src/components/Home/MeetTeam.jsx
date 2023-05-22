@@ -10,7 +10,7 @@ const MeetTeam = () => {
                     Meet Our Team
                 </div>
                 <div className='meet-team__description--text'>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                    It’s at the farm, in the store and on your table. Dairy is feeding people today for whatever comes tomorrow.
                 </div>
             </div>
             <div className='meet-team__image'>

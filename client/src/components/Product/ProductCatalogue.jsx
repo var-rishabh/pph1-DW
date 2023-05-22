@@ -25,6 +25,7 @@ const ProductCatalogue = () => {
           products.map((product) => {
             return (
               <ProductCard
+                key={product.id}
                 {...product}
               />
             )

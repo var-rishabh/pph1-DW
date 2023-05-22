@@ -1,8 +1,8 @@
 import React from 'react';
-import BookTrail from './BookTrail';
+import BookTrial from './BookTrial';
 import MeetTeam from './MeetTeam';
 import Testimonial from './Testimonial';
-import Delivery from './Delivery';
+import Delivery from '../Delivery/Delivery';
 import HomeProducts from './HomeProducts';
 import HomeHero from './HomeHero';
 
@@ -14,7 +14,7 @@ const Home = () => {
       <Delivery/>
       <Testimonial/>
       <MeetTeam/>
-      <BookTrail/>
+      <BookTrial/>
     </>
   )
 }

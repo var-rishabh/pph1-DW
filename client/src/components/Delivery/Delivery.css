@@ -35,8 +35,8 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 24px;
+  line-height: 28px;
   color: #dacfcf;
 }
 
@@ -82,15 +82,15 @@
 }
 
 
-@media  screen and (max-width:700px) {
+@media  screen and (max-width:1000px) {
   .delivery {
-    height: 50rem;
+    height: 40rem;
   }
   .delivery__container {
-    flex-direction: column;
-    height: 40rem;
     width: 100%;
     padding: 0 5%;
+    height: 30rem;
+
   }
   .delivery__container--content {
     width: 100%;
@@ -102,8 +102,9 @@
     line-height: 60px;
   }
   .delivery__container--description {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 25px;
+    line-height: 30px;
+    
   }
   .delivery__container--button {
     width: 50%;
@@ -111,14 +112,13 @@
   }
   .delivery__container--image {
     display: flex;
+    align-self: flex-end;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 50%;
+    height:70%;
   }
   .delivery__container--image img {
-    object-fit: contain;
     width: 100%;
-    height: 100%;
+    height: 120%;
   }
 }

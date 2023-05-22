@@ -1,12 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home/Home';
-import About from './components/About/About';
 import ProductCatalogue from './components/Product/ProductCatalogue';
 import Product from './components/Product/Product';
 import Process from './components/Process/Process';
 import Checkout from './components/Checkout/Checkout';
-import Gallery from './components/Gallery/Gallery';
 import Login from './components/Login/Login';
 import Signup from "./components/Signup/Signup";
 import Layout from './components/Layout/Layout';
@@ -18,36 +16,41 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './Actions/User';
 import { useEffect } from 'react';
 import Profile from './components/Profile/Profile';
-import { auth } from './firebase';
-import { getIdToken } from 'firebase/auth';
+// import { auth } from './firebase';
+// import { getIdToken } from 'firebase/auth';
+import HowWeDo from './components/HowWeDo/HowWeDo';
+import WhatWeDo from './components/WhatWeDo/WhatWeDo';
+import PleaseLogin from './components/PleaseLogin/PleaseLogin';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
-  const { user, loading, isAuthenticated } = useSelector(state => state.userReducer);
-  if (user) {
-    getIdToken(auth.currentUser).then((idToken) => {
-      console.log(idToken);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+  const {  loading, isAuthenticated } = useSelector(state => state.userReducer);
+  // if (user) {
+  //   getIdToken(auth.currentUser).then((idToken) => {
+  //     console.log(idToken);
+  //   }).catch((error) => {
+  //     console.log(error);
+  //   });
+  // }
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />} >
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/howwedo" element={<HowWeDo />} />
+          <Route path="/whatwedo" element={<WhatWeDo />} />
           <Route path="/product" element={<ProductCatalogue />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/process" element={<Process />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/checkout" element={loading ? (
+            <div className="loading"><div className='loading__circle'></div></div>
+          ) : isAuthenticated ?<Checkout />: (<PleaseLogin/>)} />
           <Route path="/profile" element={loading ? (
             <div className="loading"><div className='loading__circle'></div></div>
-          ) : isAuthenticated ? (<Profile />) : (null)} />
+          ) : isAuthenticated ? (<Profile />) : (<PleaseLogin/>)} />
         </Route>
         {!isAuthenticated &&
           <Route path="/" element={<Auth />} >
