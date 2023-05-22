@@ -1,5 +1,5 @@
 import React from 'react';
-import cart from '../../Assets/cart.svg';
+import cart from '../../Assets/Icons/Cart.svg';
 import './ProductCard.css';
 
 const ProductCard = ({ image, description, title, id }) => {

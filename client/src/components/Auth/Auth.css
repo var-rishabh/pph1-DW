@@ -138,8 +138,13 @@
   align-items: center;
   width: 50%;
   height: 100vh;
-  background-color: var(--secondary-color);
+  background-color: var(--tertiary-color);
 }
+
+.auth__right img {
+  width: 100%;
+}
+
 .auth__right--text {
   margin: 5% 10% 0 10%;
   font-family: "Rubik", sans-serif;
@@ -160,4 +165,40 @@
   background-color: rgba(80, 168, 220, 0.8);
   width: 100vw;
   height: 100vh;
+}
+
+@media screen and (max-width: 1000px) {
+  .auth {
+    flex-direction: column;
+  }
+
+  .auth__left {
+    width: 80%;
+    height: 90vh;
+    padding: 5vh 10% 5vh 10%;
+  }
+
+  .auth__form--input input {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .auth__form--button button {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .auth__form--input select {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .auth__form--or {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .auth__right {
+    display: none;
+  }
 }

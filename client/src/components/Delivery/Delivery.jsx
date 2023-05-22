@@ -10,11 +10,11 @@ const Delivery = () => {
                         Door Step Your life Delivery
                     </div>
                     <div className="delivery__container--description">
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-                        atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+                        Moo-ve over the packets & cartons.<br/>
+                        Try our milk that’s so fresh, you can taste the difference
                     </div>
                     <div className="delivery__container--button">
-                        <a href="/trail">Book Trail</a>
+                        <a href="/trail">Book Trial</a>
                     </div>
                 </div>
                 <div className="delivery__container--image">

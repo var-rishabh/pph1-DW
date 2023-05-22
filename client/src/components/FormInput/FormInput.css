@@ -1,0 +1,52 @@
+.form-input {
+  position: relative;
+}
+
+.form-input input::placeholder {
+  opacity: 0;
+}
+
+.form-input input {
+  width: 100%;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #aaaaaa;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.form-input label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #aaaaaa;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.form-input input:focus + label,
+.form-input input:not(:placeholder-shown) + label {
+  top: 0;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #AAAAAA;
+  background: #fff;
+}
+
+.form-input input:focus {
+  border: 2px solid #AAAAAA;
+}

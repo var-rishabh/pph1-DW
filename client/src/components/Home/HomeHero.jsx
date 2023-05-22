@@ -14,11 +14,10 @@ const HomeHero = () => {
                     <span className='home-hero__left--title--two'> Natural & Fresh Milk</span>
                 </div>
                 <div className='home-hero__left--description'>
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                    The freshest milk in town, delivered right to you
                 </div>
                 <div className='home-hero__left--button'>
-                    <a href="/trail">Book Trail</a>
+                    <a href="/trail">Book Trial</a>
                 </div>
                 <div className='home-hero__left--features'>
                     <div className='home-hero__left--features--item'>
@@ -54,7 +53,7 @@ const HomeHero = () => {
                     <img src={home1} alt='home1' />
                 </div>
                 <div className='home-hero__right--buttons'>
-                    <button className='home-hero__right--buttons--button1'>Book Trail</button>
+                    <button className='home-hero__right--buttons--button1'>Book Trial</button>
                     <button className='home-hero__right--buttons--button2'>GET VIP Membership</button>
                     <button className='home-hero__right--buttons--button3'>Subscribe</button>
                 </div>

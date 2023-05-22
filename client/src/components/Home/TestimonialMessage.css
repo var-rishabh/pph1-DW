@@ -9,24 +9,57 @@
   text-align: center;
   justify-self: center;
   width: 75%;
+  min-height: 18vh;
   background-color: var(--tertiary-color);
   padding: 15% 15%;
   border-radius: 6px;
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 14px;
+  line-height: 17px;
   color: var(--text-color-secondary);
 }
 
-.testimonial-message__image {
-    margin-top: -10%;
+.testimonial-message__profile {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin-top: -20%;
+}
+
+.testimonial-message__profile .testimonial-message__name {
+  font-family: 'Rubik', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color-secondary);
+  padding: 0 2%;
+
+}
+
+.testimonial-message__image{
+  margin-top: 8%;
 }
 
 .testimonial-message__image img {
-  width: 87px;
-  height: 87px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   box-sizing: border-box;
+}
+
+@media  screen and (max-width: 1000px) {
+  .testimonial-message__text {
+    min-height: 0;
+  }
+  .testimonial-message__profile .testimonial-message__name{
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .testimonial-message__profile{
+    margin-top: -15%;
+  }
 }

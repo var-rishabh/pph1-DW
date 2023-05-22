@@ -1,4 +1,4 @@
-.book-trail {
+.book-trial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,16 +8,17 @@
   text-align: center;
 }
 
-.book-trail__title {
+.book-trial__title {
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 60px;
   line-height: 90px;
   color: var(--heading-color-secondary);
+  margin-bottom: 5%;
 }
 
-.book-trail__button {
+.book-trial__button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,11 +27,11 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 }
-.book-trail__button:active {
+.book-trial__button:active {
   color: var(--white-color);
   transform: scale(0.98);
 }
-.book-trail__button a {
+.book-trial__button a {
   text-decoration: none;
   color: var(--white-color);
   font-family: "Poppins", sans-serif;
@@ -40,7 +41,18 @@
   line-height: 27px;
 }
 
-.book-trail__button a:hover {
+.book-trial__button a:hover {
   color: var(--white-color);
   text-decoration: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .book-trial__title {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 60px;
+    text-align: center;
+  }
 }

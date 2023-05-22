@@ -42,3 +42,23 @@
   line-height: 21px;
   color: var(--text-color-blue);
 }
+
+
+@media  screen and (max-width: 1000px) {
+
+  .login__form--forgot {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .login__form--signup {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .login__form--signup a {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  
+}

@@ -9,25 +9,10 @@ const HomeProducts = () => {
             {/* Raw Milk */}
             <div className='home-products__list'>
                 <div className='home-products__list--title'>
-                    Raw Milk
+                    Dairy
                 </div>
                 <div className='home-products__list--items'>
                     {products.slice(0, 3).map((product) => {
-                        return (
-                            <div className='home-products__list--items--item' key={product.id}>
-                                <HomeProductCard product={product} />
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
-            {/* Processed Milk */}
-            <div className='home-products__list'>
-            <div className='home-products__list--title'>
-                    Processed Milk
-                </div>
-                <div className='home-products__list--items'>
-                    {products.slice(2, 6).map((product) => {
                         return (
                             <div className='home-products__list--items--item' key={product.id}>
                                 <HomeProductCard product={product} />

@@ -26,16 +26,16 @@ const FooterMain = () => {
             <a href="/">Home</a>
           </div>
           <div className="footer-main__links--list--item">
-            <a href="/about">About</a>
+            <a href="/whatwedo">What We Do</a>
+          </div>
+          <div className="footer-main__links--list--item">
+            <a href="/howwedo">How We Do</a>
           </div>
           <div className="footer-main__links--list--item">
             <a href="/product">Product</a>
           </div>
           <div className="footer-main__links--list--item">
-            <a href="/farms">Our Farms</a>
-          </div>
-          <div className="footer-main__links--list--item">
-            <a href="/blog">Blogs</a>
+            <a href="/process">Process</a>
           </div>
         </div>
       </div>

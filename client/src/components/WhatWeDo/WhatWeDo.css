@@ -1,0 +1,35 @@
+.what-we-do__hero {
+  display: flex;
+  flex-direction: column;
+  padding: 5vh 10%;
+  justify-content: flex-end;
+  height: 50vh;
+  background: url("../../Assets/WhatWeDoHero.png");
+  background-repeat: no-repeat;
+}
+
+
+
+.what-we-do__hero__title {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 84px;
+  line-height: 100px;
+  color: var(--text-color-secondary);
+}
+
+.what-we-do__hero__breadcrumb {
+  color: var(--text-color-secondary);
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+@media screen and (max-width:1000px){
+  .what-we-do__hero {
+    height: 20vh;
+  }
+}

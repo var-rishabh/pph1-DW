@@ -50,7 +50,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 15%;
+  margin-top: 5%;
   height: 100%;
   width: 100%;
 }
@@ -112,6 +112,12 @@
     align-items: flex-start;
     padding: 5% 10%;
   }
+
+  .footer-main--title {
+    font-size: 42px;
+    line-height: 49px;
+  }
+
   .footer-main__description{
     width: 100%;
     margin: 2% 0;
@@ -119,17 +125,29 @@
   .footer-main__description--text{
     padding: 0;
     margin: 5% 0;
+    font-size: 36px;
+    line-height: 42px;
   }
   .footer-main__links{
     width: 100%;
     margin: 2% 0;
   }
+
   .footer-main__links--list{
     width: 100%;
+  }
+  .footer-main__links--list--item{
+    font-size: 36px;
+    line-height: 42px;
   }
   .footer-main__contact{
     width: 100%;
     margin: 2% 0;
+  }
+
+  .footer-main__contact--list--item{
+    font-size: 36px;
+    line-height: 42px;
   }
   .footer-main__download{
     width: 100%;
