@@ -62,7 +62,11 @@
 }
 
 .checkout__right--box {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding: 2% 5%;
   height: 30vh;
   overflow-y: auto;
   border: 1px solid #aaaaaa;

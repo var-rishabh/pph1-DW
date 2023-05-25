@@ -1,3 +1,220 @@
-.profile{
-    width:100%;
+.profile {
+  width: 80%;
+  padding: 5% 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #eaf8ff;
+}
+
+.profile__left {
+  width: 24%;
+  padding: 2% 8% 2% 8%;
+  background: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  min-height: 120vh;
+}
+
+.profile__left__image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid #50a8dc;
+  margin-bottom: 5%;
+}
+
+.profile__left__image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.profile__left__name {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  padding: 2% 0;
+}
+
+.profile__left__logout {
+  background: var(--primary-color);
+  border-radius: 6px;
+  padding: 2% 5%;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--white-color);
+  margin-bottom: 5%;
+}
+
+.profile__left__wallet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 5%;
+  background: #124975;
+  border-radius: 12px;
+}
+
+.profile__left__wallet--amount {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 33px;
+  line-height: 50px;
+  color: var(--white-color);
+}
+
+.profile__left__wallet--button {
+  background: #50a8dc;
+  color: var(--white-color);
+  border-radius: 12px;
+  padding: 2% 5%;
+  border: none;
+  margin-top: -5%;
+  margin-bottom: 10%;
+}
+
+.profile__left__wallet-history {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.profile__left__wallet-history--title {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.profile__left__wallet-history--list {
+  width: 100%;
+  padding: 3% 0;
+  margin-bottom: 5%;
+}
+
+.profile__left__wallet-history--button {
+  align-self: center;
+  text-align: center;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  padding: 2% 5%;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-radius: 6px;
+}
+
+.profile__right {
+  width: 45%;
+  padding: 0% 2.5% 0% 2.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile__right--personal {
+  background: var(--white-color);
+  display: flex;
+  padding: 5%;
+  width: 90%;
+  flex-direction: column;
+  border-radius: 12px;
+  align-items: flex-start;
+  margin-bottom: 5%;
+}
+
+.profile__right--personal--button {
+  text-align: center;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 2% 5%;
+  margin-top: 5%;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-radius: 6px;
+}
+
+.profile__right--service {
+  background: var(--white-color);
+  display: flex;
+  padding: 5%;
+  width: 90%;
+  flex-direction: column;
+  border-radius: 12px;
+  align-items: flex-start;
+}
+
+.profile__right--service--title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 3%;
+  width: 100%;
+}
+
+.profile__right--service--list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+.profile__right--service--button {
+  text-align: center;
+  width: 100%;
+  padding: 3% 0;
+  background: #124975;
+  border-radius: 12px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--white-color);
+  margin-bottom: 5%;
+}
+
+.profile__right--service--options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.profile__right--service--options--button {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #50A8DC;
+  border: 1px solid #50A8DC;
+  background: none;
+  border-radius: 6px;
+  padding: 3% 15%;
 }

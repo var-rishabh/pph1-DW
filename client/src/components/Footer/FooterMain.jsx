@@ -41,7 +41,7 @@ const FooterMain = () => {
       </div>
       <div className="footer-main__contact">
         <div className="footer-main--title">
-          Contact Us
+          <a href="/contact">Contact Us</a>
         </div>
         <div className="footer-main__contact--list">
           <div className="footer-main__contact--list--item">

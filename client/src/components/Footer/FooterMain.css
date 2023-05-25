@@ -80,6 +80,18 @@
     width: 25%;
 }
 
+.footer-main__contact a {
+    text-decoration: none;
+    color: var(--text-color-secondary);
+}
+
+.footer-main__contact a:hover {
+    text-decoration: none;
+    color: var(--text-color-secondary);
+}
+
+
+
 .footer-main__contact--list {
     display: flex;
     flex-direction: column;

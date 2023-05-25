@@ -3,6 +3,8 @@ import "./Checkout.css";
 import FormInput from '../FormInput/FormInput';
 import { order } from '../../SampleData/order';
 import { useSelector } from 'react-redux';
+import CheckoutFoot from './CheckoutFoot';
+import OrderItem from '../OrderItem/OrderItem';
 
 const Checkout = () => {
     const user = useSelector(state => state.userReducer.user);
@@ -69,6 +71,38 @@ const Checkout = () => {
                         Order Summary
                     </div>
                     <div className='checkout__right--box'>
+                        <OrderItem
+                            img={orderDetails.product.image}
+                            productName={orderDetails.product.title}
+                            size={orderDetails.product.size}
+                            orderType={orderDetails.type}
+                            quantity={orderDetails.quantity}
+                            price={orderDetails.total}
+                        />
+                        <OrderItem
+                            img={orderDetails.product.image}
+                            productName={orderDetails.product.title}
+                            size={orderDetails.product.size}
+                            orderType={orderDetails.type}
+                            quantity={orderDetails.quantity}
+                            price={orderDetails.total}
+                        />
+                        <OrderItem
+                            img={orderDetails.product.image}
+                            productName={orderDetails.product.title}
+                            size={orderDetails.product.size}
+                            orderType={orderDetails.type}
+                            quantity={orderDetails.quantity}
+                            price={orderDetails.total}
+                        />
+                        <OrderItem
+                            img={orderDetails.product.image}
+                            productName={orderDetails.product.title}
+                            size={orderDetails.product.size}
+                            orderType={orderDetails.type}
+                            quantity={orderDetails.quantity}
+                            price={orderDetails.total}
+                        />
                     </div>
                     <div className='checkout__right--promo'>
                         <div className='checkout__right--promo--title'>
@@ -114,8 +148,7 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-            <div className='checkout__foot'>
-            </div>
+            <CheckoutFoot />
         </div>
     )
 }
