@@ -1,7 +1,6 @@
 import React from 'react'
 import "./HeaderMain.css";
 import Icon from "../../Assets/Icon.png";
-import mainLogo from "../../Assets/mainLogo.png";
 import profileSample from "../../Assets/profileSample.jpg";
 import { useSelector } from 'react-redux';
 

@@ -21,6 +21,7 @@ import Profile from './components/Profile/Profile';
 import HowWeDo from './components/HowWeDo/HowWeDo';
 import WhatWeDo from './components/WhatWeDo/WhatWeDo';
 import PleaseLogin from './components/PleaseLogin/PleaseLogin';
+import Contact from './components/Contact/Contact';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
           <Route path="/product" element={<ProductCatalogue />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/process" element={<Process />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={loading ? (
             <div className="loading"><div className='loading__circle'></div></div>
           ) : isAuthenticated ?<Checkout />: (<PleaseLogin/>)} />

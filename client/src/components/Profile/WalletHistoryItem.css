@@ -1,0 +1,57 @@
+.wallet-history-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2%;
+  width: 90%;
+}
+
+.wallet-history-item__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2% 0;
+  width: 100%;
+}
+
+.wallet-history-item__details--title {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.wallet-history-item__details--amount {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.wallet-history-item__balance {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2% 0;
+  width: 100%;
+}
+
+.wallet-history-item__balance--date {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 390;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.wallet-history-item__balance--amount {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
