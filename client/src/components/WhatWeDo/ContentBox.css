@@ -15,10 +15,10 @@
   font-family: "Coda", sans-serif;
   font-style: normal;
   font-weight: 800;
-  font-size: 90px;
+  font-size: 5.625rem;
   color: var(--text-color-secondary);
   opacity: 0.5;
-  line-height: 60px;
+  line-height: 3.75rem;
 }
 
 .contentBox__quoteend {
@@ -29,8 +29,8 @@
   font-family: "Poppins",sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.135rem;
   text-align: center;
   padding: 2% 5%;
   color: var(--text-color-secondary);
@@ -38,7 +38,7 @@
 
 @media screen and (max-width: 1000px){
   .contentBox__quote{
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 2rem;
+    line-height: 2.375rem;
   }
 }

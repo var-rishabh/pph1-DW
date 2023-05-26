@@ -27,8 +27,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
   color: #2c3c4d;
   padding: 3% 0;
 }
@@ -51,8 +51,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 22px;
-  line-height: 28px;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
   padding: 3% 0;
 }
 
@@ -81,8 +81,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
   color: #8c959f;
 }
 
@@ -102,8 +102,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 22px;
-  line-height: 28px;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
 }
 
 .contact__right--form {
@@ -128,8 +128,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
   color: #8c959f;
 }
 
@@ -147,8 +147,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
   color: #8c959f;
 }
 
@@ -164,8 +164,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
   color: #8c959f;
   padding: 0 2%;
 }
@@ -173,8 +173,8 @@
 .contact__right--form--submit{
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1rem;
+  line-height: 1.25rem;
   color: #ffffff;
   background-color: #352429;
   border: none;

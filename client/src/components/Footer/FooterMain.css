@@ -21,15 +21,15 @@
 
 .footer-main__description--text {
   padding-top: 5%;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-secondary);
 }
 
 .footer-main--title {
-  font-size: 18px;
-  font-size: 32px;
-  line-height: 38px;
+  font-size: 1.125rem;
+  font-size: 2rem;
+  line-height: 2.375rem;
   color: var(--text-color-secondary);
 }
 
@@ -57,8 +57,8 @@
 
 .footer-main__links--list--item {
   padding: 4%;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-secondary);
 }
 
@@ -100,8 +100,8 @@
 }
 
 .footer-main__contact--list--item {
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1rem;
+    line-height: 1.1875rem;
     margin: 2% 0;
     color: var(--text-color-secondary);
 }
@@ -126,8 +126,8 @@
   }
 
   .footer-main--title {
-    font-size: 42px;
-    line-height: 49px;
+    font-size: 2.625rem;
+    line-height: 3.0625rem;
   }
 
   .footer-main__description{
@@ -137,8 +137,8 @@
   .footer-main__description--text{
     padding: 0;
     margin: 5% 0;
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
   .footer-main__links{
     width: 100%;
@@ -149,8 +149,8 @@
     width: 100%;
   }
   .footer-main__links--list--item{
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
   .footer-main__contact{
     width: 100%;
@@ -158,8 +158,8 @@
   }
 
   .footer-main__contact--list--item{
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
   .footer-main__download{
     width: 100%;

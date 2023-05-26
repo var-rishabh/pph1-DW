@@ -12,8 +12,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 84px;
-  line-height: 100px;
+  font-size: 5.25rem;
+  line-height: 6.25rem;
   color: var(--text-color-secondary);
 }
 
@@ -22,8 +22,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
 }
 
 .how-we-do__flow {

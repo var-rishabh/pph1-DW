@@ -12,8 +12,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 84px;
-  line-height: 100px;
+  font-size: 5.25rem;
+  line-height: 6.25rem;
   color: var(--text-color-secondary);
 }
 
@@ -22,8 +22,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
 }
 
 .process__chart {
@@ -37,8 +37,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
   background: #124975;
   border-radius: 4px;
   padding: 1% 2%;
@@ -65,8 +65,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 60px;
-  line-height: 71px;
+  font-size: 3.75rem;
+  line-height: 4.4375rem;
   padding: 1% 0;
   color: var(--text-color-primary);
 }
@@ -77,8 +77,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
   color: #817d7d;
 }
 
@@ -121,8 +121,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 64px;
-  line-height: 76px;
+  font-size: 4rem;
+  line-height: 4.75rem;
   padding: 0 2%;
 }
 
@@ -143,8 +143,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   padding-bottom: 2%;
 }
 
@@ -152,8 +152,8 @@
   font-family: 'Rubik', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
 }
 
 .process__delivery {
@@ -165,8 +165,8 @@
     height: 20vh;
   }
   .process__points--title {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
     width: 100%;
   }
   .process__points--description{

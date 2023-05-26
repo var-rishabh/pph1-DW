@@ -10,8 +10,8 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 50px;
-  line-height: 75px;
+  font-size: 3.125rem;
+  line-height: 4.6875rem;
   color: #1c2144;
 }
 
@@ -33,8 +33,8 @@
 
 .features-of-ordering__content--item--icon {
   display: flex;
-  height: 150px;
-  width: 150px;
+  height: 13.125rem;
+  width: 13.125rem;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
@@ -42,8 +42,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
   text-align: center;
   color: var(--white-color);
   background-color: var(--primary-color);
@@ -53,8 +53,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   text-align: center;
   letter-spacing: 0.08em;
   color: var(--primary-color);
@@ -68,17 +68,17 @@
   .features-of-ordering__content--item--icon {
     height: 300px;
     width: 300px;
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
 
   .features-of-ordering__content--item--text {
-    font-size: 30px;
+    font-size: 1.875rem;
     line-height: 34px;
   }
 
   .features-of-ordering__content--item--icon svg {
-    height: 150px;
-    width: 150px;
+    height: 13.125rem;
+    width: 13.125rem;
   }
 }

@@ -16,8 +16,8 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
   color: var(--text-color-secondary);
 }
 
@@ -32,8 +32,8 @@
   font-family: 'Rubik', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
   color: var(--text-color-secondary);
   padding: 0 2%;
 
@@ -44,8 +44,8 @@
 }
 
 .testimonial-message__image img {
-  width: 90px;
-  height: 90px;
+  width: 5.625rem;
+  height: 5.625rem;
   border-radius: 50%;
   box-sizing: border-box;
 }
@@ -55,8 +55,8 @@
     min-height: 0;
   }
   .testimonial-message__profile .testimonial-message__name{
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 2rem;
+    line-height: 2.375rem;
   }
 
   .testimonial-message__profile{

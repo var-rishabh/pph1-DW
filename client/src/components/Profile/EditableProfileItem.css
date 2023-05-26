@@ -7,8 +7,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
 }
 
 .editable-profile-item__input {
@@ -22,16 +22,16 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
 }
 
 .editable-profile-item__input input:disabled {
     font-family: "Rubik", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
+    font-size: 1.125rem;
+    line-height: 1.135rem;
     color: black;
     background: none;
     border: 2px solid white;

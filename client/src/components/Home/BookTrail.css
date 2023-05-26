@@ -12,8 +12,8 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 60px;
-  line-height: 90px;
+  font-size: 3.75rem;
+  line-height: 5.625rem;
   color: var(--heading-color-secondary);
   margin-bottom: 5%;
 }
@@ -37,8 +37,8 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
 }
 
 .book-trial__button a:hover {
@@ -48,11 +48,11 @@
 
 @media screen and (max-width: 1000px) {
   .book-trial__title {
-    font-family: "Rubik";
+    font-family: "Rubik", sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 2.5rem;
+    line-height: 3.75rem;
     text-align: center;
   }
 }

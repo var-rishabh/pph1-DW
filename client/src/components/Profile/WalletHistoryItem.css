@@ -19,16 +19,16 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
 }
 
 .wallet-history-item__details--amount {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.135rem;
 }
 
 .wallet-history-item__balance {
@@ -41,17 +41,17 @@
 }
 
 .wallet-history-item__balance--date {
-  font-family: "Poppins";
+  font-family: "Poppins",sans-serif;
   font-style: normal;
   font-weight: 390;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .wallet-history-item__balance--amount {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.135rem;
 }

@@ -6,8 +6,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 19px;
-  line-height: 23px;
+  font-size: 1.1875rem;
+  line-height: 1.5625rem;
   color: var(--text-color-blue);
 }
 
@@ -24,8 +24,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-main);
 }
 
@@ -38,8 +38,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-blue);
 }
 
@@ -47,18 +47,18 @@
 @media  screen and (max-width: 1000px) {
 
   .login__form--forgot {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
 
   .login__form--signup {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
 
   .login__form--signup a {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
   
 }
