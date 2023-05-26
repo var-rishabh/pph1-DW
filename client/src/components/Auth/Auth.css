@@ -22,8 +22,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 52px;
-  line-height: 62px;
+  font-size: 3.25rem;
+  line-height: 3.875rem;
   margin: 5% 0 2% 0;
   color: var(--tertiary-color);
 }
@@ -42,8 +42,8 @@
   font-family: 'Rubik', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-gray);
 }
 
@@ -67,8 +67,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: #000000;
   padding-left: 5%;
   border-radius: 6px;
@@ -83,8 +83,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: #000000;
   padding-left: 5%;
 }
@@ -122,8 +122,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--white-color);
   cursor: pointer;
   border-radius: 6px;
@@ -150,8 +150,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
   text-align: center;
   color: var(--text-color-secondary);
 }
@@ -179,23 +179,23 @@
   }
 
   .auth__form--input input {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
 
   .auth__form--button button {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
 
   .auth__form--input select {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
 
   .auth__form--or {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
   }
 
   .auth__right {

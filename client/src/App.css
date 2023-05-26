@@ -43,8 +43,8 @@
 }
 
 .loading .loading__circle {
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   border-radius: 50%;
   border: 5px solid #124975;
   border-top-color: transparent;

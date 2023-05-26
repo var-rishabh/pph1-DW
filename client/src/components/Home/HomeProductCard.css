@@ -30,15 +30,15 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
 }
 
 .home-product-card__price {
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 26px;
   /* or 153% */
 
@@ -51,8 +51,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
 
   color: #b2adc5;
 }
@@ -70,8 +70,8 @@
 
 .home-product-card__buttons--try {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--heading-color-secondary);
   background-color: var(--white-color);
   border: 1px solid var(--primary-color);
@@ -86,8 +86,8 @@
 
 .home-product-card__buttons--buy {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-secondary);
   background-color: var(--primary-color);
   padding: 1% 5%;
@@ -101,8 +101,8 @@
 
 .home-product-card__buttons--subscribe {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-secondary);
   background-color: var(--heading-color-secondary);
   padding: 1% 5%;

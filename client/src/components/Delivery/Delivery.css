@@ -25,8 +25,8 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 60px;
-  line-height: 90px;
+  font-size: 3.75rem;
+  line-height: 5.625rem;
   color: var(--text-color-secondary);
 }
 
@@ -35,8 +35,8 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
   color: #dacfcf;
 }
 
@@ -68,8 +68,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
 }
 
 .delivery__container--button a:hover {
@@ -98,12 +98,12 @@
     margin-top: 5%;
   }
   .delivery__container--title {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 2.5rem;
+    line-height: 3.75rem;
   }
   .delivery__container--description {
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 1.5625rem;
+    line-height: 1.875rem;
     
   }
   .delivery__container--button {

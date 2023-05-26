@@ -6,8 +6,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 40px;
-  line-height: 47px;
+  font-size: 2.5rem;
+  line-height: 2.9375rem;
   padding: 3% 10%;
   width: 80%;
   text-align: center;
@@ -27,8 +27,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
   padding-bottom: 3%;
 }
 
@@ -56,8 +56,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
   padding-bottom: 3%;
 }
 
@@ -81,8 +81,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 1rem;
+  line-height: 1.125rem;
   padding: 2% 0;
 }
 
@@ -103,8 +103,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 1rem;
+  line-height: 1.125rem;
   color: var(--white-color);
   border: none;
 }
@@ -127,8 +127,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 18px;
+  font-size: 1.25rem;
+  line-height: 1.125rem;
   width: 70%;
   padding: 1% 0;
   border-bottom: 1px solid #aaaaaa;
@@ -138,8 +138,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 18px;
+  font-size: 1.5rem;
+  line-height: 1.125rem;
 }
 
 .checkout__right--bill--button {
@@ -149,8 +149,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 18px;
+  font-size: 1.25rem;
+  line-height: 1.125rem;
   padding: 2% 0;
   color: var(--text-color-secondary);
   text-align: center;

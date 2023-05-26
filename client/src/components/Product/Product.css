@@ -27,8 +27,8 @@
 
 .product__info--left--title {
   font-weight: 500;
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
   padding: 1% 0;
   color: var(--heading-color-secondary);
   text-align: center;
@@ -47,8 +47,8 @@
 
 .product__info--left--buttons--try {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--heading-color-secondary);
   background-color: var(--white-color);
   border: 1px solid var(--primary-color);
@@ -63,8 +63,8 @@
 
 .product__info--left--buttons--buy {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-secondary);
   background-color: var(--primary-color);
   padding: 1% 5%;
@@ -78,8 +78,8 @@
 
 .product__info--left--buttons--subscribe {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   color: var(--text-color-secondary);
   background-color: var(--heading-color-secondary);
   padding: 1% 5%;
@@ -102,43 +102,43 @@
 
 .product__info--right--title {
   font-weight: 700;
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 3.125rem;
+  line-height: 3.75rem;
   padding: 2% 0;
 }
 
 .product__info--right--info {
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   padding: 2% 0;
 }
 
 .product__info--right--description--title {
   font-weight: 600;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   padding: 2% 0;
 }
 
 .product__info--right--description--content {
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   padding: 2% 0 2% 4%;
 }
 
 .product__info--right--benefits--title {
   font-weight: 600;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   padding: 2% 0;
 }
 
 .product__info--right--benefits--list--item {
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
   padding: 1% 0 1% 0;
 }
 
@@ -153,8 +153,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 60px;
-  line-height: 71px;
+  font-size: 3.75rem;
+  line-height: 4.4375rem;
   color: var(--text-color-primary);
   padding: 2% 0;
 }
@@ -174,8 +174,8 @@
   }
 
   .product__info--left--title {
-    font-size: 37px;
-    line-height: 41px;
+    font-size: 2.3125rem;
+    line-height: 2.5625rem;
   }
 
   .product__info--left--buttons {
