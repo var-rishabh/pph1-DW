@@ -3,6 +3,7 @@ import "./HeaderMain.css";
 import Icon from "../../Assets/Icon.png";
 import profileSample from "../../Assets/profileSample.jpg";
 import { useSelector } from 'react-redux';
+import HeaderMobileMenu from './HeaderMobileMenu';
 
 const HeaderMain = () => {
   const { user, loading } = useSelector(state => state.userReducer);
@@ -70,10 +71,10 @@ const HeaderMain = () => {
               </a>)}
           </div>
         </div>
-        <div className="header-main__mobile--menu">
-        </div>
       </div>
-
+      <div className="header-main__mobile--menu">
+        <HeaderMobileMenu />
+      </div>
     </>
   );
 }

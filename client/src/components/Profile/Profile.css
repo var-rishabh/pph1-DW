@@ -69,7 +69,7 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 33px;
+  font-size: 2.0625rem;
   line-height: 3.125rem;
   color: var(--white-color);
 }
@@ -217,4 +217,86 @@
   background: none;
   border-radius: 6px;
   padding: 3% 15%;
+}
+
+
+@media  screen and (max-width: 1000px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    background-color: white;
+  }
+
+  .profile__left {
+    width: 80%;
+    padding: 5% 10%;
+    margin-bottom: 5%;
+    min-height: 0;
+  }
+  
+  .profile__left__image {
+    height: 400px;
+    width: 400px;
+  }
+
+  .profile__left__name {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+  
+  .profile__left__logout {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+  .profile__left__wallet svg {
+    width: 100px;
+    height: 100px;
+  }
+  .profile__left__wallet--amount {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+  
+  .profile__left__wallet--button {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .profile__left__wallet-history--title {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+
+  .profile__left__wallet-history--button {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  
+  .profile__right {
+    width: 90%;
+    padding: 5%;
+  }
+
+  .profile__right--personal--button {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .profile__right--service--title {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+
+  .profile__right--service--button {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .profile__right--service--options--button {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
 }

@@ -139,6 +139,10 @@
   display: none;
 }
 
+.header-main__mobile--menu {
+  display: none;
+}
+
 .header-main__mobile--nav {
   display: flex;
   position: fixed;
@@ -154,14 +158,14 @@
 }
 
 .header-main__mobile--profile img {
-  width: 5rem;
-  height: 5rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   border: 1px solid var(--profile-border-color);
 }
 
 .header-main__mobile--icon img {
-  height: 5rem;
+  height: 6rem;
   cursor: pointer;
 }
 
@@ -182,9 +186,22 @@
     display: none;
   }
   .header-main__cover {
-    height: 7vh;
+    height: 8vh;
   }
   .header-main__mobile {
     display: flex;
+  }
+
+  .header-main__mobile--menu {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    height: 6vh;
+    background-color: var(--white-color);
   }
 }

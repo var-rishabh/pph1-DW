@@ -50,3 +50,22 @@
 .form-input input:focus {
   border: 2px solid #AAAAAA;
 }
+
+
+@media  screen and (max-width: 1000px) {
+  .form-input input {
+    font-size: 2rem;
+    line-height: 2.25rem;
+  }
+
+  .form-input label {
+    font-size: 2rem;
+    line-height: 2.25rem;
+  }
+
+  .form-input input:focus + label,
+  .form-input input:not(:placeholder-shown) + label {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }  
+}
