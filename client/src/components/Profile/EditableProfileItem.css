@@ -30,8 +30,6 @@
     font-family: "Rubik", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 1.125rem;
-    line-height: 1.135rem;
     color: black;
     background: none;
     border: 2px solid white;
@@ -40,4 +38,17 @@
 .editable-profile-item__input button {
   background: none;
   border: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .editable-profile-item {
+    font-size: 2rem;
+    line-height: 2.135rem;
+  }
+
+  .editable-profile-item__input input {
+    font-size: 2rem;
+    line-height: 2.135rem;
+  }
 }

@@ -17,8 +17,8 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 70px;
-  line-height: 94px;
+  font-size: 4.375rem;
+  line-height: 5.875rem;
   color: #2c3c4d;
   padding: 3% 0;
 }
@@ -179,4 +179,106 @@
   background-color: #352429;
   border: none;
   padding: 2% 0;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .contact {
+    flex-direction: column;
+    padding: 5% 5%;
+    text-align: center;
+  }
+
+  .contact__left {
+    width: 100%;
+    padding: 0;
+  }
+
+  .contact__right {
+    width: 100%;
+    padding: 0;
+  }
+
+  .contact__left--title {
+    font-size: 6.25rem;
+    line-height: 7.875rem;
+  }
+
+  .contact__left--subtitle {
+    font-size: 2.25rem;
+    line-height: 3.125rem;
+  }
+
+  .contact__left--hr {
+    width: 100%;
+  }
+  
+  .contact__left--details--title {
+    font-size: 2.25rem;
+  }
+
+  .contact__left--details--subtitle {
+    flex-direction: column;
+    text-align: left;
+    padding: 2% 0;
+    width: 100%;
+  }
+
+  .contact__left--details--subtitle.two {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .contact__left--details--subtitle--item {
+    display: flex;
+    padding: 2% 0;
+    font-family: "Rubik", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.25rem;
+    line-height: 3.125rem;
+    color: #8c959f;
+  }
+
+  .contact__left--details--subtitle svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .contact__right--title {
+    padding: 5% 0;
+    font-size: 3.125rem;
+    line-height: 3.75rem;
+  }
+
+  .contact__right--form {
+    background: #F9FBFC;
+    width: 90%;
+    padding: 5%;
+  }
+
+  .contact__right--form--personal input {
+    font-size: 2.25rem;
+    line-height: 3.125rem;
+  }
+
+  .contact__right--form--message textarea {
+    font-size: 2.25rem;
+    line-height: 3.125rem;
+  }
+  .contact__right--form--checkbox input {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .contact__right--form--checkbox--text {
+    font-size: 2.25rem;
+    line-height: 3.125rem;
+  }
+  
+  .contact__right--form--submit{
+    font-size: 2.25rem;
+    line-height: 3.125rem;
+  }
+  
 }
