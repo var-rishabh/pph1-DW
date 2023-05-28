@@ -55,4 +55,13 @@
     line-height: 3.75rem;
     text-align: center;
   }
+
+  .book-trial__button {
+    padding: 2% 5%;
+  }
+
+  .book-trial__button a {
+    font-size:3rem;
+    line-height: 3.6875rem;
+  }
 }

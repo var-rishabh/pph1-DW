@@ -32,4 +32,9 @@
   .what-we-do__hero {
     height: 20vh;
   }
+
+  .what-we-do__hero__breadcrumb {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
 }

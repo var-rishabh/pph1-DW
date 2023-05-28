@@ -98,17 +98,22 @@
     margin-top: 5%;
   }
   .delivery__container--title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: 3.75rem;
   }
   .delivery__container--description {
-    font-size: 1.5625rem;
-    line-height: 1.875rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
     
   }
   .delivery__container--button {
     width: 50%;
     margin-top: 5%;
+    padding: 2% 0;
+  }
+  .delivery__container--button a {
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
   .delivery__container--image {
     display: flex;

@@ -113,3 +113,40 @@
 .home-product-card__buttons--subscribe:hover {
   background-color: var(--secondary-color);
 }
+
+
+@media screen and (max-width:1000px){
+  .home-product-card {
+    margin: 2.5% 0;
+  }
+
+  .home-product-card__title {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
+
+  .home-product-card__price {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
+
+  .home-product-card__size {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
+
+  .home-product-card__buttons--try {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
+
+  .home-product-card__buttons--buy {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  } 
+
+  .home-product-card__buttons--subscribe {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
+}
