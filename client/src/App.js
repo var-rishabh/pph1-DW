@@ -16,6 +16,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './Actions/User';
 import { useEffect } from 'react';
 import Profile from './components/Profile/Profile';
+import { auth } from './firebase';
+import { getIdToken } from 'firebase/auth';
+
 import HowWeDo from './components/HowWeDo/HowWeDo';
 import WhatWeDo from './components/WhatWeDo/WhatWeDo';
 import PleaseLogin from './components/PleaseLogin/PleaseLogin';
@@ -26,18 +29,16 @@ function App() {
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
-  const { loading, isAuthenticated } = useSelector(state => state.userReducer);
 
-  // import { auth } from './firebase';
-  // import { getIdToken } from 'firebase/auth';
-  // if (user) {
-  //   getIdToken(auth.currentUser).then((idToken) => {
-  //     console.log(idToken);
-  //   }).catch((error) => {
-  //     console.log(error);
-  //   });
-  // }
-  
+  const { user, loading, isAuthenticated } = useSelector(state => state.userReducer);
+  if (user) {
+    getIdToken(auth.currentUser).then((idToken) => {
+      console.log(idToken);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
   return (
     <Router>
       <Routes>

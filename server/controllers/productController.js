@@ -12,7 +12,7 @@ module.exports.addProduct = async (req, res) => {
     if (req.body.brand_name) newProduct["brand_name"] = req.body.brand_name;
     if (req.body.category) newProduct["category"] = req.body.category;
     if (req.body.benefits) newProduct["benefits"] = req.body.benefits;
-    newProduct.save();
+    await newProduct.save();
 
     return res.status(200).json({
       status: "success",
