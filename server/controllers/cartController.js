@@ -9,8 +9,10 @@ module.exports.getCart = async (req, res) => {
     if (userData) {
       const userCart = await Cart.findOne({ user_id: userData._id });
       if (userCart) {
-        for (let x in userCart['items']) {
-          userCart['items'][x]['product_id'] = await Product.findOne({ _id: userCart['items'][x]['product_id'] }); 
+        for (let x in userCart["items"]) {
+          userCart["items"][x]["product_id"] = await Product.findOne({
+            _id: userCart["items"][x]["product_id"],
+          });
         }
         return res.status(200).json({
           status: "success",
