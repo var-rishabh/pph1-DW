@@ -45,6 +45,16 @@
 
 
 @media  screen and (max-width: 1000px) {
+  .testimonial__title {
+    font-size: 6.25rem;
+    line-height: 7.4375rem;
+  }
+
+  .testimonial__text {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    text-align: center;
+  }
   .testimonial__messages {
     flex-direction: column;
     align-items: center;

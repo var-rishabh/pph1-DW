@@ -36,7 +36,6 @@
   padding: 1% 0 4% 0;
 }
 
-
 .home-hero__left--button {
   display: flex;
   justify-content: center;
@@ -174,9 +173,29 @@
     padding: 2% 10%;
     margin-bottom: 10vh;
   }
+  .home-hero__left--title {
+    font-size: 7rem;
+    line-height: 8rem;
+  }
+  .home-hero__left--description {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
+
+  .home-hero__left--button {
+    width: 50%;
+    height: 5rem;
+    margin: 2% 0;
+  }
+
+  .home-hero__left--button a {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
   .home-hero__left--features {
     display: none;
   }
+
   .home-hero__right--image {
     position: absolute;
     margin-left: 20%;
@@ -189,8 +208,8 @@
   .home-hero__right--buttons button {
     font-style: normal;
     font-weight: 400;
-    font-size: 0.75rem;
-    line-height: 0.875rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
   .home-hero__right--buttons--button1 {
     align-self: flex-end;
