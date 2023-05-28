@@ -16,8 +16,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './Actions/User';
 import { useEffect } from 'react';
 import Profile from './components/Profile/Profile';
-// import { auth } from './firebase';
-// import { getIdToken } from 'firebase/auth';
 import HowWeDo from './components/HowWeDo/HowWeDo';
 import WhatWeDo from './components/WhatWeDo/WhatWeDo';
 import PleaseLogin from './components/PleaseLogin/PleaseLogin';
@@ -28,7 +26,10 @@ function App() {
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
-  const {  loading, isAuthenticated } = useSelector(state => state.userReducer);
+  const { loading, isAuthenticated } = useSelector(state => state.userReducer);
+
+  // import { auth } from './firebase';
+  // import { getIdToken } from 'firebase/auth';
   // if (user) {
   //   getIdToken(auth.currentUser).then((idToken) => {
   //     console.log(idToken);
@@ -36,6 +37,7 @@ function App() {
   //     console.log(error);
   //   });
   // }
+  
   return (
     <Router>
       <Routes>
@@ -49,10 +51,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={loading ? (
             <div className="loading"><div className='loading__circle'></div></div>
-          ) : isAuthenticated ?<Checkout />: (<PleaseLogin/>)} />
+          ) : isAuthenticated ? <Checkout /> : (<PleaseLogin />)} />
           <Route path="/profile" element={loading ? (
             <div className="loading"><div className='loading__circle'></div></div>
-          ) : isAuthenticated ? (<Profile />) : (<PleaseLogin/>)} />
+          ) : isAuthenticated ? (<Profile />) : (<PleaseLogin />)} />
         </Route>
         {!isAuthenticated &&
           <Route path="/" element={<Auth />} >

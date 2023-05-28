@@ -37,3 +37,32 @@
     flex-direction: column;
     padding: 1% 10%;
 }
+
+.product-catalogue__products--title {
+    font-family: 'ColorTube', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 2.8125rem;
+    padding: 20% 10%;
+    text-align: center;
+    color: var(--text-color-primary);
+}
+
+@media screen and (max-width: 1000px) {
+    .product-catalogue__hero--content{
+        width: 100%;
+        text-align: center;
+    }
+    .product-catalogue__hero--title{
+        font-size: 2.5rem;
+        line-height: 3.75rem;
+    }
+    .product-catalogue__hero--text{
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+    .product-catalogue__products{
+        padding: 1% 5%;
+    }
+}
