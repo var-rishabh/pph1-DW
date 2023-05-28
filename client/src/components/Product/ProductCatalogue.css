@@ -38,6 +38,16 @@
     padding: 1% 10%;
 }
 
+.product-catalogue__products--title {
+    font-family: 'ColorTube', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 2.8125rem;
+    padding: 20% 10%;
+    text-align: center;
+    color: var(--text-color-primary);
+}
 
 @media screen and (max-width: 1000px) {
     .product-catalogue__hero--content{

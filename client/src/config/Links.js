@@ -4,6 +4,9 @@ const Links = {
     playstore: 'https://play.google.com/store/apps/details?id=com.apkadoodhwala',
     Whatsapp: 'https://wa.me/919876543210',
     Call: 'tel:+91 9876543210'
-}   
+}
+
+export const host = 'http://localhost:4040';
+
 
 export default Links;
