@@ -2,13 +2,13 @@ import React from 'react';
 import cart from '../../Assets/Icons/Cart.svg';
 import './ProductCard.css';
 
-const ProductCard = ({ image, description, title, id }) => {
+const ProductCard = ({ image, description, title, _id }) => {
     const handleOrder = () => {
-        window.location.href = `/product/${id}`;
+        window.location.href = `/product/${_id}`;
     }
 
     const handleCart = () => {
-        console.log("Cart" + id);
+        console.log("Cart" + _id);
     }
 
     return (

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import "./ProductCatalogue.css";
 import ProductCard from './ProductCard';
-import { products } from '../../SampleData/products';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Actions/Product';
 
@@ -11,7 +10,7 @@ const ProductCatalogue = () => {
   const user = useSelector(state => state.userReducer.user);
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [products, user, dispatch]);
+  }, [ user, dispatch]);
 
   return (
     <div className="product-catalogue">
@@ -31,15 +30,11 @@ const ProductCatalogue = () => {
       <div className="product-catalogue__products">
 
         {(loading) ? (
-          <div className="loading"><div className='loading__circle'></div></div>) : (products.length == 0) ? (<>
-            <div className="product-catalogue__products--title">
-              No Products Available
-            </div>
-          </>) : (
+          <div className="loading"><div className='loading__circle'></div></div>) : (
           products.map((product) => {
             return (
               <ProductCard
-                key={product.id}
+                key={product._id}
                 {...product}
               />
             )

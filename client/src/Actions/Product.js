@@ -4,14 +4,13 @@ export const getAllProducts = () => async (dispatch) => {
     try {
         dispatch({ type: 'AllProductsRequest' });
 
-        const { data } = await axios.get(`${host}/product/getAllProducts`);
-
-        dispatch({ type: 'AllProductsSuccess', payload: data });
+        const response = await axios.get(`${host}/product/getAllProducts`);
+        dispatch({ type: 'AllProductsSuccess', payload: response.data.data });
 
     } catch (error) {
         dispatch({
             type: 'AllProductsFailure',
-            payload: error.response && error.response.data.message
+            payload: error.response?.data.message
         })
     }
 }
@@ -20,14 +19,14 @@ export const getProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: 'ProductDetailsRequest' });
 
-        const { data } = await axios.get(`${host}/product/${id}`);
+        const response = await axios.get(`${host}/product/${id}`);
 
-        dispatch({ type: 'ProductDetailsSuccess', payload: data.product });
+        dispatch({ type: 'ProductDetailsSuccess', payload: response.data.data });
 
     } catch (error) {
         dispatch({
             type: 'ProductDetailsFailure',
-            payload: error.response && error.response.data.message
+            payload: error.response?.data.message
         })
     }
 }
