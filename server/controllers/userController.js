@@ -7,7 +7,7 @@ module.exports.addUser = async (req, res) => {
     if (!userData) {
       const newUser = new User();
       newUser["user_firebase_id"] = userFireId;
-      newUser.save();
+      await newUser.save();
 
       return res.status(200).json({
         status: "success",
