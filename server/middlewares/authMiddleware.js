@@ -1,4 +1,4 @@
-const admin = require("../config/firebase.config");
+const admin = require("../config/firebase");
 const asyncHandler = require("express-async-handler");
 
 const checkAuth = asyncHandler(async (req, res, next) => {
