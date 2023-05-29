@@ -32,15 +32,8 @@ function App() {
     dispatch(loadUser());
   }, [dispatch]);
 
-  const { user, loading, isAuthenticated } = useSelector(state => state.userReducer);
-  if (user) {
-    getIdToken(auth.currentUser).then((idToken) => {
-      console.log(idToken);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-
+  const { loading, isAuthenticated } = useSelector(state => state.userReducer);
+ 
   return (
     <Router>
       <Routes>
