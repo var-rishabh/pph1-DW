@@ -27,16 +27,6 @@ function App() {
     dispatch(loadUser());
   }, [dispatch]);
   const { loading, isAuthenticated } = useSelector(state => state.userReducer);
-
-  // import { auth } from './firebase';
-  // import { getIdToken } from 'firebase/auth';
-  // if (user) {
-  //   getIdToken(auth.currentUser).then((idToken) => {
-  //     console.log(idToken);
-  //   }).catch((error) => {
-  //     console.log(error);
-  //   });
-  // }
   
   return (
     <Router>
