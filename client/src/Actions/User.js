@@ -1,5 +1,6 @@
 // Use Firbase to login, load and register user via email password, google and phone
-
+import axios from "axios";
+import { host } from "../config/Links";
 import { auth, store } from "../firebase";
 import {
     signInWithEmailAndPassword,
@@ -10,7 +11,8 @@ import {
     signInWithPhoneNumber,
     signInWithPopup,
     sendPasswordResetEmail,
-    RecaptchaVerifier
+    RecaptchaVerifier,
+    getIdToken
 } from "firebase/auth";
 
 //import firestore
@@ -18,15 +20,35 @@ import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore";
 
 import { toast } from 'react-toastify';
 
-
+const addUser = async () => {
+    console.log("I am in")
+    getIdToken(auth.currentUser).then((idToken) => {
+        console.log(auth.currentUser)
+        console.log(idToken)
+        fetch(`${host}/user/addUser`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${idToken}`
+            },
+        }).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }).catch((error) => {
+        throw error;
+    });
+}
 
 // Login user via Google OAuth and redirect to home page after login which is /
 export const loginWithGoogle = () => async (dispatch) => {
     dispatch({ type: "LoginRequest" });
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-        .then((result) => {
+        .then(async (result) => {
             // Redirect to home page after login
+            await addUser();
             window.location.href = "/";
             dispatch({
                 type: "LoginSuccess",
@@ -47,10 +69,9 @@ export const loginWithPhone = (phone) => async (dispatch) => {
         'size': 'invisible',
     }, auth);
     signInWithPhoneNumber(auth, phone, appVerifier)
-        .then((result) => {
+        .then( (result) => {
             // Redirect to /verify-phone page after login
             window.confirmationResult = result;
-
         }).catch((error) => {
             dispatch({
                 type: "LoginFailure",
@@ -63,9 +84,11 @@ export const loginWithPhone = (phone) => async (dispatch) => {
 export const verifyOTP = (otp) => async (dispatch) => {
     const confirmationResult = window.confirmationResult;
     confirmationResult.confirm(otp)
-        .then((result) => {
+        .then(async (result) => {
             // Redirect to home page after login
+            await addUser();
             window.location.href = "/";
+
             dispatch({
                 type: "LoginSuccess",
                 payload: result.user
@@ -111,10 +134,11 @@ export const registerWithEmail = (email, password, city, area) => async (dispatc
                 city: city,
                 area: area
             }
-            addDoc(collection(db, "users"), payload).then((snapshot) => {
+            addDoc(collection(db, "users"), payload).then(async (snapshot) => {
                 const userData = {
                     ...result.user,
                 }
+                await addUser();
                 window.location.href = "/";
                 dispatch({
                     type: "RegisterSuccess",
@@ -152,7 +176,7 @@ export const registerWithEmail = (email, password, city, area) => async (dispatc
 // Load user from firebase and redirect to home page after login which is /
 export const loadUser = () => async (dispatch) => {
     dispatch({ type: "LoadUserRequest" });
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         if (user) {
             // Retrive user info from firestore
             const db = store;
@@ -228,26 +252,21 @@ export const forgotPassword = (email) => async (dispatch) => {
 }
 
 export const updateUserProfile = (data) => async (dispatch) => {
-    const {name, photoUrl, address, altAddress, phone, alternatePhone, city, area, email} = data
+    const { name, address, altAddress, phone, alternatePhone, email } = data
     dispatch({ type: "UpdateProfileRequest" });
     const user = auth.currentUser;
-    user.updateProfile({
-        displayName: name,
-        photoURL: photoUrl
-    }).then(() => {
+    try {
         // Update user info in firestore
         const db = store;
         const docRef = doc(db, "users", user.uid);
         if (docRef.exists()) {
             updateDoc(docRef, {
-                name: name,
-                email: user.email ? user.email : email,
-                address: address,
-                altAddress: altAddress,
-                phone: phone,
-                alternatePhone: alternatePhone,
-                city: city,
-                area: area
+                name,
+                emailData: email || "",
+                address,
+                altAddress,
+                phoneData: phone || "",
+                alternatePhone,
             }).then((snapshot) => {
                 const userData = {
                     ...user,
@@ -267,12 +286,12 @@ export const updateUserProfile = (data) => async (dispatch) => {
             });
         } else {
             addDoc(collection(db, "users"), {
-                address: address,
-                altAddress: altAddress,
-                phone: phone,
-                alternatePhone: alternatePhone,
-                city: city,
-                area: area
+                name: name || "",
+                emailData: email || "",
+                address: address || "",
+                altAddress: altAddress || "",
+                phoneData: phone || "",
+                alternatePhone: alternatePhone || "",
             }).then((snapshot) => {
                 console.log(snapshot);
                 const userData = {
@@ -293,11 +312,11 @@ export const updateUserProfile = (data) => async (dispatch) => {
                 toast.error(error.message);
             });
         }
-    }).catch((error) => {
+    } catch (error) {
         dispatch({
             type: "UpdateProfileFailure",
             payload: error.message
         });
         toast.error(error.message);
-    });
+    }
 }

@@ -8,17 +8,17 @@ import OrderItem from '../OrderItem/OrderItem';
 
 const Checkout = () => {
     const user = useSelector(state => state.userReducer.user);
-    const userName = user.displayName;
-    const userEmail = user.email;
+    const userName = (user.displayName) ? (user.displayName): (user.name);
+    const userEmail = (user.email)? (user.email): (user.emailData);
     const addressDetails = user.address;
     const cityDetails = user.city;
     const zipDetails = user.zip;
     const countryDetails = user.country;
-    const phoneDetails = user.phone;
+    const phoneDetails = (user.phoneNumber) ? (user.phoneNumber): (user.phoneData);
     const [name, setName] = React.useState((userName) ? userName : '');
     const [email, setEmail] = React.useState((userEmail) ? userEmail : '');
     const [phone, setPhone] = React.useState((phoneDetails) ? phoneDetails : '');
-    const [address, setAddress] = React.useState((addressDetails) ? addressDetails.address : '');
+    const [address, setAddress] = React.useState((addressDetails) ? addressDetails : '');
     const [city, setCity] = React.useState((cityDetails) ? cityDetails : '');
     const [zip, setZip] = React.useState((zipDetails) ? zipDetails : '');
     const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
@@ -37,13 +37,13 @@ const Checkout = () => {
 
                     <div className='checkout__left--form'>
                         <div className='checkout__left--form--item'>
-                            <FormInput label='Full Name' type='text' id='fullName' value={name} setInputValue={setName} />
+                            <FormInput label='Full Name' type='text' id='fullName' value={name} setInputValue={setName} isDisabled={(user.displayName)? true : false} />
                         </div>
                         <div className='checkout__left--form--item'>
-                            <FormInput label='Email' type='email' id='email' value={email} setInputValue={setEmail} isDisabled={(userEmail) ? true : false} />
+                            <FormInput label='Email' type='email' id='email' value={email} setInputValue={setEmail} isDisabled={(user.email) ? true : false} />
                         </div>
                         <div className='checkout__left--form--item'>
-                            <FormInput label='Phone Number' type='text' id='phone' value={phone} setInputValue={setPhone} isDisabled={(phoneDetails) ? true : false} />
+                            <FormInput label='Phone Number' type='text' id='phone' value={phone} setInputValue={setPhone} isDisabled={(user.phoneNumber) ? true : false} />
                         </div>
                     </div>
                     <div className='checkout__left--title'>

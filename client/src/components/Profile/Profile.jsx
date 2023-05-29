@@ -13,10 +13,10 @@ const Profile = () => {
         dispatch(logout());
     }
     const { user } = useSelector(state => state.userReducer);
-    const [name, setName] = useState(user.displayName);
-    const [phone, setPhone] = useState(user.phoneNumber);
+    const [name, setName] = useState((user.displayName) ? (user.displayName): (user.name));
+    const [phone, setPhone] = useState((user.phoneNumber) ? (user.phoneNumber): (user.phoneData));
     const [altPhone, setAltPhone] = useState(user.altPhone);
-    const [email, setEmail] = useState(user.email);
+    const [email, setEmail] = useState((user.email)? (user.email): (user.emailData));
     const [address, setAddress] = useState(user.address);
     const [altAddress, setAltAddress] = useState(user.altAddress);
     const orderDetails = order;
@@ -71,11 +71,13 @@ const Profile = () => {
                         title="Name"
                         value={name}
                         setValue={setName}
+                        editable={(!user.displayName) ? true : false}
                     />
                     <EditableProfileItem
                         title="Phone"
                         value={phone}
                         setValue={setPhone}
+                        editable={(!user.phoneNumber) ? true : false}
                     />
                     <EditableProfileItem
                         title="Alternate Phone"
@@ -86,6 +88,7 @@ const Profile = () => {
                         title="Email"
                         value={email}
                         setValue={setEmail}
+                        editable={(!user.email) ? true : false}
                     />
                     <EditableProfileItem
                         title="Address"
