@@ -4,7 +4,7 @@ const PaymentSchema = mongoose.Schema(
   {
     type: {
       type: String,
-      enum: ["refund", "recharge"],
+      enum: ["refund", "recharge", "payment"],
       default: "recharge",
       required: true,
     },
@@ -13,16 +13,17 @@ const PaymentSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
-    amount: {
-      type: String,
+    balance: {
+      type: Number,
       required: true,
     },
-    payment_method: {
-      type: String,
+    amount: {
+      type: Number,
       required: true,
     },
     payment_response: {
       type: String,
+      enum: ["success", "failed", "pending"],
       required: true,
     },
     razorpay_order_id: {
@@ -30,10 +31,6 @@ const PaymentSchema = mongoose.Schema(
       required: true,
     },
     razorpay_payment_id: {
-      type: String,
-      required: true,
-    },
-    razorpay_signature: {
       type: String,
       required: true,
     },
