@@ -17,7 +17,7 @@ const HomeHero = () => {
                     The freshest milk in town, delivered right to you
                 </div>
                 <div className='home-hero__left--button'>
-                    <a href="/trail">Book Trial</a>
+                    <a href="/product">Book Trial</a>
                 </div>
                 <div className='home-hero__left--features'>
                     <div className='home-hero__left--features--item'>

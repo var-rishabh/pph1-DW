@@ -85,8 +85,7 @@ export const userReducer = createReducer(initialState, (builder) => {
             state.user = action.payload;
             state.error = null;
         })
-        .addCase("ClearErrors", (state) => {
+        .addCase("ClearUserError", (state) => {
             state.error = null;
-        }
-        )
+        })
 })

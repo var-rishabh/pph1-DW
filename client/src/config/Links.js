@@ -6,6 +6,4 @@ const Links = {
     Call: 'tel:+91 9876543210'
 }
 
-export const host = process.env.REACT_APP_SERVER_URL;
-
 export default Links;

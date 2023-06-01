@@ -9,7 +9,7 @@ const BookTrail = () => {
                 FRESH MILK?
             </div>
             <div className="book-trial__button">
-                <a href="/trail">Book Trial</a>
+                <a href="/product">Book Trial</a>
             </div>
         </div>
     )

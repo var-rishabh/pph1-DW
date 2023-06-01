@@ -1,6 +1,3 @@
-// Use Firbase to login, load and register user via email password, google and phone
-import axios from "axios";
-import { host } from "../config/Links";
 import { auth, store } from "../firebase";
 import {
     signInWithEmailAndPassword,
@@ -16,16 +13,15 @@ import {
 } from "firebase/auth";
 
 //import firestore
-import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
 
 import { toast } from 'react-toastify';
 
 const addUser = async () => {
-    console.log("I am in")
     getIdToken(auth.currentUser).then((idToken) => {
         console.log(auth.currentUser)
         console.log(idToken)
-        fetch(`${host}/user/addUser`, {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/user/addUser`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -69,7 +65,7 @@ export const loginWithPhone = (phone) => async (dispatch) => {
         'size': 'invisible',
     }, auth);
     signInWithPhoneNumber(auth, phone, appVerifier)
-        .then( (result) => {
+        .then((result) => {
             // Redirect to /verify-phone page after login
             window.confirmationResult = result;
         }).catch((error) => {
@@ -134,22 +130,12 @@ export const registerWithEmail = (email, password, city, area) => async (dispatc
                 city: city,
                 area: area
             }
-            addDoc(collection(db, "users"), payload).then(async (snapshot) => {
+            const uid = result.user.uid;
+            setDoc(doc(db, "users", uid), payload).then(async () => {
                 const userData = {
                     ...result.user,
                 }
                 await addUser();
-                window.location.href = "/";
-                dispatch({
-                    type: "RegisterSuccess",
-                    payload: userData
-                });
-                toast.success("Register Successful");
-            }).then((snapshot) => {
-                const userData = {
-                    ...result.user,
-                    ...snapshot.data()
-                }
                 window.location.href = "/";
                 dispatch({
                     type: "RegisterSuccess",
@@ -252,66 +238,57 @@ export const forgotPassword = (email) => async (dispatch) => {
 }
 
 export const updateUserProfile = (data) => async (dispatch) => {
-    const { name, address, altAddress, phone, alternatePhone, email } = data
     dispatch({ type: "UpdateProfileRequest" });
     const user = auth.currentUser;
+    const userDetails = user.reloadUserInfo;
     try {
         // Update user info in firestore
         const db = store;
         const docRef = doc(db, "users", user.uid);
-        if (docRef.exists()) {
-            updateDoc(docRef, {
-                name,
-                emailData: email || "",
-                address,
-                altAddress,
-                phoneData: phone || "",
-                alternatePhone,
-            }).then((snapshot) => {
-                const userData = {
-                    ...user,
-                    ...snapshot.data()
-                }
-                dispatch({
-                    type: "UpdateProfileSuccess",
-                    payload: userData
+        getDoc(docRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                updateDoc(docRef, {
+                    ...data,
+                }).then(() => {
+                    const userData = {
+                        ...userDetails,
+                        ...data
+                    }
+                    dispatch({
+                        type: "UpdateProfileSuccess",
+                        payload: userData
+                    });
+                    toast.success("Profile Updated");
+                }).catch((error) => {
+                    dispatch({
+                        type: "UpdateProfileFailure",
+                        payload: error.message
+                    });
+                    toast.error(error.message);
                 });
-                toast.success("Profile Updated");
-            }).catch((error) => {
-                dispatch({
-                    type: "UpdateProfileFailure",
-                    payload: error.message
+            } else {
+                console.log("else")
+                setDoc(doc(db, "users", user.uid), {
+                    ...data,
+                }).then(() => {
+                    const userData = {
+                        ...userDetails,
+                        ...data
+                    }
+                    dispatch({
+                        type: "UpdateProfileSuccess",
+                        payload: userData
+                    });
+                    toast.success("Profile Updated");
+                }).catch((error) => {
+                    dispatch({
+                        type: "UpdateProfileFailure",
+                        payload: error.message
+                    });
+                    toast.error(error.message);
                 });
-                toast.error(error.message);
-            });
-        } else {
-            addDoc(collection(db, "users"), {
-                name: name || "",
-                emailData: email || "",
-                address: address || "",
-                altAddress: altAddress || "",
-                phoneData: phone || "",
-                alternatePhone: alternatePhone || "",
-            }).then((snapshot) => {
-                console.log(snapshot);
-                const userData = {
-                    ...user,
-                    ...snapshot.data()
-                }
-                dispatch({
-                    type: "UpdateProfileSuccess",
-                    payload: userData
-                });
-                toast.success("Profile Updated");
             }
-            ).catch((error) => {
-                dispatch({
-                    type: "UpdateProfileFailure",
-                    payload: error.message
-                });
-                toast.error(error.message);
-            });
-        }
+        });
     } catch (error) {
         dispatch({
             type: "UpdateProfileFailure",

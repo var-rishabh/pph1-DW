@@ -2,12 +2,14 @@ import React from 'react'
 import "./Checkout.css";
 import FormInput from '../FormInput/FormInput';
 import { order } from '../../SampleData/order';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CheckoutFoot from './CheckoutFoot';
 import OrderItem from '../OrderItem/OrderItem';
+import { updateUserProfile } from '../../Actions/User';
 
 const Checkout = () => {
     const user = useSelector(state => state.userReducer.user);
+    const dispatch = useDispatch();
     const userName = (user.displayName) ? (user.displayName): (user.name);
     const userEmail = (user.email)? (user.email): (user.emailData);
     const addressDetails = user.address;
@@ -24,6 +26,10 @@ const Checkout = () => {
     const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
     const [promo , setPromo] = React.useState('');
     const orderDetails = order;
+    const checkoutHandler = () => {
+        console.log('Checkout');
+        dispatch(updateUserProfile({ name: name || "" , address: address || "", altAddress : user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone|| "", emailData: email || "", zip: zip || "", city : city || "", country: country || "" }))
+    }
     return (
         <div className='checkout'>
             <div className='checkout__title'>
@@ -142,7 +148,7 @@ const Checkout = () => {
                                 {orderDetails.total}₹
                             </div>
                         </div>
-                        <button className='checkout__right--bill--button'>
+                        <button className='checkout__right--bill--button' onClick={checkoutHandler}>
                             Checkout
                         </button>
                     </div>

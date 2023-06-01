@@ -17,14 +17,14 @@
   align-items: center;
   box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.25);
   background-color: var(--white-color);
-  z-index: 9998;
+  z-index: 9997;
 }
 
 .header-main__menu {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 40%;
+  width: 50%;
   justify-content: space-between;
 }
 
@@ -141,6 +141,7 @@
 
 .header-main__mobile--menu {
   display: none;
+  z-index: 9997;
 }
 
 .header-main__mobile--nav {
@@ -154,7 +155,7 @@
   align-items: center;
   width: 90%;
   justify-content: space-between;
-  z-index: 9999;
+  z-index: 9997;
 }
 
 .header-main__mobile--profile img {
