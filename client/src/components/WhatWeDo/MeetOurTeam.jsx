@@ -1,6 +1,5 @@
 import React from 'react';
 import './MeetOurTeam.css';
-import home3 from '../../Assets/home3.png';
 import profileSample from '../../Assets/profileSample.jpg';
 const MeetTeam = () => {
     return (

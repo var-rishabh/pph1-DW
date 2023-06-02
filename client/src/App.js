@@ -16,15 +16,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './Actions/User';
 import { useEffect } from 'react';
 import Profile from './components/Profile/Profile';
-import { auth } from './firebase';
-import { getIdToken } from 'firebase/auth';
-
 import HowWeDo from './components/HowWeDo/HowWeDo';
 import WhatWeDo from './components/WhatWeDo/WhatWeDo';
 import PleaseLogin from './components/PleaseLogin/PleaseLogin';
 import Contact from './components/Contact/Contact';
-
-import DoPay from './DoPay';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +34,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />} >
           <Route path="/" element={<Home />} />
-          <Route path="/dopay" element={<DoPay />} />
           <Route path="/howwedo" element={<HowWeDo />} />
           <Route path="/whatwedo" element={<WhatWeDo />} />
           <Route path="/product" element={<ProductCatalogue />} />

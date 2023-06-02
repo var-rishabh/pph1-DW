@@ -6,7 +6,4 @@ const Links = {
     Call: 'tel:+91 9876543210'
 }
 
-export const host = 'http://localhost:4040';
-
-
 export default Links;

@@ -10,10 +10,10 @@ const FeaturesOfOrdering = () => {
             <div className='features-of-ordering__content'>
                 <div className='features-of-ordering__content--item'>
                     <div className='features-of-ordering__content--item--icon'>
-                        Book Trail
+                        Book Trial
                     </div>
                     <div className='features-of-ordering__content--item--text'>
-                        Book Trail
+                        Book Trial
                     </div>
                 </div>
                 <div className='features-of-ordering__content--item'>

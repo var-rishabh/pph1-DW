@@ -14,7 +14,7 @@ const Delivery = () => {
                         Try our milk that’s so fresh, you can taste the difference
                     </div>
                     <div className="delivery__container--button">
-                        <a href="/trail">Book Trial</a>
+                        <a href="/product">Book Trial</a>
                     </div>
                 </div>
                 <div className="delivery__container--image">

@@ -31,10 +31,13 @@ const HeaderMain = () => {
             <li>
               <a href="/process">Process</a>
             </li>
+            <li>
+              <a href="/contact">Contact Us</a>
+            </li>
           </ul>
         </div>
         <div className="header-main__profile">
-          <a href="/trail" className='header-main__profile--button'>Book Trial</a>
+          <a href="/product" className='header-main__profile--button'>Book Trial</a>
           {loading ? (
             <div className="loaderButton">
               <div className="loader"></div>
