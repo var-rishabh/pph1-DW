@@ -5,8 +5,8 @@ import './CartModal.css';
 
 const CartModal = ({ open, setOpen, product}) => {
     const { loading } = useSelector(state => state.cartReducer);
-    const [amount, setAmount] = useState(0);
     const [type, setType] = useState("buy");
+    const [amount, setAmount] = useState(1);
     const submitHandler = async (e) => {
         e.preventDefault();
         console.log("submitHandler");
@@ -17,6 +17,16 @@ const CartModal = ({ open, setOpen, product}) => {
             setAmount(e.target.value);
         }
     }
+
+    useEffect(() => {
+        if (type === "buy") {
+            setAmount(1);
+        } else if (type === "subscribe") {
+            setAmount(parseInt(process.env.REACT_APP_SUB_MIN));
+        } else {
+            setAmount(parseInt(process.env.REACT_APP_TRY_MIN));
+        }
+    }, [type]);
 
     return (
         <ModalContainer open={open} setOpen={setOpen} lock={loading}>
@@ -38,9 +48,9 @@ const CartModal = ({ open, setOpen, product}) => {
                             </div>
 
                             <div className="cart-modal__body--input">
-                                <label htmlFor="amount">Enter {type === "buy" ? "Amount" : "Months"}</label>
+                                <label htmlFor="amount">Enter {type === "buy" ? "Amount" : type ==="subscribe" ? "Months": "Days"}</label>
                                 <div className="cart-modal__body--input--amount">
-                                    <button type="button" onClick={() => (amount >=1 ) && setAmount(amount - 1)}>-</button>
+                                    <button type="button" onClick={() => (amount > 1 ) && setAmount(amount - 1)}>-</button>
                                     <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} />
                                     <button type="button" onClick={() => setAmount(amount + 1)}>+</button>
                                 </div>

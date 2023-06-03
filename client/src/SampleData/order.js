@@ -1,7 +1,7 @@
 import product1 from "../Assets/product1.png";
 
 export const order = {
-    id: "1",
+    _id: "1",
     createdAt: "2021-05-01T00:00:00.000Z",
     updatedAt: "2021-05-01T00:00:00.000Z",
     userId: "1",

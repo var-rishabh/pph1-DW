@@ -2,11 +2,14 @@ import React from 'react';
 import cart from '../../Assets/Icons/Cart.svg';
 import './ProductCard.css';
 import CartModal from './CartModal';
-
-const ProductCard = ({ image, description, title, _id }) => {
+import trashSolid from '../../Assets/trash-solid.svg';
+const ProductCard = ({ image, description, title, _id, type = "buy", quantity = 0 }) => {
     const [showCartModal, setShowCartModal] = React.useState(false);
     const handleOrder = () => {
         window.location.href = `/product/${_id}`;
+    }
+    const handleDelete = () => {
+        console.log("delete");
     }
 
     return (
@@ -22,17 +25,31 @@ const ProductCard = ({ image, description, title, _id }) => {
                     <div className="product-card__content--description">
                         {description}
                     </div>
-                    <div className="product-card__content--buttons">
-                        <div className="product-card__content--order" onClick={handleOrder}>
-                            Order Now
+                    {quantity > 0 ?
+                        <div className="product-card__content--item">
+                            <div className="product-card__content--item-type">
+                                Type: {type}
+                            </div>
+                            <div className="product-card__content--item-quantity">
+                                {(type === "buy") ? "Quantity: " + quantity  : "Months: " + quantity }
+                            </div>
+                            <button className="product-card__content--item-button" onClick={handleDelete}>
+                                <img src={trashSolid} alt="Delete" />
+                            </button>
                         </div>
-                        <div className="product-card__content--cart" onClick={() => setShowCartModal(true)}>
-                            <img src={cart} alt="cart" />
+                        :
+                        <div className="product-card__content--buttons">
+                            <div className="product-card__content--order" onClick={handleOrder}>
+                                Order Now
+                            </div>
+                            <div className="product-card__content--cart" onClick={() => setShowCartModal(true)}>
+                                <img src={cart} alt="cart" />
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
-            <CartModal open={showCartModal} setOpen={setShowCartModal} product={{image, description, title, _id}} />
+            <CartModal open={showCartModal} setOpen={setShowCartModal} product={{ image, description, title, _id }} />
         </>
     )
 }

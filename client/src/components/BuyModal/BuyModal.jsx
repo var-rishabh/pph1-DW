@@ -5,7 +5,7 @@ import './BuyModal.css';
 
 const BuyModal = ({ open, setOpen, product}) => {
     const { loading } = useSelector(state => state.cartReducer);
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(1);
     const submitHandler = async (e) => {
         e.preventDefault();
         console.log("submitHandler");
@@ -30,7 +30,7 @@ const BuyModal = ({ open, setOpen, product}) => {
                             <div className="buy-modal__body--input">
                                 <label htmlFor="amount">Enter Amount</label>
                                 <div className="buy-modal__body--input--amount">
-                                    <button type="button" onClick={() => (amount >=1 ) && setAmount(amount - 1)}>-</button>
+                                    <button type="button" onClick={() => (amount >1 ) && setAmount(amount - 1)}>-</button>
                                     <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} />
                                     <button type="button" onClick={() => setAmount(amount + 1)}>+</button>
                                 </div>
