@@ -12,10 +12,6 @@ const WalletSchema = mongoose.Schema(
       default: 0,
       required: true,
     },
-    transactions: {
-      type: Number,
-      required: true,
-    },
   },
   { timestamps: true }
 );

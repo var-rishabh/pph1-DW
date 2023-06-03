@@ -20,7 +20,7 @@ import { toast } from 'react-toastify';
 const addUser = async () => {
     getIdToken(auth.currentUser).then((idToken) => {
         console.log(auth.currentUser)
-        console.log(idToken)
+        localStorage.setItem("idtoken", idToken)
         fetch(`${process.env.REACT_APP_SERVER_URL}/user/addUser`, {
             method: "POST",
             headers: {
