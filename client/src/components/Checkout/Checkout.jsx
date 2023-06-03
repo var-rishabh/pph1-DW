@@ -6,17 +6,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import CheckoutFoot from './CheckoutFoot';
 import OrderItem from '../OrderItem/OrderItem';
 import { updateUserProfile } from '../../Actions/User';
+import {
+    SwipeableList,
+    SwipeableListItem,
+    SwipeAction,
+    TrailingActions,
+} from 'react-swipeable-list';
+import 'react-swipeable-list/dist/styles.css';
+
+const trailingActions = () => (
+    <TrailingActions >
+        <SwipeAction
+            onClick={() => console.info('swipe action triggered')}
+            destructive={true}
+        >
+            <div className='checkout__right--box--item--delete'>
+                Delete
+            </div>
+        </SwipeAction>
+    </TrailingActions>
+);
+
 
 const Checkout = () => {
     const user = useSelector(state => state.userReducer.user);
     const dispatch = useDispatch();
-    const userName = (user.displayName) ? (user.displayName): (user.name);
-    const userEmail = (user.email)? (user.email): (user.emailData);
+    const userName = (user.displayName) ? (user.displayName) : (user.name);
+    const userEmail = (user.email) ? (user.email) : (user.emailData);
     const addressDetails = user.address;
     const cityDetails = user.city;
     const zipDetails = user.zip;
     const countryDetails = user.country;
-    const phoneDetails = (user.phoneNumber) ? (user.phoneNumber): (user.phoneData);
+    const phoneDetails = (user.phoneNumber) ? (user.phoneNumber) : (user.phoneData);
     const [name, setName] = React.useState((userName) ? userName : '');
     const [email, setEmail] = React.useState((userEmail) ? userEmail : '');
     const [phone, setPhone] = React.useState((phoneDetails) ? phoneDetails : '');
@@ -24,11 +45,11 @@ const Checkout = () => {
     const [city, setCity] = React.useState((cityDetails) ? cityDetails : '');
     const [zip, setZip] = React.useState((zipDetails) ? zipDetails : '');
     const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
-    const [promo , setPromo] = React.useState('');
+    const [promo, setPromo] = React.useState('');
     const orderDetails = order;
     const checkoutHandler = () => {
         console.log('Checkout');
-        dispatch(updateUserProfile({ name: name || "" , address: address || "", altAddress : user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone|| "", emailData: email || "", zip: zip || "", city : city || "", country: country || "" }))
+        dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }))
     }
     return (
         <div className='checkout'>
@@ -43,7 +64,7 @@ const Checkout = () => {
 
                     <div className='checkout__left--form'>
                         <div className='checkout__left--form--item'>
-                            <FormInput label='Full Name' type='text' id='fullName' value={name} setInputValue={setName} isDisabled={(user.displayName)? true : false} />
+                            <FormInput label='Full Name' type='text' id='fullName' value={name} setInputValue={setName} isDisabled={(user.displayName) ? true : false} />
                         </div>
                         <div className='checkout__left--form--item'>
                             <FormInput label='Email' type='email' id='email' value={email} setInputValue={setEmail} isDisabled={(user.email) ? true : false} />
@@ -77,38 +98,30 @@ const Checkout = () => {
                         Order Summary
                     </div>
                     <div className='checkout__right--box'>
-                        <OrderItem
-                            img={orderDetails.product.image}
-                            productName={orderDetails.product.title}
-                            size={orderDetails.product.size}
-                            orderType={orderDetails.type}
-                            quantity={orderDetails.quantity}
-                            price={orderDetails.total}
-                        />
-                        <OrderItem
-                            img={orderDetails.product.image}
-                            productName={orderDetails.product.title}
-                            size={orderDetails.product.size}
-                            orderType={orderDetails.type}
-                            quantity={orderDetails.quantity}
-                            price={orderDetails.total}
-                        />
-                        <OrderItem
-                            img={orderDetails.product.image}
-                            productName={orderDetails.product.title}
-                            size={orderDetails.product.size}
-                            orderType={orderDetails.type}
-                            quantity={orderDetails.quantity}
-                            price={orderDetails.total}
-                        />
-                        <OrderItem
-                            img={orderDetails.product.image}
-                            productName={orderDetails.product.title}
-                            size={orderDetails.product.size}
-                            orderType={orderDetails.type}
-                            quantity={orderDetails.quantity}
-                            price={orderDetails.total}
-                        />
+                        <SwipeableList fullSwipe={false}>
+                            {
+                                Array(3).fill().map((item, index) => {
+                                    return (
+
+                                        <SwipeableListItem
+                                            trailingActions={trailingActions()}
+                                            key={index}
+                                        >
+                                            <OrderItem
+                                                img={orderDetails.product.image}
+                                                productName={orderDetails.product.title}
+                                                size={orderDetails.product.size}
+                                                orderType={orderDetails.type}
+                                                quantity={orderDetails.quantity}
+                                                price={orderDetails.total}
+                                            />
+                                        </SwipeableListItem>
+
+                                    )
+                                })
+                            }
+                        </SwipeableList>
+
                     </div>
                     <div className='checkout__right--promo'>
                         <div className='checkout__right--promo--title'>

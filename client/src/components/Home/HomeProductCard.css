@@ -53,9 +53,44 @@
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 1.0625rem;
-
   color: #b2adc5;
 }
+
+.home-product-card__content--item {
+  display: flex;
+  align-items: center;
+  padding: 2% 0;
+  justify-content: space-between;
+}
+
+.home-product-card__content--item-type, .home-product-card__content--item-quantity {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
+  color: var(--heading-color-secondary);
+  margin-right: 4%;
+}
+
+
+
+.home-product-card__content--item img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.home-product-card__content--item button {
+  background: red;
+  border: none;
+  color: white;
+  padding: 2%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .home-product-card__buttons {
   display: flex;

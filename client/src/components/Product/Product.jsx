@@ -7,6 +7,7 @@ import { getAllProducts, getProductDetails } from '../../Actions/Product';
 import TryModal from '../TryModal/TryModal';
 import BuyModal from '../BuyModal/BuyModal';
 import SubscribeModal from '../SubscribeModal/SubscribeModal';
+import trashSolid from '../../Assets/trash-solid.svg';
 
 const Product = () => {
   const { id } = useParams();
@@ -16,7 +17,9 @@ const Product = () => {
   const [showTryModal, setShowTryModal] = React.useState(false);
   const [showBuyModal, setShowBuyModal] = React.useState(false);
   const [showSubscribeModal, setShowSubscribeModal] = React.useState(false);
-
+  const handleDelete = () => {
+    console.log("delete");
+  }
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getProductDetails(id));
@@ -34,11 +37,24 @@ const Product = () => {
               <div className="product__info--left--title">
                 {product.title}
               </div>
-              <div className="product__info--left--buttons">
-                <button className="product__info--left--buttons--try" onClick={()=> {setShowTryModal(true)}}>Try</button>
-                <button className="product__info--left--buttons--buy" onClick={()=> {setShowBuyModal(true)}}>Buy</button>
-                <button className="product__info--left--buttons--subscribe" onClick={()=> {setShowSubscribeModal(true)}}>Subscribe</button>
-              </div>
+              {(product.quantity > 0) ?
+                <div className="product__content--item">
+                  <div className="product__content--item-type">
+                    Type: {product.type}
+                  </div>
+                  <div className="product__content--item-quantity">
+                    {(product.type === "buy") ? "Quantity: " + (product.quantity) : "Months: " + (product.quantity)}
+                  </div>
+                  <button className="product__content--item-button" onClick={handleDelete}>
+                    <img src={trashSolid} alt="Delete" />
+                  </button>
+                </div> :
+                <div className="product__info--left--buttons">
+                  <button className="product__info--left--buttons--try" onClick={() => { setShowTryModal(true) }}>Try</button>
+                  <button className="product__info--left--buttons--buy" onClick={() => { setShowBuyModal(true) }}>Buy</button>
+                  <button className="product__info--left--buttons--subscribe" onClick={() => { setShowSubscribeModal(true) }}>Subscribe</button>
+                </div>
+              }
             </div>
             <div className="product__info--right">
               <div className="product__info--right--title">
