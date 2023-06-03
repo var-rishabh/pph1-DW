@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Cart = require("../models/cartModel");
 
 module.exports.addUser = async (req, res) => {
   try {
@@ -8,6 +9,13 @@ module.exports.addUser = async (req, res) => {
       const newUser = new User();
       newUser["user_firebase_id"] = userFireId;
       await newUser.save();
+
+      const addToCart = new Cart({
+        user_id: newUser._id,
+        items: [],
+        total: 0
+      });
+      await addToCart.save();
 
       return res.status(200).json({
         status: "success",

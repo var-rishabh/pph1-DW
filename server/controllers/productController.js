@@ -1,4 +1,8 @@
 const Product = require("../models/productModel");
+const User = require("../models/userModel");
+const Cart = require("../models/cartModel");
+
+const cartController = require("../controllers/cartController");
 
 module.exports.addProduct = async (req, res) => {
   try {
@@ -29,11 +33,21 @@ module.exports.addProduct = async (req, res) => {
 
 module.exports.getAllProducts = async (req, res) => {
   try {
+    var allProducts = [];
     const products = await Product.find();
+    if (req.user) {
+      const userData = await User.findOne({
+        user_firebase_id: req.user.user_id,
+      });
+      const userCart = await Cart.findOne({ user_id: userData._id });
+      allProducts = await cartController.getQuantity(products, userCart);
+    } else {
+      allProducts = products;
+    }
     return res.status(200).json({
       status: "success",
       message: "All products found.",
-      data: products,
+      data: allProducts,
     });
   } catch (err) {
     return res.status(401).json({
@@ -45,13 +59,24 @@ module.exports.getAllProducts = async (req, res) => {
 
 module.exports.getProductByID = async (req, res) => {
   try {
+    var allProducts = [];
     const product_id = req.params.productID;
     const product = await Product.findById(product_id);
+    const product_info = [product];
     if (product) {
+      if (req.user) {
+        const userData = await User.findOne({
+          user_firebase_id: req.user.user_id,
+        });
+        const userCart = await Cart.findOne({ user_id: userData._id });
+        allProducts = await cartController.getQuantity(product_info, userCart);
+      } else {
+        allProducts = product_info;
+      }
       return res.status(200).json({
         status: "success",
         message: "Product found successfully.",
-        data: product,
+        data: allProducts,
       });
     } else {
       return res.status(404).json({
@@ -70,13 +95,23 @@ module.exports.getProductByID = async (req, res) => {
 
 module.exports.getProductsByCategory = async (req, res) => {
   try {
+    var allProducts = [];
     const category = req.query.category;
-    const product = await Product.find({ category: category });
-    if (product.length > 0) {
+    const products = await Product.find({ category: category });
+    if (products.length > 0) {
+      if (req.user) {
+        const userData = await User.findOne({
+          user_firebase_id: req.user.user_id,
+        });
+        const userCart = await Cart.findOne({ user_id: userData._id });
+        allProducts = await cartController.getQuantity(products, userCart);
+      } else {
+        allProducts = products;
+      }
       return res.status(200).json({
         status: "success",
         message: "Products found successfully.",
-        data: product,
+        data: allProducts,
       });
     } else {
       return res.status(404).json({
