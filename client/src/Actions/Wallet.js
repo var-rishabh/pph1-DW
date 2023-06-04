@@ -14,7 +14,7 @@ export const walletCheckout = (amount, Razorpay,description="", name, email, pho
             dispatch({ type: 'WalletCheckoutFailure', payload: error.message });
             toast.error(error.message);
         });
-        const order = await axios.post(`${process.env.REACT_APP_SERVER_URL}/payment/checkout`, { amount },{
+        const order = await axios.post(`${process.env.REACT_APP_SERVER_URL}/wallet/checkout`, { amount },{
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
@@ -35,7 +35,7 @@ export const walletCheckout = (amount, Razorpay,description="", name, email, pho
             order_id: order.data.data.id,
             handler: async function (response) {
                 try {
-                    const result = await axios.post(`${process.env.REACT_APP_SERVER_URL}/payment/verification`, response,{
+                    const result = await axios.post(`${process.env.REACT_APP_SERVER_URL}/wallet/verification`, response,{
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${token}`

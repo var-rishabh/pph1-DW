@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const PaymentSchema = mongoose.Schema(
+const TransactionSchema = mongoose.Schema(
   {
-    type: {
+    order_type: {
       type: String,
-      enum: ["refund", "recharge", "payment"],
+      enum: ["refund", "recharge", "order"],
       default: "recharge",
       required: true,
     },
@@ -24,6 +24,7 @@ const PaymentSchema = mongoose.Schema(
     payment_response: {
       type: String,
       enum: ["success", "failed", "pending"],
+      default: "pending",
       required: true,
     },
     razorpay_order_id: {
@@ -32,11 +33,10 @@ const PaymentSchema = mongoose.Schema(
     },
     razorpay_payment_id: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
 );
 
-const Payment = mongoose.model("Payment", PaymentSchema);
-module.exports = Payment;
+const Transaction = mongoose.model("Transaction", TransactionSchema);
+module.exports = Transaction;
