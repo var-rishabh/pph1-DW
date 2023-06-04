@@ -31,7 +31,7 @@ const BuyModal = ({ open, setOpen, product}) => {
                                 <label htmlFor="amount">Enter Amount</label>
                                 <div className="buy-modal__body--input--amount">
                                     <button type="button" onClick={() => (amount >1 ) && setAmount(amount - 1)}>-</button>
-                                    <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} />
+                                    <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} disabled/>
                                     <button type="button" onClick={() => setAmount(amount + 1)}>+</button>
                                 </div>
                             </div>

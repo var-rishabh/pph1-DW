@@ -19,8 +19,8 @@
 }
 
 .checkout__left {
-  padding: 0 2.5% 3% 10%;
-  width: 35%;
+  padding: 0 5.5% 3% 12%;
+  width: 30%;
 }
 
 .checkout__left--title {
@@ -48,8 +48,8 @@
 }
 
 .checkout__right {
-  padding: 0 10% 3% 2.5%;
-  width: 40%;
+  padding: 0 12% 3% 2.5%;
+  width: 38%;
 }
 
 .checkout__right--title {

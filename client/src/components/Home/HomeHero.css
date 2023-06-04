@@ -181,10 +181,12 @@
   .home-hero__left--title {
     font-size: 7rem;
     line-height: 8rem;
+    width: 90%;
   }
   .home-hero__left--description {
-    font-size: 3rem;
-    line-height: 3.75rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    width: 50%;
   }
 
   .home-hero__left--button {

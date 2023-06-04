@@ -13,6 +13,7 @@ const TryModal = ({ open, setOpen, product}) => {
 
     const handleAmountChange = (e) => {
         if (e.target.value.match("^\\d*$") != null) {
+            
             setAmount(e.target.value);
         }
     }
@@ -31,7 +32,7 @@ const TryModal = ({ open, setOpen, product}) => {
                                 <label htmlFor="amount">Enter Days</label>
                                 <div className="try-modal__body--input--amount">
                                     <button type="button" onClick={() => (amount >(parseInt(process.env.REACT_APP_TRY_MIN))) && setAmount(amount - 1)}>-</button>
-                                    <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} />
+                                    <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} disabled/>
                                     <button type="button" onClick={() => (amount<(parseInt(process.env.REACT_APP_TRY_MAX)) ) && setAmount(amount + 1)}>+</button>
                                 </div>
                             </div>
