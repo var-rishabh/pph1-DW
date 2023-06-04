@@ -46,6 +46,7 @@ module.exports.addToCart = async (req, res) => {
     const userFireId = req.user.user_id;
     const productId = req.body.product_id;
     const quantity = req.body.quantity;
+    const orderType = req.body.order_type;
     const userData = await User.findOne({ user_firebase_id: userFireId });
     if (userData) {
       const product = await Product.findOne({ _id: productId });
@@ -53,7 +54,7 @@ module.exports.addToCart = async (req, res) => {
         const userCart = await Cart.findOne({ user_id: userData._id });
         if (userCart) {
           for (let x in userCart["items"]) {
-            if ((userCart["items"][x]["product_id"]).equals(productId)) {
+            if (userCart["items"][x]["product_id"].equals(productId)) {
               return res.status(200).json({
                 status: "success",
                 message: "Product already added.",
@@ -64,6 +65,7 @@ module.exports.addToCart = async (req, res) => {
           userCart["items"].push({
             product_id: productId,
             quantity: quantity,
+            order_type: orderType,
           });
           userCart["total"] += quantity * product.price;
           await userCart.save();
@@ -155,19 +157,4 @@ module.exports.removeFromCart = async (req, res) => {
       message: err.message,
     });
   }
-};
-
-module.exports.getQuantity = async (productList, cartList) => {
-  const allProducts = [];
-  const quantityLookup = {};
-  cartList["items"].forEach((quantity) => {
-    quantityLookup[quantity.product_id] = quantity.quantity;
-  });
-  productList.forEach((product) => {
-    const quantity = quantityLookup[product.id] || 0;
-    const mergedObject = { ...product["_doc"], quantity };
-    allProducts.push(mergedObject);
-  });
-
-  return allProducts;
 };

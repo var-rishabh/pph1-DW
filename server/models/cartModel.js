@@ -14,6 +14,12 @@ const CartSchema = mongoose.Schema(
           ref: "Product",
           required: true,
         },
+        order_type: {
+          type: String,
+          enum: ["buy", "trial", "subscribe"],
+          required: true,
+          default: "buy"
+        },
         quantity: {
           type: Number,
           required: true,
