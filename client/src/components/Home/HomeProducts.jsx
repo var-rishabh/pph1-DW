@@ -7,9 +7,10 @@ import { getProductByCategory } from '../../Actions/Product';
 const HomeProducts = () => {
     const dispatch = useDispatch();
     const products = useSelector(state => state.productReducer.products);
+    const {isAuthenticated} = useSelector(state => state.userReducer);
     useEffect(() => {
         dispatch(getProductByCategory("Dairy"));
-    }, [dispatch]);
+    }, [dispatch, isAuthenticated]);
     return (
         <div className='home-products'>
             {/* Raw Milk */}

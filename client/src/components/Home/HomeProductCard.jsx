@@ -35,10 +35,10 @@ const HomeProductCard = ({ product }) => {
                 {(product.quantity > 0) ?
                     <div className="home-product-card__content--item">
                         <div className="home-product-card__content--item-type">
-                            Type: {product.order_type}
+                            Type: {product.orderType}
                         </div>
                         <div className="home-product-card__content--item-quantity">
-                        {(product.order_type === "buy") ? "Quantity: " + (product.quantity) : (product.order_type === "try")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
+                        {(product.orderType === "buy") ? "Quantity: " + (product.quantity) : (product.orderType === "try")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
                         </div>
                         <button className="home-product-card__content--item-button" onClick={handleDelete}>
                             <img src={trashSolid} alt="Delete" />

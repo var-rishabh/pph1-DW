@@ -41,10 +41,10 @@ const Product = () => {
               {(product.quantity > 0) ?
                 <div className="product__content--item">
                   <div className="product__content--item-type">
-                    Type: {product.order_type}
+                    Type: {product.orderType}
                   </div>
                   <div className="product__content--item-quantity">
-                    {(product.order_type === "buy") ? "Quantity: " + (product.quantity) : (product.order_type === "try")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
+                    {(product.orderType === "buy") ? "Quantity: " + (product.quantity) : (product.orderType === "try")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
                   </div>
                   <button className="product__content--item-button" onClick={handleDelete}>
                     <img src={trashSolid} alt="Delete" />

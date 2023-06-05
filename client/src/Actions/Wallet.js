@@ -26,7 +26,7 @@ export const walletCheckout = (amount, Razorpay, name, email, phone, description
         dispatch({ type: 'WalletAddRequest' });
 
         const options = {
-            key: process.env.REACT_APP_RAZORPAY_KEY,
+            key: `${process.env.REACT_APP_RAZORPAY_KEY}`,
             amount: order.data.data.amount,
             currency: "INR",
             name: "AapkaDudhwala",

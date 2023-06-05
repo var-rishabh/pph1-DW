@@ -5,7 +5,7 @@ import CartModal from './CartModal';
 import trashSolid from '../../Assets/trash-solid.svg';
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../../Actions/Cart';
-const ProductCard = ({ image, description, title, _id, order_type, quantity = 0 }) => {
+const ProductCard = ({ image, description, title, _id, orderType, quantity = 0 }) => {
     const dispatch = useDispatch();
     const [showCartModal, setShowCartModal] = React.useState(false);
     const handleOrder = () => {
@@ -31,10 +31,10 @@ const ProductCard = ({ image, description, title, _id, order_type, quantity = 0 
                     {quantity > 0 ?
                         <div className="product-card__content--item">
                             <div className="product-card__content--item-type">
-                                Type: {order_type}
+                                Type: {orderType}
                             </div>
                             <div className="product-card__content--item-quantity">
-                            {(order_type === "buy") ? "Quantity: " + (quantity) : (order_type === "try")? "Days: " + (quantity) : "Months: " + (quantity)}
+                            {(orderType === "buy") ? "Quantity: " + (quantity) : (orderType === "try")? "Days: " + (quantity) : "Months: " + (quantity)}
                             </div>
                             <button className="product-card__content--item-button" onClick={handleDelete}>
                                 <img src={trashSolid} alt="Delete" />
