@@ -6,6 +6,9 @@ import { auth } from '../firebase';
 
 export const addToCart = (id, qty, type) => async (dispatch) => {
     try {
+        if (!auth.currentUser) {
+            return toast.error("Please Login First");
+        }
         dispatch({ type: 'AddToCartRequest' });
         let token;
         await getIdToken(auth.currentUser).then((idToken) => {
