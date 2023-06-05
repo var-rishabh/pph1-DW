@@ -2,7 +2,7 @@ const Product = require("../models/productModel");
 const User = require("../models/userModel");
 const Cart = require("../models/cartModel");
 
-const {getQuantity} = require("../services/cartServices");
+const { getOrderTypeAndQuantity } = require("../services/cartServices");
 
 module.exports.addProduct = async (req, res) => {
   try {
@@ -40,7 +40,7 @@ module.exports.getAllProducts = async (req, res) => {
         user_firebase_id: req.user.user_id,
       });
       const userCart = await Cart.findOne({ user_id: userData._id });
-      allProducts = await getQuantity(products, userCart);
+      allProducts = await getOrderTypeAndQuantity(products, userCart);
     } else {
       allProducts = products;
     }
@@ -69,7 +69,7 @@ module.exports.getProductByID = async (req, res) => {
           user_firebase_id: req.user.user_id,
         });
         const userCart = await Cart.findOne({ user_id: userData._id });
-        allProducts = await getQuantity(product_info, userCart);
+        allProducts = await getOrderTypeAndQuantity(product_info, userCart);
       } else {
         allProducts = product_info;
       }
@@ -104,7 +104,7 @@ module.exports.getProductsByCategory = async (req, res) => {
           user_firebase_id: req.user.user_id,
         });
         const userCart = await Cart.findOne({ user_id: userData._id });
-        allProducts = await getQuantity(products, userCart);
+        allProducts = await getOrderTypeAndQuantity(products, userCart);
       } else {
         allProducts = products;
       }

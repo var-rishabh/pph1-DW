@@ -6,6 +6,6 @@ const { checkAuth } = require("../middlewares/authMiddleware");
 
 router.get("/getbalance", checkAuth, walletController.getBalance);
 router.post("/checkout", checkAuth, walletController.checkout);
-router.post("/verification", checkAuth, walletController.verification);
+router.post("/verification", walletController.verification);
 
 module.exports = router;
