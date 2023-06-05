@@ -1,8 +1,7 @@
 .editable-profile-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
   width: 100%;
   font-family: "Rubik", sans-serif;
   font-style: normal;
@@ -12,14 +11,12 @@
 }
 
 .editable-profile-item__title {
-  width: 45%;
+  width: 40%;
 }
 
 .editable-profile-item__input {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 45%;
 }
 
 .editable-profile-item__input input {

@@ -19,7 +19,7 @@ const AddMoneyModal = ({ open, setOpen }) => {
             toast.success("Money Added Successfully");
             dispatch({ type: "WalletReset" });
         }
-    }, [success])
+    }, [dispatch, success])
     const submitHandler = async (e) => {
         e.preventDefault();
         if (amount <= 0) {

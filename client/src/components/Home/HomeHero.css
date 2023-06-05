@@ -1,5 +1,6 @@
 .home-hero {
   display: flex;
+  justify-content: space-between;
   width: 80%;
   padding: 4% 10%;
 }
@@ -106,7 +107,7 @@
 .home-hero__right {
   display: flex;
   justify-content: center;
-  width: 55%;
+  width: 40%;
 }
 
 .home-hero__right--image {
@@ -151,14 +152,14 @@
 }
 
 .home-hero__right--buttons--button2 {
-  margin-right: -4%;
+  margin-right: -12%;
   margin-bottom: 22%;
   align-self: flex-end;
 }
 
 .home-hero__right--buttons--button3 {
   align-self: flex-start;
-  margin-left: 4%;
+  margin-left: -5%;
 }
 
 @media screen and (max-width: 1000px) {
@@ -181,10 +182,12 @@
   .home-hero__left--title {
     font-size: 7rem;
     line-height: 8rem;
+    width: 90%;
   }
   .home-hero__left--description {
-    font-size: 3rem;
-    line-height: 3.75rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    width: 50%;
   }
 
   .home-hero__left--button {

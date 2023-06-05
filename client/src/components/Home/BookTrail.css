@@ -13,9 +13,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 3.75rem;
-  line-height: 5.625rem;
   color: var(--heading-color-secondary);
-  margin-bottom: 5%;
 }
 
 .book-trial__button {

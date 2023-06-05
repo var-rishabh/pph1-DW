@@ -4,7 +4,7 @@ import Icon from '../Assets/Icon.png';
 import { auth } from "../firebase";
 import { getIdToken } from 'firebase/auth';
 
-export const walletCheckout = (amount, Razorpay,description="", name, email, phone) => async (dispatch) => {
+export const walletCheckout = (amount, Razorpay, name, email, phone, description="") => async (dispatch) => {
     try {
         dispatch({ type: 'WalletCheckoutRequest' });
         let token;
@@ -26,7 +26,7 @@ export const walletCheckout = (amount, Razorpay,description="", name, email, pho
         dispatch({ type: 'WalletAddRequest' });
 
         const options = {
-            key: process.env.REACT_APP_RAZORPAY_KEY,
+            key: `${process.env.REACT_APP_RAZORPAY_KEY}`,
             amount: order.data.data.amount,
             currency: "INR",
             name: "AapkaDudhwala",

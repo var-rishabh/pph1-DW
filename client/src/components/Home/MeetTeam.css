@@ -30,6 +30,7 @@
   font-size: 1.125rem;
   line-height: 1.135rem;
   color: var(--text-color-broen);
+  text-align: justify;
 }
 
 .meet-team__image {

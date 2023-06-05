@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5% 10%;
+  padding: 5% 15%;
 }
 
 .contact__left {
@@ -131,6 +131,7 @@
   font-size: 1.125rem;
   line-height: 1.5625rem;
   color: #8c959f;
+  border: 1px solid #e3e3e3;
 }
 
 .contact__right--form--message {
@@ -150,6 +151,7 @@
   font-size: 1.125rem;
   line-height: 1.5625rem;
   color: #8c959f;
+  border: 1px solid #e3e3e3;
 }
 
 .contact__right--form--checkbox {
@@ -170,7 +172,7 @@
   padding: 0 2%;
 }
 
-.contact__right--form--submit{
+.contact__right--form--submit {
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
@@ -180,7 +182,6 @@
   border: none;
   padding: 2% 0;
 }
-
 
 @media screen and (max-width: 1000px) {
   .contact {
@@ -212,7 +213,7 @@
   .contact__left--hr {
     width: 100%;
   }
-  
+
   .contact__left--details--title {
     font-size: 2.25rem;
   }
@@ -252,7 +253,7 @@
   }
 
   .contact__right--form {
-    background: #F9FBFC;
+    background: #f9fbfc;
     width: 90%;
     padding: 5%;
   }
@@ -275,10 +276,9 @@
     font-size: 2.25rem;
     line-height: 3.125rem;
   }
-  
-  .contact__right--form--submit{
+
+  .contact__right--form--submit {
     font-size: 2.25rem;
     line-height: 3.125rem;
   }
-  
 }

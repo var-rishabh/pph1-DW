@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import ModalContainer from '../ModalContainer/ModalContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import './BuyModal.css';
+import { addToCart } from '../../Actions/Cart';
 
 const BuyModal = ({ open, setOpen, product}) => {
     const { loading } = useSelector(state => state.cartReducer);
     const [amount, setAmount] = useState(1);
+    const dispatch = useDispatch();
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("submitHandler");
+        dispatch(addToCart(product._id, amount, "buy"));
     }
 
     const handleAmountChange = (e) => {
@@ -31,7 +33,7 @@ const BuyModal = ({ open, setOpen, product}) => {
                                 <label htmlFor="amount">Enter Amount</label>
                                 <div className="buy-modal__body--input--amount">
                                     <button type="button" onClick={() => (amount >1 ) && setAmount(amount - 1)}>-</button>
-                                    <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} />
+                                    <input type="text" name="amount" id="amount" value={amount} onChange={handleAmountChange} disabled/>
                                     <button type="button" onClick={() => setAmount(amount + 1)}>+</button>
                                 </div>
                             </div>
