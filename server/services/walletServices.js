@@ -1,17 +1,13 @@
 const Transaction = require("../models/transactionModel");
 
 module.exports.getCurrentBalance = async (userID) => {
-    // const allProducts = [];
-    // const quantityLookup = {};
-    // cartList["items"].forEach((quantity) => {
-    //   quantityLookup[quantity.product_id] = quantity.quantity;
-    // });
-    // productList.forEach((product) => {
-    //   const quantity = quantityLookup[product.id] || 0;
-    //   const mergedObject = { ...product["_doc"], quantity };
-    //   allProducts.push(mergedObject);
-    // });
-  
-    return 100;
-  };
-  
+  var balance = 0;
+  const transaction = await Transaction.findOne({
+    user_id: userID,
+  }).sort({ _id: -1 });
+  if (transaction &&  transaction["payment_response"] === "success") {
+    balance = transaction["balance"];
+  }
+
+  return balance;
+};
