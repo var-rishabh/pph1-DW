@@ -7,10 +7,10 @@ import { getAllProducts } from '../../Actions/Product';
 const ProductCatalogue = () => {
   const dispatch = useDispatch();
   const { products, loading } = useSelector(state => state.productReducer);
-  const user = useSelector(state => state.userReducer.user);
+  const { isAuthenticated } = useSelector(state => state.userReducer);
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [ user, dispatch]);
+  }, [dispatch, isAuthenticated]);
 
   return (
     <div className="product-catalogue">

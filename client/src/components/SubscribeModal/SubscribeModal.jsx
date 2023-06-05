@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import ModalContainer from '../ModalContainer/ModalContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import './SubscribeModal.css';
+import { addToCart } from '../../Actions/Cart';
 
 const SubscribeModal = ({ open, setOpen, product}) => {
+    const dispatch = useDispatch();
     const { loading } = useSelector(state => state.cartReducer);
     const [amount, setAmount] = useState(parseInt(process.env.REACT_APP_SUB_MIN));
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("submitHandler");
+        dispatch(addToCart(product._id, amount, "subscribe"));
     }
 
     const handleAmountChange = (e) => {

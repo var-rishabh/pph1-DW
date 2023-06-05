@@ -8,22 +8,23 @@ import TryModal from '../TryModal/TryModal';
 import BuyModal from '../BuyModal/BuyModal';
 import SubscribeModal from '../SubscribeModal/SubscribeModal';
 import trashSolid from '../../Assets/trash-solid.svg';
+import { removeFromCart } from '../../Actions/Cart';
 
 const Product = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { loading, products, product } = useSelector(state => state.productReducer);
-  const user = useSelector(state => state.userReducer.user);
+  const { isAuthenticated } = useSelector(state => state.userReducer);
   const [showTryModal, setShowTryModal] = React.useState(false);
   const [showBuyModal, setShowBuyModal] = React.useState(false);
   const [showSubscribeModal, setShowSubscribeModal] = React.useState(false);
   const handleDelete = () => {
-    console.log("delete");
+    dispatch(removeFromCart(id));
   }
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getProductDetails(id));
-  }, [user, dispatch, id]);
+  }, [ dispatch, id, isAuthenticated]);
 
   return (loading) ? (<div className="loading"><div className='loading__circle'></div></div>) :
     (
@@ -40,10 +41,10 @@ const Product = () => {
               {(product.quantity > 0) ?
                 <div className="product__content--item">
                   <div className="product__content--item-type">
-                    Type: {product.type}
+                    Type: {product.order_type}
                   </div>
                   <div className="product__content--item-quantity">
-                    {(product.type === "buy") ? "Quantity: " + (product.quantity) : "Months: " + (product.quantity)}
+                    {(product.order_type === "buy") ? "Quantity: " + (product.quantity) : (product.order_type === "try")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
                   </div>
                   <button className="product__content--item-button" onClick={handleDelete}>
                     <img src={trashSolid} alt="Delete" />

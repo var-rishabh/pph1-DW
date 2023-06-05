@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ModalContainer from '../ModalContainer/ModalContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import './TryModal.css';
+import { addToCart } from '../../Actions/Cart';
 
 const TryModal = ({ open, setOpen, product}) => {
+    const dispatch = useDispatch();
     const { loading } = useSelector(state => state.cartReducer);
     const [amount, setAmount] = useState(parseInt(process.env.REACT_APP_TRY_MIN));
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("submitHandler");
+        dispatch(addToCart(product._id, amount, "trail"));
     }
 
     const handleAmountChange = (e) => {
         if (e.target.value.match("^\\d*$") != null) {
-            
             setAmount(e.target.value);
         }
     }

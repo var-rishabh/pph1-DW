@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react'
 import ModalContainer from '../ModalContainer/ModalContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import './CartModal.css';
+import { addToCart } from '../../Actions/Cart';
 
 const CartModal = ({ open, setOpen, product}) => {
     const { loading } = useSelector(state => state.cartReducer);
     const [type, setType] = useState("buy");
     const [amount, setAmount] = useState(1);
+    const dispatch = useDispatch();
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("submitHandler");
+        dispatch(addToCart(product._id, amount, type));
     }
 
     const handleAmountChange = (e) => {
@@ -43,7 +45,7 @@ const CartModal = ({ open, setOpen, product}) => {
                                 <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
                                     <option value="buy">Buy</option>
                                     <option value="subscribe">Subscribe</option>
-                                    <option value="try">Try</option>
+                                    <option value="trail">Try</option>
                                 </select>
                             </div>
 

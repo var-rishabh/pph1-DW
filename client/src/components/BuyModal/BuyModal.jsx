@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import ModalContainer from '../ModalContainer/ModalContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import './BuyModal.css';
+import { addToCart } from '../../Actions/Cart';
 
 const BuyModal = ({ open, setOpen, product}) => {
     const { loading } = useSelector(state => state.cartReducer);
     const [amount, setAmount] = useState(1);
+    const dispatch = useDispatch();
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("submitHandler");
+        dispatch(addToCart(product._id, amount, "buy"));
     }
 
     const handleAmountChange = (e) => {

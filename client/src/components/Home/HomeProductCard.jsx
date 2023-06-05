@@ -4,13 +4,16 @@ import TryModal from '../TryModal/TryModal';
 import BuyModal from '../BuyModal/BuyModal';
 import SubscribeModal from '../SubscribeModal/SubscribeModal';
 import trashSolid from '../../Assets/trash-solid.svg';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../Actions/Cart';
 
 const HomeProductCard = ({ product }) => {
     const [showTryModal, setShowTryModal] = React.useState(false);
     const [showBuyModal, setShowBuyModal] = React.useState(false);
     const [showSubscribeModal, setShowSubscribeModal] = React.useState(false);
+    const dispatch = useDispatch();
     const handleDelete = () => {
-        console.log("delete");
+        dispatch(removeFromCart(product._id));
     }
     return (
         <>
@@ -32,10 +35,10 @@ const HomeProductCard = ({ product }) => {
                 {(product.quantity > 0) ?
                     <div className="home-product-card__content--item">
                         <div className="home-product-card__content--item-type">
-                            Type: {product.type || "buy"}
+                            Type: {product.order_type}
                         </div>
                         <div className="home-product-card__content--item-quantity">
-                            {(product.type === "buy") ? "Quantity: " + (product.quantity || 0) : "Months: " + (product.quantity|| 0)}
+                        {(product.order_type === "buy") ? "Quantity: " + (product.quantity) : (product.order_type === "try")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
                         </div>
                         <button className="home-product-card__content--item-button" onClick={handleDelete}>
                             <img src={trashSolid} alt="Delete" />

@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Checkout.css";
 import FormInput from '../FormInput/FormInput';
-import { order } from '../../SampleData/order';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckoutFoot from './CheckoutFoot';
 import OrderItem from '../OrderItem/OrderItem';
@@ -13,11 +12,12 @@ import {
     TrailingActions,
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
+import { getCart, removeFromCart } from '../../Actions/Cart';
 
-const trailingActions = () => (
+const trailingActions = (dispatch, id) => (
     <TrailingActions >
         <SwipeAction
-            onClick={() => console.info('swipe action triggered')}
+            onClick={() => dispatch(removeFromCart(id))}
             destructive={true}
         >
             <div className='checkout__right--box--item--delete'>
@@ -30,6 +30,7 @@ const trailingActions = () => (
 
 const Checkout = () => {
     const user = useSelector(state => state.userReducer.user);
+    const { cart, loading } = useSelector(state => state.cartReducer);
     const dispatch = useDispatch();
     const userName = (user.displayName) ? (user.displayName) : (user.name);
     const userEmail = (user.email) ? (user.email) : (user.emailData);
@@ -46,11 +47,16 @@ const Checkout = () => {
     const [zip, setZip] = React.useState((zipDetails) ? zipDetails : '');
     const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
     const [promo, setPromo] = React.useState('');
-    const orderDetails = order;
     const checkoutHandler = () => {
-        console.log('Checkout');
-        dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }))
+        dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }));
+        if (cart.length > 0) {
+            console.log("Order Placed");
+        }
     }
+
+    useEffect(() => {
+        dispatch(getCart());
+    }, [dispatch, user]);
     return (
         <div className='checkout'>
             <div className='checkout__title'>
@@ -99,21 +105,21 @@ const Checkout = () => {
                     </div>
                     <div className='checkout__right--box'>
                         <SwipeableList fullSwipe={false}>
-                            {
-                                Array(3).fill().map((item, index) => {
+                            { loading ? <div className="loading"><div className='loading__circle'></div></div> :
+                                cart?.items?.map((item, index) => {
                                     return (
 
                                         <SwipeableListItem
-                                            trailingActions={trailingActions()}
-                                            key={index}
+                                            trailingActions={trailingActions(dispatch, item.product_id._id)}
+                                            key={item.product_id._id}
                                         >
                                             <OrderItem
-                                                img={orderDetails.product.image}
-                                                productName={orderDetails.product.title}
-                                                size={orderDetails.product.size}
-                                                orderType={orderDetails.type}
-                                                quantity={orderDetails.quantity}
-                                                price={orderDetails.total}
+                                                img={item.product_id.image}
+                                                productName={item.product_id.title}
+                                                size={item.product_id.size}
+                                                orderType={item.order_type}
+                                                quantity={item.quantity}
+                                                price={item.quantity * item.product_id.price}
                                             />
                                         </SwipeableListItem>
 
@@ -142,7 +148,7 @@ const Checkout = () => {
                                 Subtotal
                             </div>
                             <div className='checkout__right--bill--item--price'>
-                                {orderDetails.subTotal}₹
+                                {cart.subTotal}₹
                             </div>
                         </div>
                         <div className='checkout__right--bill--item'>
@@ -150,7 +156,7 @@ const Checkout = () => {
                                 GST
                             </div>
                             <div className='checkout__right--bill--item--price'>
-                                {orderDetails.gst}₹
+                                {cart.gst}₹
                             </div>
                         </div>
                         <div className='checkout__right--bill--item'>
@@ -158,7 +164,7 @@ const Checkout = () => {
                                 Total
                             </div>
                             <div className='checkout__right--bill--item--price'>
-                                {orderDetails.total}₹
+                                {cart.total}₹
                             </div>
                         </div>
                         <button className='checkout__right--bill--button' onClick={checkoutHandler}>
