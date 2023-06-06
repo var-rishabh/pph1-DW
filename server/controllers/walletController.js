@@ -158,7 +158,7 @@ module.exports.transactionHistory = async (req, res) => {
         user_id: userData._id,
       });
       if (userTransactions.length < 1) {
-        userTransactions = "No transaction history found."
+        userTransactions = "No transaction history found.";
       }
       return res.status(200).json({
         status: "success",

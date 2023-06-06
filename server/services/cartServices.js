@@ -1,3 +1,5 @@
+const Product = require("../models/productModel");
+
 module.exports.getQuantity = async (productList, cartList) => {
   const allProducts = [];
   const quantityLookup = {};
@@ -49,4 +51,31 @@ module.exports.getOrderTypeAndQuantity = async (productList, cartList) => {
   });
 
   return allProducts;
+};
+
+module.exports.getProductTotal = async (cartList) => {
+  cartList["items"].forEach((product) => {
+    const price = product["product_id"]["price"];
+    if (product["order_type"] === "buy" || product["order_type"] === "trial") {
+      product["_doc"]["total_amount"] = product["quantity"] * price;
+    } else if (product["order_type"] === "subscribe") {
+      product["_doc"]["total_amount"] = product["quantity"] * 30 * price;
+    }
+  });
+
+  return cartList;
+};
+
+module.exports.getCartTotal = async (cartList) => {
+  var totalAmountOfCart = 0;
+  for (const item of cartList["items"]) {
+    const { price } = await Product.findById(item.product_id);
+
+    if (item["order_type"] === "buy" || item["order_type"] === "trial") {
+      totalAmountOfCart += item.quantity * price;
+    } else if (item["order_type"] === "subscribe") {
+      totalAmountOfCart += item.quantity * 30 * price;
+    }
+  }
+  return totalAmountOfCart;
 };

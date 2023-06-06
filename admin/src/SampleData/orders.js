@@ -11,12 +11,12 @@ export const orders = [
             {
                 productId: "1",
                 quantity: 1,
-                type: "trail",
+                type: "trial",
             },
         ],
         status: "pending",
         paymentStatus: "success",
-        type: "trail",
+        type: "trial",
         address: "53-B, MICO Street, New Delhi, India",
         altAddress: "56-B, MICO Street, New Delhi, India",
         phone: "9876543210",
@@ -42,7 +42,7 @@ export const orders = [
             {
                 productId: "1",
                 quantity: 1,
-                type: "trail",
+                type: "trial",
             },
             {
                 productId: "2",
@@ -86,7 +86,7 @@ export const orders = [
             {
                 productId: "1",
                 quantity: 1,
-                type: "trail",
+                type: "trial",
             },
             {
                 productId: "2",
@@ -146,7 +146,7 @@ export const orders = [
             {
                 productId: "1",
                 quantity: 1,
-                type: "trail",
+                type: "trial",
             },
             {
                 productId: "2",
@@ -206,7 +206,7 @@ export const orders = [
             {
                 productId: "1",
                 quantity: 1,
-                type: "trail",
+                type: "trial",
             },
             {
                 productId: "2",

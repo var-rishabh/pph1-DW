@@ -19,7 +19,7 @@ const OrderSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  price: {                     
+  price: {
     type: Number,
     required: true,
   },
@@ -30,6 +30,12 @@ const OrderSchema = mongoose.Schema({
   alt_address: {
     type: String,
     required: true,
+  },
+  order_type: {
+    type: String,
+    enum: ["buy", "trial", "subscribe"],
+    required: true,
+    default: "buy",
   },
   approved: {
     type: String,

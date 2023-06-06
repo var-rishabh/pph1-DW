@@ -2,22 +2,23 @@ const User = require("../models/userModel");
 const Cart = require("../models/cartModel");
 const Product = require("../models/productModel");
 
+const { getProductTotal, getCartTotal } = require("../services/cartServices");
+
 module.exports.getCart = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
     if (userData) {
-      const userCart = await Cart.findOne({ user_id: userData._id });
+      var fullCart = {};
+      const userCart = await Cart.findOne({ user_id: userData._id }).populate(
+        "items.product_id"
+      );
       if (userCart) {
-        for (let x in userCart["items"]) {
-          userCart["items"][x]["product_id"] = await Product.findOne({
-            _id: userCart["items"][x]["product_id"],
-          });
-        }
+        fullCart = await getProductTotal(userCart);
         return res.status(200).json({
           status: "success",
           message: "Cart found successfully.",
-          data: userCart,
+          data: fullCart,
         });
       } else {
         return res.status(404).json({
@@ -67,8 +68,15 @@ module.exports.addToCart = async (req, res) => {
             quantity: quantity,
             order_type: orderType,
           });
-          userCart["total"] += quantity * product.price;
+          const cartTotal = await getCartTotal(userCart);
+          userCart["total"] = cartTotal;
           await userCart.save();
+
+          return res.status(200).json({
+            status: "success",
+            message: "Product added to cart successfully.",
+            data: userCart,
+          });
         } else {
           return res.status(404).json({
             status: "failure",
@@ -76,10 +84,6 @@ module.exports.addToCart = async (req, res) => {
             data: null,
           });
         }
-        return res.status(200).json({
-          status: "success",
-          message: "Product added to cart successfully.",
-        });
       } else {
         return res.status(404).json({
           status: "failure",
@@ -95,7 +99,7 @@ module.exports.addToCart = async (req, res) => {
       });
     }
   } catch (err) {
-    return res.status(401).json({
+    return res.status(400).json({
       status: "failure",
       message: err.message,
     });
@@ -122,9 +126,11 @@ module.exports.removeFromCart = async (req, res) => {
               data: null,
             });
           }
-          userCart["total"] -=
-            userCart["items"][itemIndex].quantity * product.price;
           userCart["items"].splice(itemIndex, 1);
+
+          const cartTotal = await getCartTotal(userCart);
+          userCart["total"] = cartTotal;
+          
           await userCart.save();
           return res.status(200).json({
             status: "success",
