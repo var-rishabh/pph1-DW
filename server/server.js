@@ -19,6 +19,7 @@ const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const walletRoutes = require("./routes/walletRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 
 app.get("/", async (req, res) => {
   try {
@@ -41,6 +42,7 @@ app.use("/product", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/wallet", walletRoutes);
 app.use("/order", orderRoutes);
+app.use("/contact", contactRoutes);
 
 app.listen(process.env.PORT, (err) => {
   if (err) {

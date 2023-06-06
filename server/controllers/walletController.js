@@ -156,7 +156,7 @@ module.exports.transactionHistory = async (req, res) => {
     if (userData) {
       var userTransactions = await Transaction.find({
         user_id: userData._id,
-      });
+      }).sort({ _id: -1 });
       if (userTransactions.length < 1) {
         userTransactions = "No transaction history found.";
       }
