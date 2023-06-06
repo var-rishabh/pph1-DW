@@ -45,7 +45,7 @@ const CartModal = ({ open, setOpen, product}) => {
                                 <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
                                     <option value="buy">Buy</option>
                                     <option value="subscribe">Subscribe</option>
-                                    <option value="trail">Try</option>
+                                    <option value="trial">Try</option>
                                 </select>
                             </div>
 

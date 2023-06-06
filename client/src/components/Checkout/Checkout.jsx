@@ -119,7 +119,7 @@ const Checkout = () => {
                                                 size={item.product_id.size}
                                                 orderType={item.orderType}
                                                 quantity={item.quantity}
-                                                price={item.quantity * item.product_id.price}
+                                                price={item.total_amount}
                                             />
                                         </SwipeableListItem>
 

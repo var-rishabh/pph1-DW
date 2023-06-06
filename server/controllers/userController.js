@@ -13,7 +13,7 @@ module.exports.addUser = async (req, res) => {
       const addToCart = new Cart({
         user_id: newUser._id,
         items: [],
-        total: 0
+        total: 0,
       });
       await addToCart.save();
 

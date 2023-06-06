@@ -16,4 +16,4 @@ const service_account = {
     "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-j6fqd%40dudhwala-34f58.iam.gserviceaccount.com",
 };
 
-module.exports = service_account
+module.exports = service_account;

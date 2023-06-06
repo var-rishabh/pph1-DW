@@ -18,7 +18,7 @@ const CartSchema = mongoose.Schema(
           type: String,
           enum: ["buy", "trial", "subscribe"],
           required: true,
-          default: "buy"
+          default: "buy",
         },
         quantity: {
           type: Number,

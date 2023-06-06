@@ -8,6 +8,10 @@ router.get("/getbalance", checkAuth, walletController.getBalance);
 router.post("/checkout", checkAuth, walletController.checkout);
 router.post("/verification", walletController.verification);
 router.post("/userverification", checkAuth, walletController.userverification);
-router.get("/transactionhistory", checkAuth, walletController.transactionHistory);
+router.get(
+  "/transactionhistory",
+  checkAuth,
+  walletController.transactionHistory
+);
 
 module.exports = router;
