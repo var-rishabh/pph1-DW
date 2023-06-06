@@ -8,7 +8,7 @@
 .testimonial-message__text {
   text-align: center;
   justify-self: center;
-  width: 75%;
+  width: 80%;
   min-height: 18vh;
   background-color: var(--tertiary-color);
   padding: 5% 15% 15% 15%;
@@ -24,7 +24,8 @@
 .testimonial-message__profile {
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 90%;
+  padding-left: 5%;
   margin-top: -20%;
 }
 
@@ -35,7 +36,8 @@
   font-size: 0.875rem;
   line-height: 1.0625rem;
   color: var(--text-color-secondary);
-  padding: 0 2%;
+  padding: 0 3%;
+  margin-top: -8%;
 
 }
 

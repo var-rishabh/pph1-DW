@@ -11,7 +11,8 @@ const HomeHero = () => {
             <div className='home-hero__left'>
                 <div className='home-hero__left--title'>
                     <span className='home-hero__left--title--one'>100%</span>
-                    <span className='home-hero__left--title--two'> Natural & Fresh Milk</span>
+                    <span className='home-hero__left--title--two'> Pure
+                        & Fresh Milk</span>
                 </div>
                 <div className='home-hero__left--description'>
                     The freshest milk in town, delivered right to you

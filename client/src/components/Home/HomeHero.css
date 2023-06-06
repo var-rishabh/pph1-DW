@@ -1,8 +1,8 @@
 .home-hero {
   display: flex;
   justify-content: space-between;
-  width: 80%;
-  padding: 4% 10%;
+  width: 70%;
+  padding: 4% 15%;
 }
 
 .home-hero__left {
@@ -15,8 +15,7 @@
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 82px;
-  line-height: 104px;
+  font-size: 4rem;
 }
 
 .home-hero__left--title--one {
@@ -34,16 +33,16 @@
   font-size: 1.0625rem;
   line-height: 1.375rem;
   color: #443737;
-  padding: 1% 0 4% 0;
+  padding: 1% 0 10% 0;
 }
 
 .home-hero__left--button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 30%;
   margin: 2% 0;
-  height: 3rem;
+  height: 2.5rem;
   background-color: var(--primary-color);
   border-radius: 6px;
   color: var(--text-color-secondary);
@@ -100,6 +99,7 @@
   font-weight: 600;
   font-size: 0.75rem;
   line-height: 0.875rem;
+  padding: 0 10%;
   text-align: center;
   color: #50a8dc;
 }
@@ -112,12 +112,13 @@
 
 .home-hero__right--image {
   position: absolute;
-  margin-left: auto;
-  z-index: 2;
+  margin-left: 10%;
+  z-index: -1;
   pointer-events: none;
 }
 
 .home-hero__right--image img {
+  width: 85%;
   object-fit: contain;
   object-position: contain;
 }
@@ -130,12 +131,12 @@
 }
 
 .home-hero__right--buttons button {
-  padding: 2% 3%;
+  padding: 3% 10%;
   background-color: var(--primary-color);
   border-radius: 12px;
   color: var(--text-color-secondary);
   border: none;
-  font-family: "Honey Silk", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1.125rem;
@@ -149,17 +150,19 @@
 
 .home-hero__right--buttons--button1 {
   align-self: flex-start;
+  margin-left: -20%;
+  margin-top: 10%;
 }
 
 .home-hero__right--buttons--button2 {
-  margin-right: -12%;
-  margin-bottom: 22%;
+  margin-right: -32%;
+  margin-bottom: 25%;
   align-self: flex-end;
 }
 
 .home-hero__right--buttons--button3 {
   align-self: flex-start;
-  margin-left: -5%;
+  margin-left: -12%;
 }
 
 @media screen and (max-width: 1000px) {

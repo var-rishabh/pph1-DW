@@ -10,10 +10,10 @@
   width: 100%;
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1rem;
   line-height: 1.125rem;
-  padding: 10px;
+  padding: 18px;
   outline: none;
   border: 1px solid #aaaaaa;
   box-sizing: border-box;
@@ -27,7 +27,7 @@
   transform: translateY(-50%);
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1rem;
   line-height: 1.125rem;
   color: #aaaaaa;
@@ -40,7 +40,7 @@
   top: 0;
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.125rem;
   color: #AAAAAA;

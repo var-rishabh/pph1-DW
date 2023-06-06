@@ -1,6 +1,6 @@
 .profile {
-  width: 80%;
-  padding: 5% 10%;
+  width: 70%;
+  padding: 5% 15%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -58,26 +58,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
-  padding: 5%;
+  width: 84%;
+  padding: 12% 8%;
   background: #124975;
   border-radius: 12px;
+}
+
+.profile__left__wallet--icon svg {
+  width: 20px;
 }
 
 .profile__left__wallet--amount {
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 2.0625rem;
-  line-height: 3.125rem;
+  font-size: 1.5rem;
   color: var(--white-color);
 }
 
 .profile__left__wallet--button {
   background: #50a8dc;
   color: var(--white-color);
-  border-radius: 12px;
-  padding: 2% 5%;
+  border-radius: 8px;
+  padding: 4% 5%;
   border: none;
   margin-top: -5%;
   margin-bottom: 10%;
@@ -104,7 +107,7 @@
   max-height:22vh;
   overflow-y: auto;
   padding: 0;
-  border-radius: 10px;
+  margin-top: 5%;
   margin-bottom: 5%;
 }
 
@@ -166,7 +169,7 @@
 .profile__right--service {
   background: var(--white-color);
   display: flex;
-  padding: 2% 10% 5% 10%;
+  padding: 7% 10% 7% 10%;
   width: 80%;
   flex-direction: column;
   border-radius: 12px;

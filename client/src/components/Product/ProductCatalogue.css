@@ -6,19 +6,19 @@
     background: url(../../Assets/productHero.png);
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 3.5% 10%;
+    padding: 5% 20%;
 }
 
 .product-catalogue__hero--content{
-    width: 42%;
+    width: 50%;
 }
 
 .product-catalogue__hero--title{
     font-family: 'ColorTube', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 2.8125rem;
+    font-weight: 300;
+    font-size: 1.2rem;
+    padding: 6% 0;
     color: var(--text-color-secondary);
 }
 
@@ -26,16 +26,15 @@
     margin-top: 1%;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    font-size: 1.125rem;
-    line-height: 1.6875rem;
+    font-weight: 400;
+    font-size: 1rem;
     color: var(--text-color-secondary);
 }
 
 .product-catalogue__products{
     display: flex;
     flex-direction: column;
-    padding: 1% 10%;
+    padding: 1% 20%;
 }
 
 .product-catalogue__products--title {
