@@ -1,13 +1,12 @@
 .editable-profile-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 2%;
   width: 100%;
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 1.125rem;
+  font-weight: 200;
+  font-size: 1rem;
   line-height: 1.135rem;
 }
 
@@ -17,22 +16,23 @@
 
 .editable-profile-item__input {
   display: flex;
-  align-items: center;
 
 }
 
 .editable-profile-item__input input {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 1.125rem;
+  font-weight: 200;
+  font-size: 1rem;
   line-height: 1.135rem;
+  text-align: left;
 }
 
 .editable-profile-item__input input:disabled {
     font-family: "Rubik", sans-serif;
     font-style: normal;
-    font-weight: 400;
+    text-align: left;
+    font-weight: 200;
     color: black;
     background: none;
     border: 2px solid white;

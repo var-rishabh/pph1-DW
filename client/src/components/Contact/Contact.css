@@ -16,7 +16,7 @@
 .contact__left--title {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 4.375rem;
   line-height: 5.875rem;
   color: #2c3c4d;
@@ -26,7 +26,7 @@
 .contact__left--subtitle {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.25rem;
   line-height: 1.875rem;
   color: #2c3c4d;
@@ -36,7 +36,7 @@
 .contact__left--hr {
   border-bottom: 1px dashed #e3e3e3;
   width: 70%;
-  margin-bottom: 10%;
+  margin: 10% 0;
 }
 
 .contact__left--details {
@@ -50,7 +50,7 @@
 .contact__left--details--title {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.375rem;
   line-height: 1.75rem;
   padding: 3% 0;
@@ -98,7 +98,7 @@
 }
 
 .contact__right--title {
-  padding: 5% 0;
+  padding: 5% 0 0 0;
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -127,7 +127,7 @@
   padding: 2% 3%;
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.125rem;
   line-height: 1.5625rem;
   color: #8c959f;
@@ -144,10 +144,10 @@
 
 .contact__right--form--message textarea {
   padding: 2% 3%;
-  height: 25vh;
+  height: 20vh;
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.125rem;
   line-height: 1.5625rem;
   color: #8c959f;
@@ -174,13 +174,14 @@
 
 .contact__right--form--submit {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 300;
   font-size: 1rem;
   line-height: 1.25rem;
   color: #ffffff;
   background-color: #352429;
   border: none;
-  padding: 2% 0;
+  margin-top: 5%;
+  padding: 4% 0;
 }
 
 @media screen and (max-width: 1000px) {

@@ -61,7 +61,7 @@
 .home-product-card__content--item {
   display: flex;
   align-items: center;
-  padding: 2% 0;
+  padding: 15% 0 0 0;
   justify-content: space-between;
 }
 
@@ -97,22 +97,23 @@
 .home-product-card__buttons {
   display: flex;
   justify-content: space-between;
-  padding: 2% 0;
+  padding: 15% 0 0 0;
 }
 
 .home-product-card__buttons button {
   outline: none;
   cursor: pointer;
+  padding: 3% 8%;
+  font-weight: 700;
 }
 
 .home-product-card__buttons--try {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.135rem;
   color: var(--heading-color-secondary);
   background-color: var(--white-color);
   border: 1px solid var(--primary-color);
-  padding: 1% 5%;
   border-radius: 5px;
 }
 
@@ -122,12 +123,11 @@
 }
 
 .home-product-card__buttons--buy {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.135rem;
   color: var(--text-color-secondary);
   background-color: var(--primary-color);
-  padding: 1% 5%;
   border-radius: 5px;
   border: none;
 }
@@ -137,12 +137,11 @@
 }
 
 .home-product-card__buttons--subscribe {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.135rem;
   color: var(--text-color-secondary);
   background-color: var(--heading-color-secondary);
-  padding: 1% 5%;
   border-radius: 5px;
   border: none;
 }

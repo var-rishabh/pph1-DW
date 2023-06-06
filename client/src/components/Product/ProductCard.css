@@ -12,8 +12,8 @@
 }
 
 .product-card__image img {
-  width: calc(344px - 0.1 * (344px));
-  height: calc(397px - 0.1 * (397px));
+  width: calc(344px - 0.2 * (344px));
+  height: calc(397px - 0.2 * (397px));
 }
 
 .product-card__content {
@@ -21,25 +21,25 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 5% 0;
-  width: 70%;
+  width: 65%;
 }
 
 .product-card__content--title {
-  font-family: "ColorTube", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.8125rem;
+  font-size: 1rem;
   color: var(--heading-color-secondary);
+  margin-bottom: 3%;
 }
 
 .product-card__content--description {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.135rem;
+  font-weight: 300;
+  font-size: 1;
   color: var(--heading-color-secondary);
+  margin-bottom: 3%;
 }
 
 .product-card__content--item {
@@ -51,9 +51,8 @@
 .product-card__content--item-type, .product-card__content--item-quantity {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.135rem;
+  font-weight: 300;
+  font-size: 1rem;
   color: var(--heading-color-secondary);
   margin-right: 2%;
 }
@@ -83,9 +82,8 @@
 .product-card__content--order {
   font-family: "Poppins", sans-serif;
   font-style: normal;
-  font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1.6875rem;
+  font-weight: 400;
+  font-size: 1rem;
   text-align: center;
   border-radius: 4px;
   padding: 1% 5%;

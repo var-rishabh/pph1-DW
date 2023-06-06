@@ -13,13 +13,13 @@ const OrderItem = ({img, productName, size, orderType, quantity, price }) => {
             </div>
             <div className='order-item__details--list'>
                 <div className='order-item__details--list--item'>
-                    {size}
+                    {size} 
                 </div>
                 <div className='order-item__details--list--item'>
-                    {orderType}
+                    {(orderType === 'subscribe') ? 'Sub' : ((orderType === 'trial') ? 'Trial' : 'Buy')}
                 </div>
                 <div className='order-item__details--list--item'>
-                    {quantity}
+                    {quantity} {(orderType === 'subscribe') ? 'M' : ((orderType === 'trial') ? 'D' : '')}
                 </div>
             </div>
         </div>
