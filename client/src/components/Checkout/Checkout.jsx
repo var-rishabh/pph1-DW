@@ -117,7 +117,7 @@ const Checkout = () => {
                                                 img={item.product_id.image}
                                                 productName={item.product_id.title}
                                                 size={item.product_id.size}
-                                                orderType={item.orderType}
+                                                orderType={item.order_type}
                                                 quantity={item.quantity}
                                                 price={item.total_amount}
                                             />

@@ -106,6 +106,17 @@
     font-size: 3.375rem;
     border: 3px solid var(--text-color-darkbrown);
   }
+  .cart-modal__body--select label {
+    font-size: 3.375rem;
+  }
+  .cart-modal__body--select select {
+    font-size: 3.375rem;
+    width: 80%;
+  }
+  .cart-modal__body--select select option {
+    font-size: 1rem;
+    
+  }
   .cart-modal__body--input--amount {
     border: 3px solid var(--text-color-darkbrown);
   }

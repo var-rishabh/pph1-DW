@@ -10,7 +10,7 @@ const SubscribeModal = ({ open, setOpen, product}) => {
     const [amount, setAmount] = useState(parseInt(process.env.REACT_APP_SUB_MIN));
     const submitHandler = async (e) => {
         e.preventDefault();
-        dispatch(addToCart(product._id, amount, "subscribe"));
+        dispatch(addToCart(product._id, amount, "subscribe", setOpen));
     }
 
     const handleAmountChange = (e) => {

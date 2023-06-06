@@ -34,7 +34,7 @@ const ProductCard = ({ image, description, title, _id, orderType, quantity = 0 }
                                 Type: {orderType}
                             </div>
                             <div className="product-card__content--item-quantity">
-                            {(orderType === "buy") ? "Quantity: " + (quantity) : (orderType === "try")? "Days: " + (quantity) : "Months: " + (quantity)}
+                            {(orderType === "buy") ? "Quantity: " + (quantity) : (orderType === "trial")? "Days: " + (quantity) : "Months: " + (quantity)}
                             </div>
                             <button className="product-card__content--item-button" onClick={handleDelete}>
                                 <img src={trashSolid} alt="Delete" />

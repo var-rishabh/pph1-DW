@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, updateUserProfile } from '../../Actions/User';
@@ -10,13 +10,15 @@ import { order } from '../../SampleData/order';
 import AddMoneyModal from './AddMoneyModal';
 import HistoryModal from './HistoryModal';
 import CalenderModal from './CalenderModal';
+import { walletBalance, walletHistory } from '../../Actions/Wallet';
 
 const Profile = () => {
     const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch(logout());
     }
-    const { user } = useSelector(state => state.userReducer);
+    const { user, isAuthenticated } = useSelector(state => state.userReducer);
+    const { balance, loading, history } = useSelector(state => state.walletReducer);
     const [name, setName] = useState((user.displayName) ? (user.displayName) : (user.name));
     const [phone, setPhone] = useState((user.phoneNumber) ? (user.phoneNumber) : (user.phoneData));
     const [altPhone, setAltPhone] = useState(user.altPhone);
@@ -29,6 +31,10 @@ const Profile = () => {
     const profileUpdateHanlder = () => {
         dispatch(updateUserProfile({ name: name || "", phoneData: phone || "", altPhone: altPhone || "", emailData: email || "", address: address || "", altAddress: altAddress || "" }));
     }
+    useEffect(() => {
+        dispatch(walletBalance());
+        dispatch(walletHistory());
+    }, [dispatch, isAuthenticated]);
     const orderDetails = order;
     return (
         <>
@@ -53,7 +59,7 @@ const Profile = () => {
 
                         </div>
                         <div className="profile__left__wallet--amount">
-                            ₹1000
+                            {(loading) ? <div className="loading"><div className='loading__circle'></div></div> : `₹ ${balance}`}
                         </div>
                     </div>
                     <button className="profile__left__wallet--button" onClick={() => setShowAddMoneyModal(true)}>
@@ -64,30 +70,15 @@ const Profile = () => {
                             Wallet
                         </div>
                         <div className="profile__left__wallet-history--list">
-                            <WalletHistoryItem
-                                title="Added Money"
-                                amount="+1000"
-                                balance="1000"
-                                date="21st June 2021"
-                            />
-                            <WalletHistoryItem
-                                title="Added Money"
-                                amount="+1000"
-                                balance="1000"
-                                date="21st June 2021"
-                            />
-                            <WalletHistoryItem
-                                title="Added Money"
-                                amount="+1000"
-                                balance="1000"
-                                date="21st June 2021"
-                            />
-                            <WalletHistoryItem
-                                title="Added Money"
-                                amount="+1000"
-                                balance="1000"
-                                date="21st June 2021"
-                            />
+                            {history.map((item, index) => (
+                                <WalletHistoryItem
+                                    key={item._id}
+                                    title={item.order_type.toUpperCase()}
+                                    amount={item.amount}
+                                    date={(new Date(item.createdAt)).toDateString()}
+                                    balance={item.balance}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>

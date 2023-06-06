@@ -1,6 +1,7 @@
 .editable-profile-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 2%;
   width: 100%;
   font-family: "Rubik", sans-serif;
@@ -17,6 +18,7 @@
 .editable-profile-item__input {
   display: flex;
   align-items: center;
+
 }
 
 .editable-profile-item__input input {
@@ -44,18 +46,18 @@
 
 @media screen and (max-width: 1000px) {
   .editable-profile-item {
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 2.75rem; 
   }
 
 
   .editable-profile-item__input input {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 2rem;
+    line-height: 2.75rem;
   }
 
   .editable-profile-item__input svg{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
   }
 }

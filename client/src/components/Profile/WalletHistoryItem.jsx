@@ -3,13 +3,13 @@ import './WalletHistoryItem.css';
 
 const WalletHistoryItem = ({title, amount, balance, date}) => {
   return (
-    <div className='wallet-history-item' style={{borderLeft: (amount[0] === '+') ? ('5px solid green') : ('5px solid red')}}>
+    <div className='wallet-history-item' style={{borderLeft: (amount>0) ? ('5px solid green') : ('5px solid red')}}>
         <div className="wallet-history-item__details">
             <div className="wallet-history-item__details--title">
                 {title}
             </div>
-            <div className="wallet-history-item__details--amount" style={{color: (amount[0] === '+') ? ('green') : ('red')}}>
-                {amount}
+            <div className="wallet-history-item__details--amount" style={{color: (amount>0) ? ('green') : ('red')}}>
+               {(amount>0)? "+" : "-" }{amount}
             </div>
         </div>
         <div className="wallet-history-item__balance">

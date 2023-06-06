@@ -10,7 +10,7 @@ const BuyModal = ({ open, setOpen, product}) => {
     const dispatch = useDispatch();
     const submitHandler = async (e) => {
         e.preventDefault();
-        dispatch(addToCart(product._id, amount, "buy"));
+        dispatch(addToCart(product._id, amount, "buy", setOpen));
     }
 
     const handleAmountChange = (e) => {
