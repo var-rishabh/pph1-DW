@@ -44,7 +44,7 @@ const Product = () => {
                     Type: {product.orderType}
                   </div>
                   <div className="product__content--item-quantity">
-                    {(product.orderType === "buy") ? "Quantity: " + (product.quantity) : (product.orderType === "try")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
+                    {(product.orderType === "buy") ? "Quantity: " + (product.quantity) : (product.orderType === "trial")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
                   </div>
                   <button className="product__content--item-button" onClick={handleDelete}>
                     <img src={trashSolid} alt="Delete" />

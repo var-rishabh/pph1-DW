@@ -11,7 +11,7 @@ const CartModal = ({ open, setOpen, product}) => {
     const dispatch = useDispatch();
     const submitHandler = async (e) => {
         e.preventDefault();
-        dispatch(addToCart(product._id, amount, type));
+        dispatch(addToCart(product._id, amount, type, setOpen));
     }
 
     const handleAmountChange = (e) => {

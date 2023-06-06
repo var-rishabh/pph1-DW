@@ -10,7 +10,7 @@ const TryModal = ({ open, setOpen, product}) => {
     const [amount, setAmount] = useState(parseInt(process.env.REACT_APP_TRY_MIN));
     const submitHandler = async (e) => {
         e.preventDefault();
-        dispatch(addToCart(product._id, amount, "trial"));
+        dispatch(addToCart(product._id, amount, "trial",setOpen));
     }
 
     const handleAmountChange = (e) => {
