@@ -49,7 +49,7 @@ const Checkout = () => {
     const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
     const [promo, setPromo] = React.useState('');
     const checkoutHandler = () => {
-        if (cart?.length > 0) {
+        if (cart?.items?.length > 0) {
             dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }));
             console.log("Order Placed");
         } else {

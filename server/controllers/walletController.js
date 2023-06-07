@@ -157,13 +157,16 @@ module.exports.transactionHistory = async (req, res) => {
       var userTransactions = await Transaction.find({
         user_id: userData._id,
       }).sort({ _id: -1 });
-      if (userTransactions.length < 1) {
-        userTransactions = "No transaction history found.";
+      if (userTransactions.length > 0) {
+        return res.status(200).json({
+          status: "success",
+          message: "Transaction history found.",
+          data: userTransactions,
+        });
       }
       return res.status(200).json({
         status: "success",
-        message: "Transaction history found.",
-        data: userTransactions,
+        message: "No Transaction history.",
       });
     } else {
       return res.status(404).json({
