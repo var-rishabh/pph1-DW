@@ -116,7 +116,7 @@ const Profile = () => {
           <div className="profile__left__wallet-history">
             <div className="profile__left__wallet-history--title">Wallet</div>
             <div className="profile__left__wallet-history--list">
-              {history.map((item, index) => (
+              {history?.map((item, index) => (
                 <WalletHistoryItem
                   key={item._id}
                   title={item.order_type.toUpperCase()}
@@ -135,13 +135,13 @@ const Profile = () => {
               title="Name"
               value={name}
               setValue={setName}
-              editable={!user.displayName ? true : false}
+              editable={!user.displayName}
             />
             <EditableProfileItem
               title="Phone"
               value={phone}
               setValue={setPhone}
-              editable={!user.phoneNumber ? true : false}
+              editable={!user.phoneNumber}
             />
             <EditableProfileItem
               title="Alternate Phone"
@@ -152,7 +152,7 @@ const Profile = () => {
               title="Email"
               value={email}
               setValue={setEmail}
-              editable={!user.email ? true : false}
+              editable={!user.email}
             />
             <EditableProfileItem
               title="Address"

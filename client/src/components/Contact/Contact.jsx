@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Contact.css";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { sendMessage } from "../../Actions/Contact";
 
 const Contact = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.userReducer);
+  const { loading } = useSelector((state) => state.contactReducer);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [checked, setChecked] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isAuthenticated) {
+      if (name && email && message) {
+        if (checked) {
+          dispatch(
+            sendMessage(
+              name,
+              email,
+              message,
+            )
+          );
+        } else {
+          toast.error("Please agree to the terms and conditions");
+        }
+      } else {
+        toast.error("Please fill all the fields");
+      }
+    } else {
+      toast.error("Please Login First");
+    }
+  };
   return (
     <div className="contact">
       <div className="contact__left">
@@ -114,19 +146,21 @@ const Contact = () => {
 
         <div className="contact__right--form">
           <div className="contact__right--form--personal">
-            <input type="text" placeholder="Your Name" />
-            <input type="text" placeholder="Your Email" />
+            <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="contact__right--form--message">
-            <textarea placeholder="Your Message" />
+            <textarea placeholder="Your Message" value={message} onChange={(e) => setMessage(e.target.value)} />
           </div>
           <div className="contact__right--form--checkbox">
-            <input type="checkbox" />
+            <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
             <div className="contact__right--form--checkbox--text">
               I agree to the privacy policy
             </div>
           </div>
-          <button className="contact__right--form--submit">Submit</button>
+          {loading ? <div className="contact__right--form--submit">
+            <div className="centerLoader"><div className="loader"></div></div>
+          </div> : <button className="contact__right--form--submit" onClick={handleSubmit}>Submit</button>}
         </div>
       </div>
     </div>

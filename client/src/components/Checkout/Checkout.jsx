@@ -13,6 +13,7 @@ import {
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
 import { getCart, removeFromCart } from '../../Actions/Cart';
+import { toast } from 'react-toastify';
 
 const trailingActions = (dispatch, id) => (
     <TrailingActions >
@@ -48,9 +49,19 @@ const Checkout = () => {
     const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
     const [promo, setPromo] = React.useState('');
     const checkoutHandler = () => {
-        dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }));
-        if (cart.length > 0) {
+        if (cart?.length > 0) {
+            dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }));
             console.log("Order Placed");
+        } else {
+            toast.error("Cart is Empty");
+        }
+    }
+
+    const promoHandler = () => {
+        if (promo !== '') {
+            console.log("Promo Applied");
+        } else {
+            toast.error("Enter Promo Code");
         }
     }
 
@@ -137,7 +148,7 @@ const Checkout = () => {
                             <div className='checkout__right--promo--input'>
                                 <FormInput label='Promotion or Discount code' type='text' id='promo' value={promo} setInputValue={setPromo} />
                             </div>
-                            <button className='checkout__right--promo--button'>
+                            <button className='checkout__right--promo--button' onClick={promoHandler}>
                                 Apply Code
                             </button>
                         </div>
