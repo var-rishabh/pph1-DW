@@ -184,6 +184,12 @@
   padding: 4% 0;
 }
 
+.centerLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 1000px) {
   .contact {
     flex-direction: column;
