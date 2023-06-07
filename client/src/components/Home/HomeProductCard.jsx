@@ -35,7 +35,7 @@ const HomeProductCard = ({ product }) => {
                 {(product.quantity > 0) ?
                     <div className="home-product-card__content--item">
                         <div className="home-product-card__content--item-type">
-                            <b>Type</b>: {(product.orderType).charAt(0).toUpperCase() + (product.orderType).slice(1,3)}
+                            <b>Type</b>: {(product.orderType === 'subscribe') ? 'Sub' : ((product.orderType === 'trial') ? 'Try' : 'Buy')}
                         </div>
                         <div className="home-product-card__content--item-quantity">
                         {(product.orderType === "buy") ? "Quantity: " + (product.quantity) : (product.orderType === "trial")? "Days: " + (product.quantity) : "Months: " + (product.quantity)}
