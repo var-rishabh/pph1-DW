@@ -198,6 +198,11 @@
     line-height: 2.625rem;
   }
 
+  .auth--heading {
+    font-size: 5rem;
+    margin: 10% 0 5% 0;
+  }
+
   .auth__right {
     display: none;
   }

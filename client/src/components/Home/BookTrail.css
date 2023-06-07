@@ -11,7 +11,7 @@
 .book-trial__title {
   font-family: "Poppins", sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 3rem;
   color: var(--heading-color-secondary);
 }
@@ -26,10 +26,12 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 }
+
 .book-trial__button:active {
   color: var(--white-color);
   transform: scale(0.98);
 }
+
 .book-trial__button a {
   text-decoration: none;
   color: var(--white-color);
@@ -48,19 +50,18 @@
 @media screen and (max-width: 1000px) {
   .book-trial__title {
     font-family: "Rubik", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: 3.75rem;
     text-align: center;
   }
 
   .book-trial__button {
-    padding: 2% 5%;
+    padding: 2% 6%;
+    margin-top: 8%;
   }
 
   .book-trial__button a {
-    font-size:3rem;
+    font-size: 2.5rem;
     line-height: 3.6875rem;
   }
 }

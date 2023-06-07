@@ -10,7 +10,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 2.5rem;
-  padding: 4% 0;
+  padding: 4% 0 6% 0;
   color: var(--heading-color-secondary);
 }
 
@@ -28,7 +28,7 @@
 .cart-modal__body--select label {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.125rem;
   padding: 2% 0;
   color: var(--text-color-darkbrown);
@@ -40,17 +40,18 @@
   font-size: 1.125rem;
   height: 100%;
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 400;
   color: var(--text-color-darkbrown);
+  margin-bottom: 8%;
 }
 
 .cart-modal__body--input label {
   font-family: "Rubik", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.125rem;
   padding: 2% 0;
   color: var(--text-color-darkbrown);
@@ -61,7 +62,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 6px;
   border: 1px solid var(--text-color-darkbrown);
   margin: 4% 0;
 }
@@ -88,44 +89,47 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 6px;
   width: 100%;
-  padding: 2% 0;
+  padding: 3% 0;
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 1.125rem;
-  color: var(--text-color-darkbrown);
+  color: white;
+  background-color: var(--text-color-darkbrown);
 }
 
 @media screen and (max-width: 1000px) {
   .cart-modal__header {
-    font-size: 7.5rem;
+    font-size: 5rem;
+    padding: 8% 0;
+  }
+  .cart-modal__body {
+    margin-bottom: 8%;
   }
   .cart-modal__body--button {
     font-size: 3.375rem;
-    border: 3px solid var(--text-color-darkbrown);
   }
   .cart-modal__body--select label {
     font-size: 3.375rem;
   }
   .cart-modal__body--select select {
-    font-size: 3.375rem;
-    width: 80%;
+    font-size: 3rem;
+    width: 100%;
   }
   .cart-modal__body--select select option {
     font-size: 1rem;
-    
   }
   .cart-modal__body--input--amount {
     border: 3px solid var(--text-color-darkbrown);
   }
   .cart-modal__body--input--amount input {
-    font-size: 4.5rem;
+    font-size: 3rem;
   }
 
   .cart-modal__body--input--amount button {
-    font-size: 4.5rem;
+    font-size: 4rem;
   }
 
   .cart-modal__body--input label {

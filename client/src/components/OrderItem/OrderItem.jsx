@@ -24,7 +24,7 @@ const OrderItem = ({img, productName, size, orderType, quantity, price }) => {
             </div>
         </div>
         <div className='order-item__price'>
-            {price}₹
+            ₹{price}
         </div>
     </div>
   )

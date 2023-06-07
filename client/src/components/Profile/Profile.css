@@ -51,7 +51,7 @@
   font-size: 1.125rem;
   line-height: 1.6875rem;
   color: var(--white-color);
-  margin-bottom: 5%;
+  margin: 5% 0 6% 0;
 }
 
 .profile__left__wallet {
@@ -61,7 +61,7 @@
   width: 84%;
   padding: 12% 8%;
   background: #124975;
-  border-radius: 12px;
+  border-radius: 24px;
 }
 
 .profile__left__wallet--icon svg {
@@ -232,6 +232,9 @@
   padding: 3% 15%;
 }
 
+.profile-text {
+  display: none;
+}
 
 @media  screen and (max-width: 1000px) {
   .profile {
@@ -245,7 +248,7 @@
 
   .profile__left {
     width: 80%;
-    padding: 5% 10%;
+    padding: 5% 0;
     margin-bottom: 5%;
     min-height: 0;
   }
@@ -261,7 +264,8 @@
   }
   
   .profile__left__logout {
-    font-size: 1.5rem;
+    padding: 3% 5%;
+    font-size: 2.5rem;
     line-height: 1.75rem;
   }
   .profile__left__wallet svg {
@@ -290,26 +294,56 @@
   
   .profile__right {
     width: 90%;
-    padding: 5%;
+    padding: 5% 0;
+  }
+
+  .profile__right--personal {
+    border-radius: 30px;
+    border: 1px solid #9D9D9D;
+    padding: 5% 8%;
   }
 
   .profile__right--personal--button {
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 2.5rem;
+    padding: 3% 8%;
+    border-radius: 20px;
+  }
+
+  .profile__right--service {
+    margin-top: 5%;
+    width: 90%;
   }
 
   .profile__right--service--title {
-    font-size: 3rem;
+    font-size: 4rem;
     line-height: 3.5rem;
   }
 
   .profile__right--service--button {
     font-size: 2rem;
     line-height: 2.5rem;
+    padding: 6%;
+  }
+
+  .profile__right--service--options {
+    margin-top: 5%;
   }
 
   .profile__right--service--options--button {
     font-size: 2rem;
     line-height: 2.5rem;
+    border-radius: 20px;
+  }
+
+  .profile-text {
+    display: block;
+    font-family: "Rubik", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 4rem;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    width: 100%;
   }
 }
