@@ -28,7 +28,7 @@ export const walletCheckout =
             },
           }
         );
-
+          
         dispatch({ type: "WalletCheckoutSuccess", payload: order.data.data.id });
 
         dispatch({ type: "WalletAddRequest" });
@@ -56,12 +56,15 @@ export const walletCheckout =
               dispatch({ type: "WalletAddSuccess", payload: result.data.data });
               toast.success("Payment Successful");
               dispatch(walletBalance());
+              dispatch(walletHistory());;
             } catch (error) {
               console.log(error);
               dispatch({
                 type: "WalletAddFailure",
                 payload: error.response?.data.message,
               });
+              dispatch(walletBalance());
+              dispatch(walletHistory());
               toast.error(error.response?.data.message);
             }
           },
@@ -71,6 +74,8 @@ export const walletCheckout =
                 type: "WalletAddFailure",
                 payload: "Payment Cancelled",
               });
+              dispatch(walletBalance());
+              dispatch(walletHistory());
               toast.error("Payment Cancelled");
             },
           },
@@ -95,6 +100,8 @@ export const walletCheckout =
             type: "WalletAddFailure",
             payload: response.error.description,
           });
+          dispatch(walletBalance());
+          dispatch(walletHistory());
           toast.error(response.error.description);
         });
       } catch (error) {
@@ -103,6 +110,8 @@ export const walletCheckout =
           type: "WalletCheckoutFailure",
           payload: error.response?.data.message,
         });
+        dispatch(walletBalance());
+        dispatch(walletHistory());
         toast.error(error.response?.data.message);
       }
     };
