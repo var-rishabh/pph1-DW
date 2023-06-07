@@ -52,27 +52,33 @@
 @media  screen and (max-width: 1000px) {
   .checkout-foot {
     flex-direction: column;
-    padding: 5% 5%;
+    padding: 10% 5%;
   }
 
   .checkout-foot__icon {
-    padding: 1% 5%;
+    padding: 5% 5%;
   }
 
   .checkout-foot__icon--img {
-    margin-bottom: 5%;
-    width: 6rem;
-    height: 6rem;
+    margin-bottom: 15%;
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .checkout-foot__icon--img img {
+    width: 7rem;
+    height: 7rem;
   }
 
   .checkout-foot__icon--heading {
-    font-size: 2.5rem;
+    font-size: 3.3rem;
     line-height: 3rem;
   }
 
   .checkout-foot__icon--text {
-    font-size: 1.5rem;
-    line-height: 2.5rem;
+    margin-top: 3%;
+    font-size: 3rem;
+    line-height: 4rem;
   }
   
 }

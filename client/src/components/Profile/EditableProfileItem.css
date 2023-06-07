@@ -16,7 +16,7 @@
 
 .editable-profile-item__input {
   display: flex;
-
+  width: 70%;
 }
 
 .editable-profile-item__input input {
@@ -26,6 +26,7 @@
   font-size: 1rem;
   line-height: 1.135rem;
   text-align: left;
+  width: 100%;
 }
 
 .editable-profile-item__input input:disabled {
@@ -46,14 +47,28 @@
 
 @media screen and (max-width: 1000px) {
   .editable-profile-item {
-    font-size: 2rem;
-    line-height: 2.75rem; 
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 2.2rem;
+    line-height: 5rem; 
   }
 
+  .editable-profile-item__input {
+    display: flex;
+    width: 100%;
+  }
+
+  .editable-profile-item__title {
+    width: 100%;
+    font-weight: 500;
+    font-size: 2.5rem;
+  }
 
   .editable-profile-item__input input {
-    font-size: 2rem;
+    font-size: 2.3rem;
     line-height: 2.75rem;
+    margin-bottom: 5%;
   }
 
   .editable-profile-item__input svg{

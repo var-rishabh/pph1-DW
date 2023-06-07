@@ -60,22 +60,22 @@
 
 @media screen and (max-width: 1000px) {
   .wallet-history-item__details--title {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     line-height: 2.25rem;
   }
 
   .wallet-history-item__details--amount {
-    font-size: 1.5rem;
+    font-size: 3rem;
     line-height: 2.25rem;
   }
 
   .wallet-history-item__balance--date {
-    font-size: 1.5rem;
+    font-size: 2rem;
     line-height: 2.25rem;
   }
 
   .wallet-history-item__balance--amount {
-    font-size: 1.5rem;
+    font-size: 2rem;
     line-height: 2.25rem;
   }
 }

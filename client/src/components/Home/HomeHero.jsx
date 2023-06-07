@@ -11,7 +11,7 @@ const HomeHero = () => {
             <div className='home-hero__left'>
                 <div className='home-hero__left--title'>
                     <span className='home-hero__left--title--one'>100%</span>
-                    <span className='home-hero__left--title--two'> Pure
+                    <span className='home-hero__left--title--two'> Pure <br/>
                         & Fresh Milk</span>
                 </div>
                 <div className='home-hero__left--description'>

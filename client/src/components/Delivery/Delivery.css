@@ -25,7 +25,7 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: var(--text-color-secondary);
 }
 
@@ -78,36 +78,35 @@
 
 .delivery__container--image {
   width: 20%;
+  margin-right: 8%;
 }
 
-
-@media  screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
   .delivery {
     height: 40rem;
   }
   .delivery__container {
     width: 100%;
     padding: 0 5%;
-    height: 30rem;
-
+    height: 90%;
   }
   .delivery__container--content {
     width: 100%;
     padding: 0;
-    margin-top: 5%;
+    margin-top: 12%;
   }
   .delivery__container--title {
     font-size: 3rem;
     line-height: 3.75rem;
   }
   .delivery__container--description {
+    padding-top: 2%;
     font-size: 2rem;
     line-height: 2.5rem;
-    
   }
   .delivery__container--button {
     width: 50%;
-    margin-top: 5%;
+    margin-top: 8%;
     padding: 2% 0;
   }
   .delivery__container--button a {
@@ -119,10 +118,10 @@
     align-self: flex-end;
     justify-content: center;
     align-items: center;
-    height:70%;
+    height: 70%;
   }
   .delivery__container--image img {
-    width: 100%;
+    width: 120%;
     height: 120%;
   }
 }
