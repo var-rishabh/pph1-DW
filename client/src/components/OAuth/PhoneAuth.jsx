@@ -10,7 +10,7 @@ const PhoneAuth = () => {
   const [phone, setPhone] = React.useState('');
   const handlePhone = (e) => {
     e.preventDefault();
-    dispatch(loginWithPhone(phone));
+    dispatch(loginWithPhone(`+91${phone}`));
 
   }
   return (
