@@ -23,7 +23,7 @@ module.exports.addUser = async (req, res) => {
         data: newUser,
       });
     }
-    return res.status(409).json({
+    return res.status(200).json({
       status: "success",
       message: "User already exist.",
       data: userData.user_firebase_id,
