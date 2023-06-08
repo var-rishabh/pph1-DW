@@ -28,7 +28,7 @@ export const walletCheckout =
             },
           }
         );
-          
+
         dispatch({ type: "WalletCheckoutSuccess", payload: order.data.data.id });
 
         dispatch({ type: "WalletAddRequest" });
@@ -69,14 +69,37 @@ export const walletCheckout =
             }
           },
           modal: {
-            ondismiss: function () {
-              dispatch({
-                type: "WalletAddFailure",
-                payload: "Payment Cancelled",
-              });
-              dispatch(walletBalance());
-              dispatch(walletHistory());
-              toast.error("Payment Cancelled");
+            ondismiss: async function () {
+              try {
+                await axios.post(
+                  `${process.env.REACT_APP_SERVER_URL}/wallet/userverification`,
+                  {
+                    razorpay_order_id: order.data.data.id,
+                  },
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+                );
+                dispatch({
+                  type: "WalletAddFailure",
+                  payload: "Payment Cancelled",
+                });
+                dispatch(walletBalance());
+                dispatch(walletHistory());
+                toast.error("Payment Cancelled");
+              } catch (error) {
+                console.log(error);
+                dispatch({
+                  type: "WalletAddFailure",
+                  payload: error.response?.data.message,
+                });
+                dispatch(walletBalance());
+                dispatch(walletHistory());
+                toast.error(error.response?.data.message);
+              }
             },
           },
           prefill: {

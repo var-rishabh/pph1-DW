@@ -123,6 +123,8 @@ const Profile = () => {
                   amount={item.amount}
                   date={new Date(item.createdAt).toDateString()}
                   balance={item.balance}
+                  transactionType={item.transaction_type}
+                  paymentResponse={item.payment_response}
                 />
               ))}
             </div>
