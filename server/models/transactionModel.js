@@ -2,15 +2,20 @@ const mongoose = require("mongoose");
 
 const TransactionSchema = mongoose.Schema(
   {
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     order_type: {
       type: String,
       enum: ["refund", "recharge", "order"],
       default: "recharge",
       required: true,
     },
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    transaction_type:{
+      type: String,
+      enum: ["credit", "debit"],
       required: true,
     },
     balance: {
@@ -23,7 +28,7 @@ const TransactionSchema = mongoose.Schema(
     },
     payment_response: {
       type: String,
-      enum: ["success", "failed", "pending"],
+      enum: ["success", "cancelled", "pending"],
       default: "pending",
       required: true,
     },
