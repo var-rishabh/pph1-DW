@@ -9,7 +9,6 @@ import OrderItem from "../OrderItem/OrderItem";
 import { order } from "../../SampleData/order";
 import AddMoneyModal from "./AddMoneyModal";
 import HistoryModal from "./HistoryModal";
-import CalenderModal from "./CalenderModal";
 import { walletBalance, walletHistory } from "../../Actions/Wallet";
 
 const Profile = () => {
@@ -205,7 +204,6 @@ const Profile = () => {
               </button>
               <button
                 className="profile__right--service--options--button"
-                onClick={() => setShowCalenderModal(true)}
               >
                 Calender
               </button>
@@ -215,7 +213,6 @@ const Profile = () => {
       </div>
       <AddMoneyModal open={showAddMoneyModal} setOpen={setShowAddMoneyModal} />
       <HistoryModal open={showHistoryModal} setOpen={setShowHistoryModal} />
-      <CalenderModal open={showCalenderModal} setOpen={setShowCalenderModal} />
     </>
   );
 };

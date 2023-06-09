@@ -72,7 +72,7 @@ export const walletCheckout =
             ondismiss: async function () {
               try {
                 await axios.post(
-                  `${process.env.REACT_APP_SERVER_URL}/wallet/userverification`,
+                  `${process.env.REACT_APP_SERVER_URL}/wallet/canceltransaction`,
                   {
                     razorpay_order_id: order.data.data.id,
                   },
