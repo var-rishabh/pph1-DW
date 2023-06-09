@@ -1,4 +1,7 @@
 const Product = require("../models/productModel");
+const Coupon = require("../models/couponModel");
+
+const { checkFirstOrder } = require("../services/orderServices");
 
 module.exports.getQuantity = async (productList, cartList) => {
   const allProducts = [];
@@ -66,16 +69,92 @@ module.exports.getProductTotal = async (cartList) => {
   return cartList;
 };
 
-module.exports.getCartTotal = async (cartList) => {
-  var totalAmountOfCart = 0;
+module.exports.getCartSubTotal = async (cartList) => {
+  var subTotalOfCart = 0;
   for (const item of cartList["items"]) {
     const { price } = await Product.findById(item.product_id);
-
     if (item["order_type"] === "buy" || item["order_type"] === "trial") {
-      totalAmountOfCart += item.quantity * price;
+      subTotalOfCart += item.quantity * price;
     } else if (item["order_type"] === "subscribe") {
-      totalAmountOfCart += item.quantity * 30 * price;
+      subTotalOfCart += item.quantity * 30 * price;
     }
   }
-  return totalAmountOfCart;
+  return subTotalOfCart;
+};
+
+module.exports.getCartGST = async (subTotal) => {
+  var totalGST = 0;
+  // for (const item of cartList["items"]) {
+  //   const { price } = await Product.findById(item.product_id);
+  //   if (item["order_type"] === "buy" || item["order_type"] === "trial") {
+  //     totalGST += item.quantity * price;
+  //   } else if (item["order_type"] === "subscribe") {
+  //     totalGST += item.quantity * 30 * price;
+  //   }
+  // }
+  return totalGST;
+};
+
+module.exports.getCartDiscount = async (coupon_code, userCart) => {
+  let response = { status: "", message: "", data: null };
+
+  const getCoupon = await Coupon.findOne({ coupon_code: coupon_code });
+  if (coupon_code && getCoupon) {
+    if (getCoupon["expiry"]) {
+      const currentDate = new Date();
+      if (currentDate > getCoupon["expiry"]) {
+        response["status"] = "failure";
+        response["message"] = "Coupon Code expired.";
+        return response;
+      }
+    }
+    if (getCoupon["first_order"]) {
+      const firstOrder = await checkFirstOrder(userCart["user_id"]);
+      if (!firstOrder) {
+        response["status"] = "failure";
+        response["message"] = "Valid for only first order.";
+        return response;
+      }
+    }
+    if (getCoupon["quantity"]) {
+      var cartItemQuantity = 0;
+      for (const item of userCart["items"]) {
+        if (item["order_type"] === "buy") {
+          cartItemQuantity += item["quantity"];
+        } else if (
+          item["order_type"] === "trial" ||
+          item["order_type"] === "subscribe"
+        ) {
+          cartItemQuantity += 1;
+        }
+      }
+      if (cartItemQuantity < getCoupon["quantity"]) {
+        response["status"] = "failure";
+        response["message"] = "Item quantity is low.";
+        return response;
+      }
+    }
+    if (getCoupon["price"]) {
+      if (userCart["total"] < getCoupon["price"]) {
+        response["status"] = "failure";
+        response["message"] = "Item price is low.";
+        return response;
+      }
+    }
+
+    var discountAmount = 0;
+    if (getCoupon["discount_type"] === "percent") {
+      discountAmount = (getCoupon["discount"] / 100) * userCart["total"];
+    } else if (getCoupon["discount_type"] === "fixed") {
+      discountAmount = getCoupon["discount"];
+    }
+    response["status"] = "success";
+    response["message"] = "Coupon code applied";
+    response["data"] = discountAmount;
+  } else {
+    response["status"] = "failure";
+    response["message"] = "No coupon code.";
+  }
+
+  return response;
 };
