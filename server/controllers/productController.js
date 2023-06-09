@@ -39,7 +39,13 @@ module.exports.getAllProducts = async (req, res) => {
       const userData = await User.findOne({
         user_firebase_id: req.user.user_id,
       });
-      const userCart = await Cart.findOne({ user_id: userData._id });
+      var userCart = await Cart.findOne({ user_id: userData._id });
+      if (!userCart) {
+        userCart = new Cart({
+          user_id: userData._id,
+          items: [],
+        });
+      }
       allProducts = await getOrderTypeAndQuantity(products, userCart);
     } else {
       allProducts = products;
@@ -68,7 +74,13 @@ module.exports.getProductByID = async (req, res) => {
         const userData = await User.findOne({
           user_firebase_id: req.user.user_id,
         });
-        const userCart = await Cart.findOne({ user_id: userData._id });
+        var userCart = await Cart.findOne({ user_id: userData._id });
+        if (!userCart) {
+          userCart = new Cart({
+            user_id: userData._id,
+            items: [],
+          });
+        }
         allProducts = await getOrderTypeAndQuantity(product_info, userCart);
       } else {
         allProducts = product_info;
@@ -103,7 +115,13 @@ module.exports.getProductsByCategory = async (req, res) => {
         const userData = await User.findOne({
           user_firebase_id: req.user.user_id,
         });
-        const userCart = await Cart.findOne({ user_id: userData._id });
+        var userCart = await Cart.findOne({ user_id: userData._id });
+        if (!userCart) {
+          userCart = new Cart({
+            user_id: userData._id,
+            items: [],
+          });
+        }
         allProducts = await getOrderTypeAndQuantity(products, userCart);
       } else {
         allProducts = products;
