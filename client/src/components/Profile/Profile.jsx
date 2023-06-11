@@ -6,7 +6,6 @@ import profileSample from "../../Assets/profileSample.jpg";
 import WalletHistoryItem from "./WalletHistoryItem";
 import EditableProfileItem from "./EditableProfileItem";
 import OrderItem from "../OrderItem/OrderItem";
-import { order } from "../../SampleData/order";
 import AddMoneyModal from "./AddMoneyModal";
 import HistoryModal from "./HistoryModal";
 import { walletBalance, walletHistory } from "../../Actions/Wallet";
@@ -55,7 +54,6 @@ const Profile = () => {
     dispatch(walletHistory());
     dispatch(getServices());
   }, [dispatch, isAuthenticated]);
-  const orderDetails = order;
   return (
     <>
       <div className="profile">
