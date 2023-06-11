@@ -53,7 +53,6 @@ module.exports.checkout = async (req, res) => {
           balance: currentBalance,
           amount: req.body.amount,
           payment_response: "pending",
-          amount: req.body.amount,
           razorpay_order_id: order.id,
         });
         await userTransaction.save();
