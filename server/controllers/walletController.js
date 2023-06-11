@@ -47,12 +47,12 @@ module.exports.checkout = async (req, res) => {
       const order = await instance.orders.create(options);
       if (order.status === "created") {
         const userTransaction = new Transaction({
-          order_type: "recharge",
           user_id: userData._id,
+          order_type: "recharge",
+          transaction_type: "credit",
           balance: currentBalance,
           amount: req.body.amount,
           payment_response: "pending",
-          amount: req.body.amount,
           razorpay_order_id: order.id,
         });
         await userTransaction.save();
@@ -156,6 +156,9 @@ module.exports.transactionHistory = async (req, res) => {
     if (userData) {
       var userTransactions = await Transaction.find({
         user_id: userData._id,
+        payment_response: {
+          $in: ["success", "pending"],
+        },
       }).sort({ _id: -1 });
       if (userTransactions.length > 0) {
         return res.status(200).json({
@@ -167,6 +170,44 @@ module.exports.transactionHistory = async (req, res) => {
       return res.status(200).json({
         status: "success",
         message: "No Transaction history.",
+      });
+    } else {
+      return res.status(404).json({
+        status: "failure",
+        message: "User not found.",
+        data: null,
+      });
+    }
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.cancelTransaction = async (req, res) => {
+  try {
+    const userFireId = req.user.user_id;
+    const userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userData) {
+      const { razorpay_order_id } = req.body;
+      const transaction = await Transaction.findOne({
+        razorpay_order_id: razorpay_order_id,
+      });
+      if (transaction) {
+        transaction["payment_response"] = "cancelled";
+        await transaction.save();
+        return res.status(200).json({
+          status: "success",
+          message: "Transaction cancelled successfully.",
+          data: transaction,
+        });
+      }
+      return res.status(404).json({
+        status: "failure",
+        message: "No Transaction Found.",
+        data: null,
       });
     } else {
       return res.status(404).json({
