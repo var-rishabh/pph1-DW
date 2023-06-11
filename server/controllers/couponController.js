@@ -85,6 +85,13 @@ module.exports.applyCoupon = async (req, res) => {
       const { coupon_code, cartID } = req.body;
       const userCart = await Cart.findOne({ _id: cartID });
       if (userCart) {
+        if (userCart["items"].length <= 0) {
+          return res.status(404).json({
+            status: "failure",
+            message: "Cart is empty.",
+            data: null,
+          });
+        }
         const cartDiscount = await getCartDiscount(coupon_code, userCart);
         if (cartDiscount["status"] === "success") {
           userCart["discount"] = cartDiscount["data"];

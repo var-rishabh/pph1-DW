@@ -13,7 +13,19 @@ const TransactionSchema = mongoose.Schema(
       default: "recharge",
       required: true,
     },
-    transaction_type:{
+    orders: [
+      {
+        order_id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Order",
+        },
+        order_type: {
+          type: String,
+          enum: ["buy", "trial", "subscribe"],
+        }
+      },
+    ],
+    transaction_type: {
       type: String,
       enum: ["credit", "debit"],
       required: true,
@@ -34,7 +46,6 @@ const TransactionSchema = mongoose.Schema(
     },
     razorpay_order_id: {
       type: String,
-      required: true,
     },
     razorpay_payment_id: {
       type: String,
