@@ -92,7 +92,7 @@ export const removeFromCart = (id) => async (dispatch) => {
             toast.error(error.message);
         });
 
-        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/cart/remove`, { cartID: id }, {
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/cart/remove`, { product_id: id }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`

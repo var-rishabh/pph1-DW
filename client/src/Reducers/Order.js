@@ -19,6 +19,12 @@ export const orderReducer = createReducer(initialState, (builder) => {
             state.loading = false;
             state.error = action.payload;
         })
+        
+        .addCase("OrderHistorySuccess", (state, action) => {
+            state.loading = false;
+            state.history = action.payload;
+            state.error = null;
+        })
         .addCase("ServicesSuccess", (state, action) => {
             state.loading = false;
             state.services = action.payload;
@@ -30,11 +36,6 @@ export const orderReducer = createReducer(initialState, (builder) => {
         .addCase("ServicesFailure", (state, action) => {
             state.loading = false;
             state.error = action.payload;
-        })
-        .addCase("OrderHistorySuccess", (state, action) => {
-            state.loading = false;
-            state.history = action.payload;
-            state.error = null;
         })
         .addCase("OrderCreationRequest", (state) => {
             state.loading = true;
