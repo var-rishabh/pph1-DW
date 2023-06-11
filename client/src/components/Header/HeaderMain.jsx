@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./HeaderMain.css";
 import Icon from "../../Assets/Icon.png";
 import profileSample from "../../Assets/profileSample.jpg";
@@ -20,10 +20,20 @@ const HeaderMain = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/howwedo">How We Do</a>
-            </li>
-            <li>
-              <a href="/whatwedo">What We Do</a>
+              <div className="dropdown">
+                <button className="dropbtn">About Us
+                  <div className="dropdown-arrow">
+                    <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M3.83042 3.73817L6.57564 0.67081C6.77886 0.443015 7.10744 0.443015 7.31066 0.67081C7.40794 0.779008 7.4627 0.926591 7.4627 1.08052C7.4627 1.23445 7.40794 1.38204 7.31066 1.49023L4.19847 4.96788C3.99502 5.19496 3.6669 5.19496 3.46345 4.96788L0.351265 1.49038C0.253981 1.38204 0.199219 1.23445 0.199219 1.08052C0.199219 0.926591 0.253981 0.779008 0.351265 0.670665C0.554645 0.443304 0.882994 0.443448 1.08628 0.670954L3.83042 3.73817Z" fill="#809FB8" />
+                    </svg>
+
+                  </div>
+                </button>
+                <div className="dropdown-content">
+                  <a href="/howwedo">How We Do</a>
+                  <a href="/whatwedo">What We Do</a>
+                </div>
+              </div>
             </li>
             <li>
               <a href="/product">Product</a>

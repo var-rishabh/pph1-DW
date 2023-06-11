@@ -182,6 +182,62 @@
   color: var(--text-color-secondary);
   text-decoration: none;
 }
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dropbtn svg {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.dropdown-content {
+  position: fixed;
+  width: 8rem;
+  margin-top: 1rem;
+  display: none;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.dropbtn:hover+.dropdown-content,.dropdown-content:hover {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.dropdown-content a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.135rem;
+  display: block;
+  padding: 5% 1%;
+}
+
 @media screen and (max-width: 1000px) {
   .header-main {
     display: none;

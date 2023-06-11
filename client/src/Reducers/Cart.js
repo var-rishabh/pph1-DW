@@ -4,7 +4,8 @@ const initialState = {
     loading: false,
     error: null,
     message: "",
-    cart: []
+    cart: [],
+    promoData: null
 }
 
 
@@ -45,6 +46,30 @@ export const cartReducer = createReducer(initialState, (builder) => {
         .addCase("RemoveFromCartSuccess", (state, action) => {
             state.loading = false;
             state.message = action.payload;
+            state.error = null;
+        })
+        .addCase("ApplyPromoCodeRequest", (state) => {
+            state.loading = true;
+        })
+        .addCase("ApplyPromoCodeFailure", (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+        .addCase("ApplyPromoCodeSuccess", (state, action) => {
+            state.loading = false;
+            state.promoData = action.payload;
+            state.error = null;
+        })
+        .addCase("RemovePromoCodeRequest", (state) => {
+            state.loading = true;
+        })
+        .addCase("RemovePromoCodeFailure", (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+        .addCase("RemovePromoCodeSuccess", (state, action) => {
+            state.loading = false;
+            state.promoData = null;
             state.error = null;
         })
 });

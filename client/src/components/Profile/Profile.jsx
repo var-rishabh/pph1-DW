@@ -9,8 +9,9 @@ import OrderItem from "../OrderItem/OrderItem";
 import { order } from "../../SampleData/order";
 import AddMoneyModal from "./AddMoneyModal";
 import HistoryModal from "./HistoryModal";
-import CalenderModal from "./CalenderModal";
 import { walletBalance, walletHistory } from "../../Actions/Wallet";
+import { getServices } from "../../Actions/Order";
+import VacationModal from "./VacationModal";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ const Profile = () => {
   const { user, isAuthenticated } = useSelector((state) => state.userReducer);
   const { balance, loading, history } = useSelector(
     (state) => state.walletReducer
+  );
+  const { history: orderHistory, services, loading: orderLoading } = useSelector(
+    (state) => state.orderReducer
   );
   const [name, setName] = useState(
     user.displayName ? user.displayName : user.name
@@ -33,7 +37,7 @@ const Profile = () => {
   const [altAddress, setAltAddress] = useState(user.altAddress);
   const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
-  const [showCalenderModal, setShowCalenderModal] = useState(false);
+  const [showVacationModal, setShowVacationModal] = useState(false);
   const profileUpdateHanlder = () => {
     dispatch(
       updateUserProfile({
@@ -49,6 +53,7 @@ const Profile = () => {
   useEffect(() => {
     dispatch(walletBalance());
     dispatch(walletHistory());
+    dispatch(getServices());
   }, [dispatch, isAuthenticated]);
   const orderDetails = order;
   return (
@@ -123,6 +128,8 @@ const Profile = () => {
                   amount={item.amount}
                   date={new Date(item.createdAt).toDateString()}
                   balance={item.balance}
+                  transactionType={item.transaction_type}
+                  paymentResponse={item.payment_response}
                 />
               ))}
             </div>
@@ -178,22 +185,33 @@ const Profile = () => {
               Active Services
             </div>
             <div className="profile__right--service--list">
-              <OrderItem
-                img={orderDetails.product.image}
-                productName={orderDetails.product.title}
-                size={orderDetails.product.size}
-                orderType={orderDetails.type}
-                quantity={orderDetails.quantity}
-                price={orderDetails.total}
-              />
+              {orderLoading ? <div className="loading"><div className="loading__circle"></div></div> : <>
+                {services?.trials?.map((orderDetails) => (
+                  <div key={orderDetails._id} onClick={() => setShowVacationModal(orderDetails._id)}>
+                    <OrderItem
+                      img={orderDetails.product.image}
+                      productName={orderDetails.product.title}
+                      size={orderDetails.product.size}
+                      orderType={"trial"}
+                      quantity={orderDetails.days}
+                      price={orderDetails.product.price * orderDetails.days}
+                    />
+                  </div>
+                ))}
+                {services?.subscribes?.map((orderDetails) => (
+                  <div key={orderDetails._id} onClick={() => setShowVacationModal(orderDetails._id)}>
+                    <OrderItem
+                      img={orderDetails.product.image}
+                      productName={orderDetails.product.title}
+                      size={orderDetails.product.size}
+                      orderType={"subscribe"}
+                      quantity={orderDetails.months}
+                      price={orderDetails.total}
+                    />
+                  </div>
+                ))}
+              </>}
             </div>
-            <button
-              className="profile__right--service--button"
-              onClick={() => (window.location.href = "/product")}
-            >
-              Add More
-            </button>
-
             <div className="profile__right--service--options">
               <button
                 className="profile__right--service--options--button"
@@ -203,7 +221,6 @@ const Profile = () => {
               </button>
               <button
                 className="profile__right--service--options--button"
-                onClick={() => setShowCalenderModal(true)}
               >
                 Calender
               </button>
@@ -213,7 +230,7 @@ const Profile = () => {
       </div>
       <AddMoneyModal open={showAddMoneyModal} setOpen={setShowAddMoneyModal} />
       <HistoryModal open={showHistoryModal} setOpen={setShowHistoryModal} />
-      <CalenderModal open={showCalenderModal} setOpen={setShowCalenderModal} />
+      <VacationModal open={showVacationModal} setOpen={setShowVacationModal} />
     </>
   );
 };

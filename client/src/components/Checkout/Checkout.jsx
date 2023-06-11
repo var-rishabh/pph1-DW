@@ -12,8 +12,9 @@ import {
     TrailingActions,
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
-import { getCart, removeFromCart } from '../../Actions/Cart';
+import { applyPromoCode, getCart, removeFromCart, removePromoCode } from '../../Actions/Cart';
 import { toast } from 'react-toastify';
+import { createOrder } from '../../Actions/Order';
 
 const trailingActions = (dispatch, id) => (
     <TrailingActions >
@@ -47,11 +48,21 @@ const Checkout = () => {
     const [city, setCity] = React.useState((cityDetails) ? cityDetails : '');
     const [zip, setZip] = React.useState((zipDetails) ? zipDetails : '');
     const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
-    const [promo, setPromo] = React.useState('');
+    const [promo, setPromo] = React.useState(localStorage.getItem("promo") || '');
+    const [isPromo, setIsPromo] = React.useState(cart?.discount ? true : false);
     const checkoutHandler = () => {
         if (cart?.items?.length > 0) {
+            if (phone=== "") {
+                toast.error("Enter Phone Number");
+                return;
+            }
+            if (address==="" || city==="" || zip==="" || country==="") {
+                toast.error("Enter Address Details");
+                return;
+            }
             dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }));
-            console.log("Order Placed");
+            const addressLine = `${address}, ${city}, ${zip}, ${country}`;
+            dispatch(createOrder(phone, addressLine))
         } else {
             toast.error("Cart is Empty");
         }
@@ -59,15 +70,24 @@ const Checkout = () => {
 
     const promoHandler = () => {
         if (promo !== '') {
-            console.log("Promo Applied");
+            console.log("I was Here");
+            console.log("")
+            dispatch(applyPromoCode(promo, cart._id));
         } else {
             toast.error("Enter Promo Code");
         }
     }
 
+    const removePromoHandler = () => {
+        dispatch(removePromoCode(cart._id));
+    }
+
     useEffect(() => {
         dispatch(getCart());
     }, [dispatch, user]);
+    useEffect(() => {
+        setIsPromo(cart?.discount ? true : false)
+    }, [dispatch, cart])
     return (
         <div className='checkout'>
             <div className='checkout__title'>
@@ -116,7 +136,7 @@ const Checkout = () => {
                     </div>
                     <div className='checkout__right--box'>
                         <SwipeableList fullSwipe={false}>
-                            { loading ? <div className="loading"><div className='loading__circle'></div></div> :
+                            {loading ? <div className="loading"><div className='loading__circle'></div></div> :
                                 cart?.items?.map((item, index) => {
                                     return (
 
@@ -146,11 +166,15 @@ const Checkout = () => {
                         </div>
                         <div className='checkout__right--promo--form'>
                             <div className='checkout__right--promo--input'>
-                                <FormInput label='Promotion or Discount code' type='text' id='promo' value={promo} setInputValue={setPromo} />
+                                <FormInput label='Promotion or Discount code' type='text' id='promo' value={promo} setInputValue={setPromo} disabled={isPromo} />
                             </div>
-                            <button className='checkout__right--promo--button' onClick={promoHandler}>
-                                Apply Code
-                            </button>
+                            {isPromo ? <button className='checkout__right--promo--button' style={{ backgroundColor: "red" }} onClick={removePromoHandler}>
+                                Remove
+                            </button> :
+                                <button className='checkout__right--promo--button' onClick={promoHandler}>
+                                    Apply Code
+                                </button>
+                            }
                         </div>
                     </div>
                     <div className='checkout__right--bill'>
@@ -159,7 +183,7 @@ const Checkout = () => {
                                 Subtotal
                             </div>
                             <div className='checkout__right--bill--item--price'>
-                                {cart.subTotal}₹
+                                {cart.sub_total}₹
                             </div>
                         </div>
                         <div className='checkout__right--bill--item'>
@@ -175,9 +199,28 @@ const Checkout = () => {
                                 Total
                             </div>
                             <div className='checkout__right--bill--item--price'>
-                                {cart.total}₹
+                                {(!isPromo) ? `${cart.total}₹` : `${cart.total + cart.discount}₹`}
                             </div>
                         </div>
+                        {isPromo && <>
+                            <div className='checkout__right--bill--item'>
+                                <div className='checkout__right--bill--item--title'>
+                                    Promo Discount
+                                </div>
+                                <div className='checkout__right--bill--item--price'>
+                                    {cart.discount}₹
+                                </div>
+                            </div>
+                            <div className='checkout__right--bill--item'>
+                                <div className='checkout__right--bill--item--title'>
+                                    Grand Total
+                                </div>
+                                <div className='checkout__right--bill--item--price'>
+                                    {cart.total}₹
+                                </div>
+                            </div>
+                        </>
+                        }
                         <button className='checkout__right--bill--button' onClick={checkoutHandler}>
                             Checkout
                         </button>
