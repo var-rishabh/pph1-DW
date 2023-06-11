@@ -3,6 +3,7 @@ import { getIdToken } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { auth } from '../firebase';
 import { getAllProducts, getProductByCategory, getProductDetails } from './Product';
+import { compose } from '@reduxjs/toolkit';
 
 export const getCart = () => async (dispatch) => {
     try {
@@ -116,5 +117,71 @@ export const removeFromCart = (id) => async (dispatch) => {
 }
 
 
+export const applyPromoCode = (code, id) => async (dispatch) => {   
+    try {
+        dispatch({ type: 'ApplyPromoCodeRequest' });
+        let token;
+        await getIdToken(auth.currentUser).then((idToken) => {
+            token = idToken;
+        }).catch((error) => {
+            dispatch({ type: 'ApplyPromoCodeFailure', payload: error.message });
+            toast.error(error.message);
+        });
 
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/coupon/apply`, { coupon_code: code, cartID: id }, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        dispatch({
+            type: 'ApplyPromoCodeSuccess',
+            payload: response.data.data
+        });
+        localStorage.setItem("promo", code)
+        toast.success("Promo Code Applied");
+        dispatch(getCart());
+
+    } catch (error) {
+        dispatch({
+            type: 'ApplyPromoCodeFailure',
+            payload: error.response?.data.message
+        })
+        toast.error(error.response?.data.message);
+    }
+}
+
+export const removePromoCode = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: 'RemovePromoCodeRequest' });
+        let token;
+        await getIdToken(auth.currentUser).then((idToken) => {
+            token = idToken;
+        }).catch((error) => {
+            dispatch({ type: 'RemovePromoCodeFailure', payload: error.message });
+            toast.error(error.message);
+        });
+
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/coupon/remove`, {coupon_code: localStorage.getItem("promo"),cartID: id}, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        localStorage.removeItem("promo");
+        dispatch({
+            type: 'RemovePromoCodeSuccess',
+            payload: response.data.data
+        });
+        toast.success("Promo Code Removed");
+        dispatch(getCart());
+
+    } catch (error) {
+        dispatch({
+            type: 'RemovePromoCodeFailure',
+            payload: error.response?.data.message
+        })
+        toast.error(error.response?.data.message);
+    }
+}
 

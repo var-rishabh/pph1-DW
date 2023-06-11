@@ -1,12 +1,12 @@
 import React from 'react'
 import ModalContainer from '../ModalContainer/ModalContainer'
 
-const CalenderModal = ({open , setOpen}) => {
+const VacationModal = ({open , setOpen}) => {
     return (
         <ModalContainer open={open} setOpen={setOpen}>
-            <div>CalenderModal</div>
+            <div>VacationModal</div>
         </ModalContainer>
     )
 }
 
-export default CalenderModal;
+export default VacationModal;
