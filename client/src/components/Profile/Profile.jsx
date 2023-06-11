@@ -32,7 +32,6 @@ const Profile = () => {
   const [altAddress, setAltAddress] = useState(user.altAddress);
   const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
-  const [showCalenderModal, setShowCalenderModal] = useState(false);
   const profileUpdateHanlder = () => {
     dispatch(
       updateUserProfile({
