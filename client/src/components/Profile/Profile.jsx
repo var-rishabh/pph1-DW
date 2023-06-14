@@ -206,7 +206,7 @@ const Profile = () => {
                       size={orderDetails.product.size}
                       orderType={"subscribe"}
                       quantity={orderDetails.months}
-                      price={orderDetails.total}
+                      price={orderDetails.product.price * orderDetails.months* 30}
                     />
                   </div>
                 ))}
