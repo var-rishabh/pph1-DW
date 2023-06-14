@@ -37,6 +37,7 @@ const Profile = () => {
   const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showVacationModal, setShowVacationModal] = useState(false);
+  const [vacationOrder, setVacationOrder] = useState(null);
   const profileUpdateHanlder = () => {
     dispatch(
       updateUserProfile({
@@ -119,7 +120,8 @@ const Profile = () => {
           <div className="profile__left__wallet-history">
             <div className="profile__left__wallet-history--title">Wallet</div>
             <div className="profile__left__wallet-history--list">
-              {history?.map((item, index) => (
+              { !history || history?.length === 0 ? <div className="no-history">No History</div> :
+                history?.map((item, index) => (
                 <WalletHistoryItem
                   key={item._id}
                   title={item.order_type.toUpperCase()}
@@ -185,7 +187,7 @@ const Profile = () => {
             <div className="profile__right--service--list">
               {orderLoading ? <div className="loading"><div className="loading__circle"></div></div> : <>
                 {services?.trials?.map((orderDetails) => (
-                  <div key={orderDetails._id} onClick={() => setShowVacationModal(orderDetails._id)}>
+                  <div key={orderDetails._id} >
                     <OrderItem
                       img={orderDetails.product.image}
                       productName={orderDetails.product.title}
@@ -197,7 +199,7 @@ const Profile = () => {
                   </div>
                 ))}
                 {services?.subscribes?.map((orderDetails) => (
-                  <div key={orderDetails._id} onClick={() => setShowVacationModal(orderDetails._id)}>
+                  <div key={orderDetails._id} onClick={() => {setShowVacationModal(true); setVacationOrder(orderDetails)}}>
                     <OrderItem
                       img={orderDetails.product.image}
                       productName={orderDetails.product.title}
@@ -226,9 +228,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <AddMoneyModal open={showAddMoneyModal} setOpen={setShowAddMoneyModal} />
+      <AddMoneyModal open={showAddMoneyModal} setOpen={setShowAddMoneyModal}/>
       <HistoryModal open={showHistoryModal} setOpen={setShowHistoryModal} />
-      <VacationModal open={showVacationModal} setOpen={setShowVacationModal} />
+      <VacationModal open={showVacationModal} setOpen={setShowVacationModal} order={vacationOrder} />
     </>
   );
 };

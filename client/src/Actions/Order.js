@@ -52,7 +52,7 @@ export const getOrderHistory = () => async (dispatch) => {
                 toast.error(error.message);
             });
         const orderHistory = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/order/history`,
+            `${process.env.REACT_APP_SERVER_URL}/order/userorders`,
             {
                 headers: {
                     "Content-Type": "application/json",
