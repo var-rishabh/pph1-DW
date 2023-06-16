@@ -1,0 +1,22 @@
+.history-modal__title {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding: 0 0 1rem 4rem;
+    width: 30vw;
+}
+
+.history-modal__list {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.history-modal__list--empty {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: 1rem 0 0 4rem;
+}

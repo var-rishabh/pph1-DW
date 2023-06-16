@@ -236,6 +236,15 @@
   display: none;
 }
 
+.no-history {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10% 0;
+  background: rgb(252, 249, 249);
+}
+
 @media  screen and (max-width: 1000px) {
   .profile {
     flex-direction: column;

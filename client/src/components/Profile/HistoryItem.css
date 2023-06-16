@@ -1,0 +1,44 @@
+.history-item {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.history-item__left {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  padding-right: 10%;
+}
+
+.history-item__right {
+  border-left: 3px solid #352429;
+  padding-left: 10%;
+}
+
+.history-item__right--title {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.375rem 0;
+}
+
+.history-item__right--type {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+
+.history-item__right--price {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+  opacity: 0.5;
+}
