@@ -3,7 +3,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: 1.25rem;
-    padding: 0 0 1rem 4rem;
+    padding: 0 0 1rem 1rem;
     width: 30vw;
 }
 
@@ -18,5 +18,17 @@
     font-style: normal;
     font-weight: 300;
     font-size: 1rem;
-    padding: 1rem 0 0 4rem;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .history-modal__title{
+        width: 100vw;
+        font-size: 3rem;
+        padding: 1rem;
+    }
+
+    .history-modal__list--empty {
+        font-size: 2.5rem;
+    }
 }

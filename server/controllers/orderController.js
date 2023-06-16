@@ -161,19 +161,27 @@ module.exports.getOrdersOfUser = async (req, res) => {
         allOrders = await Order.find({
           user_id: userData._id,
           order_type: "buy",
-        });
+        })
+          .populate(["product_id"])
+          .sort({ _id: -1 });
       } else if (query === "trial") {
         allOrders = await Order.find({
           user_id: userData._id,
           order_type: "trial",
-        }).populate(["trial_id"]);
+        })
+          .populate(["trial_id", "product_id"])
+          .sort({ _id: -1 });
       } else if (query === "subscribe") {
         allOrders = await Order.find({
           user_id: userData._id,
           order_type: "subscribe",
-        }).populate(["subscribe_id"]);
+        })
+          .populate(["subscribe_id", "product_id"])
+          .sort({ _id: -1 });
       } else {
-        allOrders = await Order.find({ user_id: userData._id });
+        allOrders = await Order.find({ user_id: userData._id })
+          .populate(["product_id", "subscribe_id", "trial_id"])
+          .sort({ _id: -1 });
       }
       if (allOrders.length > 0) {
         return res.status(200).json({
