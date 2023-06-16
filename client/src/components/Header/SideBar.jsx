@@ -3,6 +3,7 @@ import './SideBar.css';
 import Call from '../../Assets/Icons/Call.svg';
 import cart from '../../Assets/Icons/cartMain.svg';
 import Whatsapp from '../../Assets/Icons/Whatsapp.svg';
+import Wallet from '../../Assets/Icons/wallet.svg';
 import Links from '../../config/Links';
 
 const SideBar = () => {
@@ -14,6 +15,9 @@ const SideBar = () => {
     }
     const handleCart = () => {
         window.location.href = '/checkout';
+    }
+    const handleWallet = () => {
+        window.location.href = '/profile';
     }
     return (
         <div className='side-bar'>
@@ -38,7 +42,15 @@ const SideBar = () => {
                     <img src={cart} alt="cart"/>
                 </div>
                 <div className='side-bar__item--text'>
-                    Order Now
+                    Checkout
+                </div>
+            </div>
+            <div className='side-bar__item' onClick={handleWallet}>
+                <div className='side-bar__item--icon'>
+                    <img src={Wallet} alt="cart"/>
+                </div>
+                <div className='side-bar__item--text'>
+                    Wallet
                 </div>
             </div>
         </div>

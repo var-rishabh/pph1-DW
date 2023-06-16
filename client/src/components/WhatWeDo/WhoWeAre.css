@@ -37,5 +37,18 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 20% 0;
+  }
+
+  .what-we-do__who--title {
+    font-family: "Rubik", sans-serif;
+    font-size: 4rem;
+    padding: 10% 0;
+  }
+  
+  .what-we-do__who--text {
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    text-align: center;
   }
 }
