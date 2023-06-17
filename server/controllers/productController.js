@@ -7,14 +7,15 @@ const { getOrderTypeAndQuantity } = require("../services/cartServices");
 module.exports.addProduct = async (req, res) => {
   try {
     const newProduct = new Product();
-    if (req.body.title) newProduct["title"] = req.body.title;
-    if (req.body.image) newProduct["image"] = req.body.image;
-    if (req.body.description) newProduct["description"] = req.body.description;
-    if (req.body.price) newProduct["price"] = req.body.price;
-    if (req.body.size) newProduct["size"] = req.body.size;
-    if (req.body.in_stock) newProduct["in_stock"] = req.body.in_stock;
-    if (req.body.brand_name) newProduct["brand_name"] = req.body.brand_name;
-    if (req.body.category) newProduct["category"] = req.body.category;
+    newProduct["title"] = req.body.title;
+    newProduct["images"] = req.body.images;
+    newProduct["description"] = req.body.description;
+    newProduct["price"] = req.body.price;
+    newProduct["size"] = req.body.size;
+    newProduct["in_stock"] = req.body.in_stock;
+    newProduct["order_type"] = req.body.order_type;
+    newProduct["brand_name"] = req.body.brand_name;
+    newProduct["category"] = req.body.category;
     if (req.body.benefits) newProduct["benefits"] = req.body.benefits;
     await newProduct.save();
 
@@ -151,12 +152,16 @@ module.exports.updateProduct = async (req, res) => {
     const product_id = req.params.productID;
     const product = await Product.findById(product_id);
     if (product) {
-      if (req.body.name) product["name"] = req.body.name;
-      if (req.body.brand_name) product["brand_name"] = req.body.brand_name;
-      if (req.body.price) product["price"] = req.body.price;
+      if (req.body.title) product["title"] = req.body.title;
+      if (req.body.images) product["images"] = req.body.images;
       if (req.body.description) product["description"] = req.body.description;
-      if (req.body.sizes) product["sizes"] = req.body.sizes;
+      if (req.body.price) product["price"] = req.body.price;
+      if (req.body.size) product["size"] = req.body.size;
       if (req.body.in_stock) product["in_stock"] = req.body.in_stock;
+      if (req.body.order_type) product["order_type"] = req.body.order_type;
+      if (req.body.brand_name) product["brand_name"] = req.body.brand_name;
+      if (req.body.category) product["category"] = req.body.category;
+      if (req.body.benefits) product["benefits"] = req.body.benefits;
       await product.save();
       return res.status(200).json({
         status: "success",

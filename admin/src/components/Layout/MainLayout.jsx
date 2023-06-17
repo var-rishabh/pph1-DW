@@ -1,5 +1,5 @@
-import { PieChartOutlined, UserOutlined, DesktopOutlined, OrderedListOutlined } from '@ant-design/icons';
-import { Avatar, Breadcrumb, Layout, Menu, Popover, Typography } from 'antd';
+import { PieChartOutlined, UserOutlined, DesktopOutlined, OrderedListOutlined, TagOutlined, MoneyCollectOutlined, MessageOutlined } from '@ant-design/icons';
+import { Avatar, Layout, Menu, Popover, Typography } from 'antd';
 import { useState } from 'react';
 import fullLogo from '../../Assets/fullLogo.png';
 import mainLogo from '../../Assets/mainLogo.png';
@@ -18,23 +18,20 @@ function getItem(label, key, icon, children) {
   };
 }
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 const items = [
   getItem('Dashboard', '1', <PieChartOutlined />),
   getItem('Orders', '2', <DesktopOutlined />),
   getItem('Products', '3', <OrderedListOutlined />),
   getItem('Users', '4', <UserOutlined />),
+  getItem('Coupons', '5', <TagOutlined />),
+  getItem('Payments', '6', <MoneyCollectOutlined />),
+  getItem('Messages', '7', <MessageOutlined />),
 ];
 
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const currentKey = window.location.pathname.split('/')[1];
   const defaultSelectedKey = items.find((item) => item.label.toLowerCase() === currentKey)?.key || '1';
-  const breadcrumbList = window.location.pathname.split('/').filter((item) => item !== '')
-  const breadcrumbItems = breadcrumbList.map((item) => ({ title: capitalizeFirstLetter(item) }));
   const selectKeyHandler = (e) => {
     if (e.key === '1') {
       window.location = '/';
@@ -92,13 +89,7 @@ const MainLayout = () => {
             margin: '0 16px',
           }}
         >
-          <Breadcrumb
-            style={{
-              margin: '8px 0',
-            }}
-            items={(breadcrumbItems.length > 0) ? breadcrumbItems : [{ title: 'Dashboard' }]}
-          />
-          <Content style={{ padding: 12, minHeight: 640, background: "#ffffff", borderRadius: 5 }}><Outlet /></Content>
+          <Content style={{ paddingTop: 16, paddingLeft:8, paddingRight: 8}}><Outlet /></Content>
         </Content>
         <Footer
           style={{

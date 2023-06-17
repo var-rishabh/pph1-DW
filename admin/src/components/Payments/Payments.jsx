@@ -1,8 +1,8 @@
 import React from 'react';
 import { products } from '../../SampleData/products';
 import { Table } from 'antd';
-import ProductItem from '../ProductItem/ProductItem';
-const Products = () => {
+
+const Payments = () => {
   const generateKey = (pre) => {
     return `${pre}_${Math.random()}`;
   }
@@ -11,49 +11,40 @@ const Products = () => {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'title',
-      key: 'title',
-      width: 300,
-      sorter: (a, b) => a.title > b.title,
-      render: (text, record) => (
-        <ProductItem title={record.title} image={record.image} size={record.size} />
-      ),
+      dataIndex: 'name',
+      key: 'name',
+      sorter: (a, b) => a.name > b.name,
     },
     {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-      sorter: (a, b) => a.price > b.price,
+      title: 'Order Type',
+      dataIndex: 'order_type',
+      key: 'order_type',
+      sorter: (a, b) => a.order_type > b.order_type,
     },
     {
-      title: 'Category',
-      dataIndex: 'category',
-      key: 'category',
-      sorter: (a, b) => a.category > b.category,
+      title: 'Amount',
+      dataIndex: 'amount',
+      key: 'amount',
+      sorter: (a, b) => a.amount > b.amount,
     },
     {
-      title: 'Brand',
-      dataIndex: 'brand_name',
-      key: 'brand_name',
-      sorter: (a, b) => a.brand_name > b.brand_name,
+      title: 'Payment Status',
+      dataIndex: 'payment_response',
+      key: 'payment_response',
+      sorter: (a, b) => a.payment_response > b.payment_response,
     },
     {
-      title: 'In Stock',
-      dataIndex: 'in_stock',
-      key: 'in_stock',
-      sorter: (a, b) => a.in_stock > b.in_stock,
-      render: (text, record) => (
-        <div className="in_stock">
-          {record.in_stock ? 'Yes' : 'No'}
-        </div>
-      ),
+      title: 'Transaction Type',
+      dataIndex: 'transaction_type',
+      key: 'transaction_type',
+      sorter: (a, b) => a.transaction_type > b.transaction_type,
     },
     {
       title: 'Action',
       key: 'action',
       render: (text, record) => (
         <div className="action__button">
-          <button>Edit</button>
+          <button>More</button>
         </div>
       ),
     }
@@ -70,10 +61,7 @@ const Products = () => {
     <div className="products">
       <div className="header">
         <div className="heading">
-          Products List
-        </div>
-        <div className="header__button">
-          <button>Add Product<span>+</span></button>
+          Payments
         </div>
       </div>
       <div className="table">
@@ -97,4 +85,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Payments;
