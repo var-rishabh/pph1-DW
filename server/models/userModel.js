@@ -11,6 +11,10 @@ const UserSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    first_trial: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

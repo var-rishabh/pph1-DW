@@ -145,7 +145,7 @@ const Checkout = () => {
                                             key={item.product_id._id}
                                         >
                                             <OrderItem
-                                                img={item.product_id.image}
+                                                img={item.product_id.images[0]}
                                                 productName={item.product_id.title}
                                                 size={item.product_id.size}
                                                 orderType={item.order_type}

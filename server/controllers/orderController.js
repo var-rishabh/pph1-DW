@@ -89,9 +89,103 @@ module.exports.checkout = async (req, res) => {
   }
 };
 
+module.exports.approveOrder = async (req, res) => {
+  try {
+    const orderID = req.params.orderID;
+    const order = await Order.findById(orderID);
+    if (order) {
+      order["status"] = "approved";
+      await order.save();
+      return res.status(200).json({
+        status: "success",
+        message: "Order approved.",
+        data: order,
+      });
+    }
+    return res.status(404).json({
+      status: "failure",
+      message: "Order not found.",
+      data: null,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.cancelOrder = async (req, res) => {
+  try {
+    const orderID = req.params.orderID;
+    const order = await Order.findById(orderID);
+    if (order) {
+      order["status"] = "cancelled";
+      await order.save();
+      return res.status(200).json({
+        status: "success",
+        message: "Order cancelled.",
+        data: order,
+      });
+    }
+    return res.status(404).json({
+      status: "failure",
+      message: "Order not found.",
+      data: null,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.addVacation = async (req, res) => {
+  try {
+    const subscribeID = req.body.subscribe_id;
+    const subscribeOrder = await Subscribe.findById(subscribeID);
+    if (subscribeOrder) {
+      var { start_date, end_date } = req.body;
+      start_date = new Date(start_date);
+      end_date = new Date(end_date);
+      if (
+        start_date >= subscribeOrder["start_date"] &&
+        end_date <= subscribeOrder["end_date"]
+      ) {
+        subscribeOrder["vacation"] = {
+          start_date,
+          end_date,
+        };
+        subscribeOrder["deliveries"].forEach((delivery) => {
+          if (delivery["date"] >= start_date && delivery["date"] <= end_date) {
+            delivery["user_need"] = false;
+          }
+        });
+        await subscribeOrder.save();
+        return res.status(200).json({
+          status: "success",
+          message: "Vacation added successfully.",
+          data: subscribeOrder,
+        });
+      }
+    }
+    return res.status(404).json({
+      status: "failure",
+      message: "Order not found.",
+      data: null,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
 module.exports.getAllOrders = async (req, res) => {
   try {
-    const query = req.query.orderType;
+    const query = req.query.type;
     var allOrders;
     if (query === "buy") {
       allOrders = await Order.find({ order_type: "buy" });
@@ -103,8 +197,16 @@ module.exports.getAllOrders = async (req, res) => {
       allOrders = await Order.find({ order_type: "subscribe" }).populate([
         "subscribe_id",
       ]);
-    } else {
+    } else if (query === "all") {
       allOrders = await Order.find();
+    } else if (query === "approved") {
+      allOrders = await Order.find({ status: "approved" });
+    } else if (query === "cancelled") {
+      allOrders = await Order.find({ status: "cancelled" });
+    } else if (query === "pending") {
+      allOrders = await Order.find({ status: "pending" });
+    } else {
+      allOrders = [];
     }
     if (allOrders.length > 0) {
       return res.status(200).json({
@@ -129,7 +231,11 @@ module.exports.getAllOrders = async (req, res) => {
 module.exports.getOrder = async (req, res) => {
   try {
     const orderID = req.params.orderID;
-    const order = await Order.findById(orderID);
+    const order = await Order.findById(orderID).populate([
+      "product_id",
+      "subscribe_id",
+      "trial_id",
+    ]);
     if (order) {
       return res.status(200).json({
         status: "success",

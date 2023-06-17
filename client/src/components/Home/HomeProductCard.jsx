@@ -19,7 +19,7 @@ const HomeProductCard = ({ product }) => {
         <>
             <div className='home-product-card'>
                 <div className='home-product-card__image'>
-                    <img src={product.image} alt={product.name} />
+                    <img src={product.images[0]} alt={product.name} />
                 </div>
                 <div className='home-product-card__main'>
                     <div className='home-product-card__title'>

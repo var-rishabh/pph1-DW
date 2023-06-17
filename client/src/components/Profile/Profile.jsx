@@ -199,7 +199,7 @@ const Profile = () => {
                   {services?.trials?.map((orderDetails) => (
                     <div key={orderDetails._id}>
                       <OrderItem
-                        img={orderDetails.product.image}
+                        img={orderDetails.product.images[0]}
                         productName={orderDetails.product.title}
                         size={orderDetails.product.size}
                         orderType={"trial"}
@@ -217,7 +217,7 @@ const Profile = () => {
                       }}
                     >
                       <OrderItem
-                        img={orderDetails.product.image}
+                        img={orderDetails.product.images[0]}
                         productName={orderDetails.product.title}
                         size={orderDetails.product.size}
                         orderType={"subscribe"}

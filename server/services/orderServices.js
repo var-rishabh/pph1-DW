@@ -1,3 +1,4 @@
+const User = require("../models/userModel");
 const Order = require("../models/orderModel");
 const Trial = require("../models/trialModel");
 const Subscribe = require("../models/subscribeModel");
@@ -33,7 +34,7 @@ module.exports.createOrder = async (userID, item, phone, address, userCart) => {
       address: address,
       order_type: userCart["items"][item]["order_type"],
       status: "pending",
-      cart: userCart["items"],
+      cart: userCart,
       delivery_date: deliveryDate,
     });
     await order.save();
@@ -76,10 +77,15 @@ module.exports.createOrder = async (userID, item, phone, address, userCart) => {
       order_type: userCart["items"][item]["order_type"],
       status: "pending",
       trial_id: trialOrder["_id"],
-      cart: userCart["items"],
+      cart: userCart,
       delivery_date: deliveryDate,
     });
     await order.save();
+
+    const findUser = await User.findById(userID);
+    findUser["first_trial"] = true;
+    await findUser.save(); 
+    
     return order;
   } else if (userCart["items"][item]["order_type"] === "subscribe") {
     const subscribeMonths = userCart["items"][item]["quantity"];
@@ -120,7 +126,7 @@ module.exports.createOrder = async (userID, item, phone, address, userCart) => {
       order_type: userCart["items"][item]["order_type"],
       status: "pending",
       subscribe_id: subscribeOrder["_id"],
-      cart: userCart["items"],
+      cart: userCart,
       delivery_date: deliveryDate,
     });
     await order.save();
