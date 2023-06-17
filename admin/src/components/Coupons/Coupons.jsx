@@ -2,7 +2,7 @@ import React from 'react';
 import { products } from '../../SampleData/products';
 import { Table } from 'antd';
 import ProductItem from '../ProductItem/ProductItem';
-const Products = () => {
+const Coupons = () => {
   const generateKey = (pre) => {
     return `${pre}_${Math.random()}`;
   }
@@ -10,43 +10,28 @@ const Products = () => {
   const [tableData, setTableData] = React.useState(dataWithKey);
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'title',
-      key: 'title',
-      width: 300,
-      sorter: (a, b) => a.title > b.title,
-      render: (text, record) => (
-        <ProductItem title={record.title} image={record.image} size={record.size} />
-      ),
+      title: 'Coupon Code',
+      dataIndex: 'coupon_code',
+      key: 'coupon_code',
+      sorter: (a, b) => a.coupon_code > b.coupon_code,
     },
     {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-      sorter: (a, b) => a.price > b.price,
+      title: 'Discount Type',
+      dataIndex: 'discount_type',
+      key: 'discount_type',
+      sorter: (a, b) => a.discount_type > b.discount_type,
     },
     {
-      title: 'Category',
-      dataIndex: 'category',
-      key: 'category',
-      sorter: (a, b) => a.category > b.category,
+      title: 'Discount Amount',
+      dataIndex: 'discount',
+      key: 'discount',
+      sorter: (a, b) => a.discount > b.discount,
     },
     {
-      title: 'Brand',
-      dataIndex: 'brand_name',
-      key: 'brand_name',
-      sorter: (a, b) => a.brand_name > b.brand_name,
-    },
-    {
-      title: 'In Stock',
-      dataIndex: 'in_stock',
-      key: 'in_stock',
-      sorter: (a, b) => a.in_stock > b.in_stock,
-      render: (text, record) => (
-        <div className="in_stock">
-          {record.in_stock ? 'Yes' : 'No'}
-        </div>
-      ),
+      title: 'Expiry Date',
+      dataIndex: 'expiry',
+      key: 'expiry',
+      sorter: (a, b) => a.expiry > b.expiry,
     },
     {
       title: 'Action',
@@ -70,10 +55,10 @@ const Products = () => {
     <div className="products">
       <div className="header">
         <div className="heading">
-          Products List
+          Coupons
         </div>
         <div className="header__button">
-          <button>Add Product<span>+</span></button>
+          <button>Add Coupon<span>+</span></button>
         </div>
       </div>
       <div className="table">
@@ -97,4 +82,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Coupons;

@@ -2,8 +2,7 @@ import React from 'react';
 import { products } from '../../SampleData/products';
 import { Table } from 'antd';
 
-
-const Users = () => {
+const Messages = () => {
   const generateKey = (pre) => {
     return `${pre}_${Math.random()}`;
   }
@@ -17,32 +16,18 @@ const Users = () => {
       sorter: (a, b) => a.name > b.name,
     },
     {
-      title: 'Phone',
-      dataIndex: 'phone',
-      key: 'phone',
-      sorter: (a, b) => a.phone > b.phone,
-    },
-    {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
       sorter: (a, b) => a.email > b.email,
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      sorter: (a, b) => a.address > b.address,
+      title: 'Message',
+      dataIndex: 'message',
+      key: 'message',
+      width: 800,
+      sorter: (a, b) => a.message > b.message,
     },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <div className="action__button">
-          <button>More</button>
-        </div>
-      ),
-    }
   ];
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -56,7 +41,7 @@ const Users = () => {
     <div className="products">
       <div className="header">
         <div className="heading">
-          Users
+          Payments
         </div>
       </div>
       <div className="table">
@@ -80,4 +65,4 @@ const Users = () => {
   )
 }
 
-export default Users;
+export default Messages;
