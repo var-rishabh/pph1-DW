@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import "./Checkout.css";
 import FormInput from '../FormInput/FormInput';
 import { useDispatch, useSelector } from 'react-redux';
-import CheckoutFoot from './CheckoutFoot';
+// import CheckoutFoot from './CheckoutFoot';
 import OrderItem from '../OrderItem/OrderItem';
 import { updateUserProfile } from '../../Actions/User';
 import {
@@ -125,9 +125,9 @@ const Checkout = () => {
                                 <FormInput label='Zip Code' type='text' id='zip' value={zip} setInputValue={setZip} />
                             </div>
                         </div>
-                        <div className='checkout__left--form--item'>
+                        {/* <div className='checkout__left--form--item'>
                             <FormInput label='Country' type='text' id='country' value={country} setInputValue={setCountry} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className='checkout__right'>
@@ -158,7 +158,9 @@ const Checkout = () => {
                                 })
                             }
                         </SwipeableList>
-
+                    </div>
+                    <div className='checkout__right--note'>
+                        Note: Swipe left to remove item from the cart.
                     </div>
                     <div className='checkout__right--promo'>
                         <div className='checkout__right--promo--title'>
@@ -227,7 +229,7 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-            <CheckoutFoot />
+            {/* <CheckoutFoot /> */}
         </div>
     )
 }

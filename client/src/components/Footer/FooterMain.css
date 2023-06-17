@@ -1,7 +1,7 @@
 .footer-main {
   display: flex;
   justify-content: space-between;
-  padding: 2% 10%;
+  padding: 5% 10% 2% 10%;
   background-color: var(--primary-color);
   font-family: "Rubik", sans-serif;
   font-style: normal;
@@ -15,19 +15,21 @@
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
-  width: 20%;
+  width: 18%;
 }
 
 .footer-main__description--text {
-  padding-top: 5%;
+  padding-top: 15%;
   font-size: 1.125rem;
-  line-height: 1.135rem;
+  line-height: 1.8rem;
+  font-weight: 300;
   color: var(--text-color-secondary);
 }
 
 .footer-main--title {
   font-size: 1.125rem;
   font-size: 2rem;
+  font-weight: 400;
   line-height: 2.375rem;
   color: var(--text-color-secondary);
 }
@@ -100,15 +102,13 @@
   color: var(--text-color-secondary);
 }
 
-.footer-main__download {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 20%;
+.footer-main--download {
+  font-size: 1.125rem;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text-color-secondary);
+  margin-top: 10%;
 }
-
-/* Make it responsive for mobile */
 
 @media screen and (max-width: 1000px) {
   .footer-main {
@@ -153,15 +153,14 @@
   }
   .footer-main__contact {
     width: 100%;
-    margin: 2% 0;
+    margin: 2% 0 8% 0;
   }
 
   .footer-main__contact--list--item {
     font-size: 2.25rem;
     line-height: 2.625rem;
   }
-  .footer-main__download {
-    width: 100%;
-    margin: 12% 0;
+  .footer-main--download {
+    display: none;
   }
 }

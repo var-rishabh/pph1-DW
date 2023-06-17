@@ -6,7 +6,6 @@ import profileSample from "../../Assets/profileSample.jpg";
 import WalletHistoryItem from "./WalletHistoryItem";
 import EditableProfileItem from "./EditableProfileItem";
 import OrderItem from "../OrderItem/OrderItem";
-import { order } from "../../SampleData/order";
 import AddMoneyModal from "./AddMoneyModal";
 import HistoryModal from "./HistoryModal";
 import { walletBalance, walletHistory } from "../../Actions/Wallet";
@@ -22,9 +21,11 @@ const Profile = () => {
   const { balance, loading, history } = useSelector(
     (state) => state.walletReducer
   );
-  const { history: orderHistory, services, loading: orderLoading } = useSelector(
-    (state) => state.orderReducer
-  );
+  const {
+    history: orderHistory,
+    services,
+    loading: orderLoading,
+  } = useSelector((state) => state.orderReducer);
   const [name, setName] = useState(
     user.displayName ? user.displayName : user.name
   );
@@ -38,6 +39,7 @@ const Profile = () => {
   const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showVacationModal, setShowVacationModal] = useState(false);
+  const [vacationOrder, setVacationOrder] = useState(null);
   const profileUpdateHanlder = () => {
     dispatch(
       updateUserProfile({
@@ -55,7 +57,6 @@ const Profile = () => {
     dispatch(walletHistory());
     dispatch(getServices());
   }, [dispatch, isAuthenticated]);
-  const orderDetails = order;
   return (
     <>
       <div className="profile">
@@ -121,17 +122,21 @@ const Profile = () => {
           <div className="profile__left__wallet-history">
             <div className="profile__left__wallet-history--title">Wallet</div>
             <div className="profile__left__wallet-history--list">
-              {history?.map((item, index) => (
-                <WalletHistoryItem
-                  key={item._id}
-                  title={item.order_type.toUpperCase()}
-                  amount={item.amount}
-                  date={new Date(item.createdAt).toDateString()}
-                  balance={item.balance}
-                  transactionType={item.transaction_type}
-                  paymentResponse={item.payment_response}
-                />
-              ))}
+              {!history || history?.length === 0 ? (
+                <div className="no-history">No History</div>
+              ) : (
+                history?.map((item, index) => (
+                  <WalletHistoryItem
+                    key={item._id}
+                    title={item.order_type.toUpperCase()}
+                    amount={item.amount}
+                    date={new Date(item.createdAt).toDateString()}
+                    balance={item.balance}
+                    transactionType={item.transaction_type}
+                    paymentResponse={item.payment_response}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -185,32 +190,46 @@ const Profile = () => {
               Active Services
             </div>
             <div className="profile__right--service--list">
-              {orderLoading ? <div className="loading"><div className="loading__circle"></div></div> : <>
-                {services?.trials?.map((orderDetails) => (
-                  <div key={orderDetails._id} onClick={() => setShowVacationModal(orderDetails._id)}>
-                    <OrderItem
-                      img={orderDetails.product.image}
-                      productName={orderDetails.product.title}
-                      size={orderDetails.product.size}
-                      orderType={"trial"}
-                      quantity={orderDetails.days}
-                      price={orderDetails.product.price * orderDetails.days}
-                    />
-                  </div>
-                ))}
-                {services?.subscribes?.map((orderDetails) => (
-                  <div key={orderDetails._id} onClick={() => setShowVacationModal(orderDetails._id)}>
-                    <OrderItem
-                      img={orderDetails.product.image}
-                      productName={orderDetails.product.title}
-                      size={orderDetails.product.size}
-                      orderType={"subscribe"}
-                      quantity={orderDetails.months}
-                      price={orderDetails.total}
-                    />
-                  </div>
-                ))}
-              </>}
+              {orderLoading ? (
+                <div className="loading">
+                  <div className="loading__circle"></div>
+                </div>
+              ) : (
+                <>
+                  {services?.trials?.map((orderDetails) => (
+                    <div key={orderDetails._id}>
+                      <OrderItem
+                        img={orderDetails.product.image}
+                        productName={orderDetails.product.title}
+                        size={orderDetails.product.size}
+                        orderType={"trial"}
+                        quantity={orderDetails.days}
+                        price={orderDetails.product.price * orderDetails.days}
+                      />
+                    </div>
+                  ))}
+                  {services?.subscribes?.map((orderDetails) => (
+                    <div
+                      key={orderDetails._id}
+                      onClick={() => {
+                        setShowVacationModal(true);
+                        setVacationOrder(orderDetails);
+                      }}
+                    >
+                      <OrderItem
+                        img={orderDetails.product.image}
+                        productName={orderDetails.product.title}
+                        size={orderDetails.product.size}
+                        orderType={"subscribe"}
+                        quantity={orderDetails.months}
+                        price={
+                          orderDetails.product.price * orderDetails.months * 30
+                        }
+                      />
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
             <div className="profile__right--service--options">
               <button
@@ -221,8 +240,9 @@ const Profile = () => {
               </button>
               <button
                 className="profile__right--service--options--button"
+                onClick={() => (window.location.href = "/product")}
               >
-                Calender
+                Add more
               </button>
             </div>
           </div>
@@ -230,7 +250,11 @@ const Profile = () => {
       </div>
       <AddMoneyModal open={showAddMoneyModal} setOpen={setShowAddMoneyModal} />
       <HistoryModal open={showHistoryModal} setOpen={setShowHistoryModal} />
-      <VacationModal open={showVacationModal} setOpen={setShowVacationModal} />
+      <VacationModal
+        open={showVacationModal}
+        setOpen={setShowVacationModal}
+        order={vacationOrder}
+      />
     </>
   );
 };

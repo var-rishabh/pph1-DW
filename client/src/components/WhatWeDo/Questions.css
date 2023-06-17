@@ -133,6 +133,8 @@
     width: 100%;
   }
   .question__right--features--item{
+    justify-content: center;
+    align-items: center;
     width: 100%;
   }
   .question__right--features--item--icon{
@@ -146,6 +148,8 @@
   .question__right--features--item--text{
     font-size: 2.25rem;
     line-height: 2.625rem;
+    width: 50%;
+    margin: 2% 0 5% 0;
   }
 
   .question.two{
