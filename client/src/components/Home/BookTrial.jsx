@@ -1,7 +1,7 @@
 import React from "react";
-import "./BookTrail.css";
+import "./BookTrial.css";
 
-const BookTrail = () => {
+const BookTrial = () => {
   return (
     <div className="book-trial">
       <div className="book-trial__title">
@@ -16,4 +16,4 @@ const BookTrail = () => {
   );
 };
 
-export default BookTrail;
+export default BookTrial;
