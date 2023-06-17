@@ -25,7 +25,7 @@ const VacationModal = ({ open, setOpen, order }) => {
         <div className="vacation-modal__form">
           <div className="vacation-modal__form--order">
             <OrderItem
-              img={order?.product?.image}
+              img={order?.product?.images[0]}
               productName={order?.product?.title}
               size={order?.product?.size}
               orderType={"subscribe"}

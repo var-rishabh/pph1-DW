@@ -8,6 +8,7 @@ const {
   getCartGST,
   getCartDiscount,
 } = require("../services/cartServices");
+const { checkFirstTrial } = require("../services/userServices");
 
 module.exports.getCart = async (req, res) => {
   try {
@@ -62,6 +63,16 @@ module.exports.addToCart = async (req, res) => {
     if (userData) {
       const product = await Product.findOne({ _id: productId });
       if (product) {
+        if (orderType === "trial") {
+          const firstTrial = await checkFirstTrial(userData._id);
+          if (firstTrial) {
+            return res.status(401).json({
+              status: "failure",
+              message: "You have already used a Trial before. No more trials are available.",
+              data: null,
+            });
+          }
+        }
         var userCart = await Cart.findOne({ user_id: userData._id });
         if (!userCart) {
           userCart = new Cart({

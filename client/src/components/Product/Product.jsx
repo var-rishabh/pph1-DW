@@ -39,7 +39,7 @@ const Product = () => {
           <div className="product__info--left">
             <div className="product__info--top--title">{product.title}</div>
             <div className="product__info--left--image">
-              <img src={product.image} alt={product.title} />
+              <img src={product.images && product.images[0]} alt={product.title} />
             </div>
             <div className="product__info--left--title">{product.title}</div>
             <div className="webview_buttons">

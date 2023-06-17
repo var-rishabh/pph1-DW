@@ -6,7 +6,7 @@ import trashSolid from "../../Assets/trash-solid.svg";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../Actions/Cart";
 const ProductCard = ({
-  image,
+  images,
   description,
   title,
   price,
@@ -28,7 +28,7 @@ const ProductCard = ({
     <>
       <div className="product-card">
         <div className="product-card__image">
-          <img src={image} alt={title} />
+          <img src={images[0]} alt={title} />
         </div>
         <div className="product-card__content">
           <div className="product-card__content--title">{title}</div>
@@ -77,7 +77,7 @@ const ProductCard = ({
       <CartModal
         open={showCartModal}
         setOpen={setShowCartModal}
-        product={{ image, description, title, _id }}
+        product={{ images, description, title, _id }}
       />
     </>
   );

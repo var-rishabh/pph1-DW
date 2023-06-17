@@ -6,10 +6,11 @@ const ProductSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      // required: true,
-    },
+    images: [
+      {
+        type: String,
+      },
+    ],
     description: {
       type: String,
       required: true,
@@ -25,6 +26,14 @@ const ProductSchema = mongoose.Schema(
     in_stock: {
       type: Boolean,
       default: true,
+    },
+    order_type: {
+      type: Array,
+      items: {
+        type: String,
+        enum: ["buy", "trial", "subscribe"],
+      },
+      required: true,
     },
     brand_name: {
       type: String,
