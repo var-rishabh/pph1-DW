@@ -141,6 +141,48 @@ module.exports.cancelOrder = async (req, res) => {
   }
 };
 
+module.exports.addVacation = async (req, res) => {
+  try {
+    const subscribeID = req.body.subscribe_id;
+    const subscribeOrder = await Subscribe.findById(subscribeID);
+    if (subscribeOrder) {
+      var { start_date, end_date } = req.body;
+      start_date = new Date(start_date);
+      end_date = new Date(end_date);
+      if (
+        start_date >= subscribeOrder["start_date"] &&
+        end_date <= subscribeOrder["end_date"]
+      ) {
+        subscribeOrder["vacation"] = {
+          start_date,
+          end_date,
+        };
+        subscribeOrder["deliveries"].forEach((delivery) => {
+          if (delivery["date"] >= start_date && delivery["date"] <= end_date) {
+            delivery["user_need"] = false;
+          }
+        });
+        await subscribeOrder.save();
+        return res.status(200).json({
+          status: "success",
+          message: "Vacation added successfully.",
+          data: subscribeOrder,
+        });
+      }
+    }
+    return res.status(404).json({
+      status: "failure",
+      message: "Order not found.",
+      data: null,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
 module.exports.getAllOrders = async (req, res) => {
   try {
     const query = req.query.type;
@@ -189,7 +231,11 @@ module.exports.getAllOrders = async (req, res) => {
 module.exports.getOrder = async (req, res) => {
   try {
     const orderID = req.params.orderID;
-    const order = await Order.findById(orderID).populate(["product_id", "subscribe_id", "trial_id"]);
+    const order = await Order.findById(orderID).populate([
+      "product_id",
+      "subscribe_id",
+      "trial_id",
+    ]);
     if (order) {
       return res.status(200).json({
         status: "success",

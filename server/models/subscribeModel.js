@@ -24,11 +24,13 @@ const SubscribeSchema = mongoose.Schema(
       type: Date,
       required: true,
     },
-    vacation_start_date: {
-      type: Date,
-    },
-    vacation_end_date: {
-      type: Date,
+    vacation: {
+      start_date: {
+        type: Date,
+      },
+      end_date: {
+        type: Date,
+      },
     },
     deliveries: [
       {

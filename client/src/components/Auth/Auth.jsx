@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import "./Auth.css";
-import authLogo from "../../Assets/authLogo.svg";
+// import authLogo from "../../Assets/authLogo.svg";
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const Auth = () => {
@@ -28,7 +28,7 @@ const Auth = () => {
           <Outlet />
         </div>
         <div className='auth__right'>
-          <img src={authLogo} alt='authLogo' />
+          {/* <img src={authLogo} alt='authLogo' /> */}
 
           <div className='auth__right--text'>
             Get Quality Milk at Apna Doodhwala
