@@ -73,7 +73,9 @@ const Products = () => {
           Products List
         </div>
         <div className="header__button">
-          <button>Add Product<span>+</span></button>
+          <button onClick={() => window.location.href = '/products/add'}>
+            Add Product<span>+</span>
+          </button>
         </div>
       </div>
       <div className="table">

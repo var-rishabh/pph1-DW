@@ -11,6 +11,7 @@ import Coupons from './components/Coupons/Coupons';
 import Payments from './components/Payments/Payments';
 import Messages from './components/Messages/Messages';
 import OrderDetails from './components/Orders/OrderDetails';
+import ProductDetails from './components/ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/payments" element={<Payments/>} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/orders/:id" element={<OrderDetails />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
           </Route>
         </Routes>
       </Router>

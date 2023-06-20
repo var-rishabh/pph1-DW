@@ -5,7 +5,10 @@ import OrderItem from "../OrderItem/OrderItem";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
+import { vacation } from "../../Actions/Order";
+import { useDispatch } from "react-redux";
 const VacationModal = ({ open, setOpen, order }) => {
+  const dispatch = useDispatch();
   const formatDate = (date) => {
     const d = new Date(date);
     const day = d.getDate();
@@ -16,7 +19,7 @@ const VacationModal = ({ open, setOpen, order }) => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const handleSubmit = () => {
-    console.log(startDate, endDate);
+    dispatch(vacation(order._id, startDate, endDate));
   };
   return (
     <ModalContainer open={open} setOpen={setOpen}>
@@ -61,13 +64,17 @@ const VacationModal = ({ open, setOpen, order }) => {
                 <div className="vacation-modal__form--sub--details--item--title">
                   Start
                 </div>
-                <div className="vacation-modal__form--sub--details--item--value"></div>
+                <div className="vacation-modal__form--sub--details--item--value">
+                  {formatDate(order?.vacation?.start_date)}
+                </div>
               </div>
               <div className="vacation-modal__form--sub--details--item">
                 <div className="vacation-modal__form--sub--details--item--title">
                   Resume
                 </div>
-                <div className="vacation-modal__form--sub--details--item--value"></div>
+                <div className="vacation-modal__form--sub--details--item--value">
+                  {formatDate(order?.vacation?.end_date)}
+                </div>
               </div>
             </div>
           </div>
