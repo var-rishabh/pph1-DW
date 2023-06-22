@@ -37,7 +37,7 @@ module.exports.sendMessage = async (req, res) => {
 
 module.exports.getAllMessages = async (req, res) => {
   try {
-    const allMessages = await Contact.find();
+    const allMessages = await Contact.find().sort({ _id: -1 });
     if (allMessages.length > 0) {
       return res.status(200).json({
         status: "success",
@@ -67,7 +67,7 @@ module.exports.getMessageOfUser = async (req, res) => {
     if (userData) {
       const allMessages = await Contact.find({
         user_id: req.params.userID,
-      });
+      }).sort({ _id: -1 });
       if (allMessages.length > 0) {
         return res.status(200).json({
           status: "success",
