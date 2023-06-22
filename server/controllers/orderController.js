@@ -314,23 +314,33 @@ module.exports.getAllOrders = async (req, res) => {
     } else if (query === "trial") {
       allOrders = await Order.find({ order_type: "trial" }).populate([
         "trial_id",
+        "product_id"
       ]);
     } else if (query === "subscribe") {
       allOrders = await Order.find({ order_type: "subscribe" }).populate([
         "subscribe_id",
+        "product_id"
       ]);
     } else if (query === "all") {
       allOrders = await Order.find().populate([
         "product_id",
       ]);
     } else if (query === "approved") {
-      allOrders = await Order.find({ status: "approved" });
+      allOrders = await Order.find({ status: "approved" }).populate([
+        "product_id",
+      ]);;
     } else if (query === "cancelled") {
-      allOrders = await Order.find({ status: "cancelled" });
+      allOrders = await Order.find({ status: "cancelled" }).populate([
+        "product_id",
+      ]);;
     } else if (query === "completed") {
-      allOrders = await Order.find({ status: "completed" });
+      allOrders = await Order.find({ status: "completed" }).populate([
+        "product_id",
+      ]);;
     } else if (query === "pending") {
-      allOrders = await Order.find({ status: "pending" });
+      allOrders = await Order.find({ status: "pending" }).populate([
+        "product_id",
+      ]);
     } else {
       allOrders = [];
     }
