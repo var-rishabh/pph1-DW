@@ -54,7 +54,7 @@ export const acceptOrder = (id) => async (dispatch) => {
     try {
         dispatch({ type: "AcceptOrderRequest" });
 
-        const { data } = await axios.put(`${process.env.REACT_APP_SERVER_URL}/order/acceptOrder/${id}`, {}, {
+        const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/order/approve/${id}`, {}, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -65,6 +65,7 @@ export const acceptOrder = (id) => async (dispatch) => {
             payload: data.success
         })
         toast.success("Order accepted successfully")
+        dispatch(getOrderDetails(id));
     } catch (error) {
         dispatch({
             type: "AcceptOrderFailure",
@@ -78,7 +79,7 @@ export const declineOrder = (id) => async (dispatch) => {
     try {
         dispatch({ type: "DeclineOrderRequest" });
 
-        const { data } = await axios.put(`${process.env.REACT_APP_SERVER_URL}/order/declineOrder/${id}`, {}, {
+        const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/order/cancel/${id}`, {}, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -88,6 +89,7 @@ export const declineOrder = (id) => async (dispatch) => {
             type: "DeclineOrderSuccess",
             payload: data.success
         })
+        dispatch(getOrderDetails(id));
         toast.success("Order declined successfully")
     } catch (error) {
         dispatch({
