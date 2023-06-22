@@ -310,7 +310,9 @@ module.exports.getAllOrders = async (req, res) => {
     const query = req.query.type;
     var allOrders;
     if (query === "buy") {
-      allOrders = await Order.find({ order_type: "buy" });
+      allOrders = await Order.find({ order_type: "buy" }).populate([
+        "product_id",
+      ]);
     } else if (query === "trial") {
       allOrders = await Order.find({ order_type: "trial" }).populate([
         "trial_id",
