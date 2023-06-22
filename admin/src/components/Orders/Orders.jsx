@@ -22,7 +22,7 @@ const Orders = () => {
       width: 300,
       sorter: (a, b) => a.title > b.title,
       render: (text, record) => (
-        <ProductItem title={record?.product_id?.title} image={record?.product_id?.images[0]} size={record?.product_id?.size} />
+        <ProductItem title={record?.product_id?.title} image={record?.product_id?.images && record?.product_id?.images[0]} size={record?.product_id?.size} />
       ),
     },
     {
