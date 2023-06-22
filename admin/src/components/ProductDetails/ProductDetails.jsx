@@ -48,7 +48,12 @@ const ProductDetails = () => {
     <>
       <div className="header">
         <div className="heading">
-          Add Product
+          {(id==="add")? "Add": "Edit"} Product
+        </div>
+        <div className="header__button">
+          <button onClick={() => window.location.href = '/products'}>
+            Back
+          </button>
         </div>
       </div>
       <div className="product-details__form">
@@ -85,12 +90,12 @@ const ProductDetails = () => {
             </Form.Item>
           </div>
           <Form.Item name="size" label="Size" wrapperCol={{ span: 8 }}>
-            <Input placeholder="Product Size"  addonAfter={selectAfter} />
+            <Input placeholder="Product Size" addonAfter={selectAfter} />
           </Form.Item>
           <Form.Item name="price" label="Price" wrapperCol={{ span: 8 }}>
             <InputNumber
               defaultValue={1000}
-              formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              formatter={(value) => `₹ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
             />
           </Form.Item>

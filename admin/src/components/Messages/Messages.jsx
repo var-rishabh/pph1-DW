@@ -1,13 +1,21 @@
-import React from 'react';
-import { products } from '../../SampleData/products';
+import React, { useEffect } from 'react';
 import { Table } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMessages } from '../../Actions/Messages';
 
 const Messages = () => {
-  const generateKey = (pre) => {
-    return `${pre}_${Math.random()}`;
-  }
-  const dataWithKey = products.map((product) => ({ ...product, key: generateKey(product.title) }));
-  const [tableData, setTableData] = React.useState(dataWithKey);
+  const dispatch = useDispatch();
+  const {messages, loading} = useSelector((state) => state.messageReducer);
+  const dataWithKey = messages?.map((item) => {  
+    return {
+      ...item,
+      key: item._id,
+    }
+  });
+  useEffect(() => {
+    dispatch(getMessages());
+  }, [dispatch]);
+
   const columns = [
     {
       title: 'Name',
@@ -25,30 +33,30 @@ const Messages = () => {
       title: 'Message',
       dataIndex: 'message',
       key: 'message',
-      width: 800,
+      width: 600,
       sorter: (a, b) => a.message > b.message,
     },
   ];
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      // Enter Code Here
     },
     getCheckboxProps: (record) => ({
-      name: record.title,
+      name: record._id,
     }),
   };
   return (
-    <div className="products">
+    <div className="messages">
       <div className="header">
         <div className="heading">
-          Payments
+          Messages
         </div>
       </div>
       <div className="table">
         <Table
-          dataSource={tableData}
+          dataSource={dataWithKey}
           columns={columns}
-          loading={false}
+          loading={loading}
           rowSelection={{
             type: 'checkbox',
             ...rowSelection,
