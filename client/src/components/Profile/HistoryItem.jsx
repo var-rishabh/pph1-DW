@@ -32,28 +32,28 @@ const HistoryItem = ({ data }) => {
 
   return (
     <div className="history-item">
-      <div className="history-item__left">{formatDate(data.delivery_date)}</div>
+      <div className="history-item__left">{formatDate(data?.delivery_date)}</div>
       <div className="history-item__right">
         <div className="history-item__right--title">
-          {data.product_id["title"]}
+          {data.product_id?.title}
         </div>
         <div className="history-item__right--type">
-          {formatOrderType(data.order_type)}
+          {formatOrderType(data?.order_type)}
           <div className="history-item__right--date">
             {data.order_type === "trial"
               ? ": " +
-                trialDate(data.trial_id.start_date, data.trial_id.end_date)
+                trialDate(data?.trial_id?.start_date, data?.trial_id?.end_date)
               : data.order_type === "subscribe"
               ? ": " +
                 subscribeDate(
-                  data.subscribe_id.start_date,
-                  data.subscribe_id.end_date
+                  data?.subscribe_id?.start_date,
+                  data?.subscribe_id?.end_date
                 )
               : ""}
           </div>
         </div>
         <div className="history-item__right--price">
-          Price: ₹ {data.final_price}
+          Price: ₹ {data?.final_price}
         </div>
       </div>
     </div>

@@ -22,7 +22,6 @@ const Profile = () => {
     (state) => state.walletReducer
   );
   const {
-    history: orderHistory,
     services,
     loading: orderLoading,
   } = useSelector((state) => state.orderReducer);
@@ -63,11 +62,11 @@ const Profile = () => {
         <div className="profile__left">
           <div className="profile__left__image">
             <img
-              src={user.photoUrl ? user.photoUrl : profileSample}
+              src={user?.photoUrl ? user?.photoUrl : profileSample}
               alt="profile"
             />
           </div>
-          <div className="profile__left__name">{user.displayName}</div>
+          <div className="profile__left__name">{user?.displayName}</div>
           <button className="profile__left__logout" onClick={handleLogout}>
             Logout
           </button>
@@ -127,13 +126,13 @@ const Profile = () => {
               ) : (
                 history?.map((item, index) => (
                   <WalletHistoryItem
-                    key={item._id}
-                    title={item.order_type.toUpperCase()}
-                    amount={item.amount}
-                    date={new Date(item.createdAt).toDateString()}
-                    balance={item.balance}
-                    transactionType={item.transaction_type}
-                    paymentResponse={item.payment_response}
+                    key={item?._id}
+                    title={item?.order_type.toUpperCase()}
+                    amount={item?.amount}
+                    date={new Date(item?.createdAt).toDateString()}
+                    balance={item?.balance}
+                    transactionType={item?.transaction_type}
+                    paymentResponse={item?.payment_response}
                   />
                 ))
               )}
@@ -147,13 +146,13 @@ const Profile = () => {
               title="Name"
               value={name}
               setValue={setName}
-              editable={!user.displayName}
+              editable={!user?.displayName}
             />
             <EditableProfileItem
               title="Phone"
               value={phone}
               setValue={setPhone}
-              editable={!user.phoneNumber}
+              editable={!user?.phoneNumber}
             />
             <EditableProfileItem
               title="Alternate Phone"
@@ -164,7 +163,7 @@ const Profile = () => {
               title="Email"
               value={email}
               setValue={setEmail}
-              editable={!user.email}
+              editable={!user?.email}
             />
             <EditableProfileItem
               title="Address"
@@ -197,14 +196,14 @@ const Profile = () => {
               ) : (
                 <>
                   {services?.trials?.map((orderDetails) => (
-                    <div key={orderDetails._id}>
+                    <div key={orderDetails?._id}>
                       <OrderItem
-                        img={orderDetails.product.images[0]}
-                        productName={orderDetails.product.title}
-                        size={orderDetails.product.size}
+                        img={orderDetails?.product?.images[0]}
+                        productName={orderDetails?.product?.title}
+                        size={orderDetails?.product?.size}
                         orderType={"trial"}
-                        quantity={orderDetails.days}
-                        price={orderDetails.product.price * orderDetails.days}
+                        quantity={orderDetails?.days}
+                        price={orderDetails?.product?.price * orderDetails?.days}
                       />
                     </div>
                   ))}
@@ -217,13 +216,13 @@ const Profile = () => {
                       }}
                     >
                       <OrderItem
-                        img={orderDetails.product.images[0]}
-                        productName={orderDetails.product.title}
-                        size={orderDetails.product.size}
+                        img={orderDetails?.product?.images[0]}
+                        productName={orderDetails?.product?.title}
+                        size={orderDetails?.product?.size}
                         orderType={"subscribe"}
-                        quantity={orderDetails.months}
+                        quantity={orderDetails?.months}
                         price={
-                          orderDetails.product.price * orderDetails.months * 30
+                          orderDetails?.product?.price * orderDetails?.months * 30
                         }
                       />
                     </div>

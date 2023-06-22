@@ -33,7 +33,7 @@ const VacationModal = ({ open, setOpen, order }) => {
               size={order?.product?.size}
               orderType={"subscribe"}
               quantity={order?.months}
-              price={order?.product.price * order?.months * 30}
+              price={order?.product?.price * order?.months * 30}
             />
           </div>
           <div className="vacation-modal__form--sub">

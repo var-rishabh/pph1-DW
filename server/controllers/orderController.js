@@ -320,7 +320,9 @@ module.exports.getAllOrders = async (req, res) => {
         "subscribe_id",
       ]);
     } else if (query === "all") {
-      allOrders = await Order.find();
+      allOrders = await Order.find().populate([
+        "product_id",
+      ]);
     } else if (query === "approved") {
       allOrders = await Order.find({ status: "approved" });
     } else if (query === "cancelled") {

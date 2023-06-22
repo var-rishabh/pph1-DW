@@ -1,9 +1,14 @@
-import { Badge, Descriptions, Modal } from 'antd';
-import { products } from '../../SampleData/products';
+import { Badge, Descriptions, Modal, Spin } from 'antd';
 import ProductItem from '../ProductItem/ProductItem';
-import { useState } from 'react';
-const currentOrder = products[0];
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrderDetails } from '../../Actions/Orders';
 const OrderDetails = () => {
+    const dispatch = useDispatch();
+    const { order, loading } = useSelector((state) => state.orderReducer);
+    console.log(order);
+    const { id } = useParams();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleCancel = () => {
         isModalOpen(false);
@@ -11,11 +16,14 @@ const OrderDetails = () => {
     const handleOk = () => {
         isModalOpen(false);
     }
+    useEffect(() => {
+        dispatch(getOrderDetails(id));
+    }, [dispatch, id]);
     return (
         <>
             <div className="header">
                 <div className="heading">
-                   Order Details
+                    Order Details
                 </div>
                 <div className="header__button">
                     <button onClick={() => window.location.href = '/orders'}>
@@ -23,47 +31,68 @@ const OrderDetails = () => {
                     </button>
                 </div>
             </div>
-            <Descriptions layout="vertical" bordered>
-                <Descriptions.Item label="Product">
-                    <ProductItem
-                        title={currentOrder.title}
-                        image={currentOrder.image}
-                        size={currentOrder.size}
-                    />
-                </Descriptions.Item>
-                <Descriptions.Item label="Order Type">Subscribe</Descriptions.Item>
-                <Descriptions.Item label="Order Time">2018-04-24 18:00:00</Descriptions.Item>
-                <Descriptions.Item label="Delivery Time" span={2}>
-                    2019-04-24 18:00:00
-                </Descriptions.Item>
+            {loading ? <Spin /> :
+                <Descriptions layout="vertical" bordered>
+                    <Descriptions.Item label="Product">
+                        <ProductItem
+                            title={order?.product_id?.title}
+                            image={order?.product_id?.images[0]}
+                            size={order?.product_id?.size}
+                        />
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Order Type">{order?.order_type?.charAt(0)?.toUpperCase() + order?.order_type?.slice(1)}</Descriptions.Item>
+                    <Descriptions.Item label="Order Time">{new Date(order.cart && order?.cart[0].createdAt).toLocaleString()}</Descriptions.Item>
+                    <Descriptions.Item label="Delivery Time" span={2}>
+                        {new Date(order?.delivery_date).toLocaleString()}
+                    </Descriptions.Item>
 
-                <Descriptions.Item label="Amount">$80.00</Descriptions.Item>
-                <Descriptions.Item label="Quantity">2</Descriptions.Item>
-                <Descriptions.Item label="Category">Dairy</Descriptions.Item>
-                <Descriptions.Item label="Status" span={3}>
-                    <Badge status="processing" text="Completed" />
-                </Descriptions.Item>
-                <Descriptions.Item label="User Details">
-                    Name: Shubham Aggarwal
-                    <br />
-                    Email: aggarwalshubham026@gmail.com
-                    <br />
-                    Phone: 1810000000
-                    <br />
-                    Address: No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-                    <br />
-                    City: New Delhi
-                    <br />
-                    State: Delhi
-                    <br />
-                </Descriptions.Item>
-            </Descriptions>
+                    <Descriptions.Item label="Amount">₹{order?.final_price}</Descriptions.Item>
+                    <Descriptions.Item label="Quantity">{order?.quantity}</Descriptions.Item>
+                    <Descriptions.Item label="Category">{order?.product_id?.category}</Descriptions.Item>
+                    <Descriptions.Item label="Status" span={3}>
+                        {order?.status === 'pending' ?
+                            <>
+                            <div className="action__button--group">
+                                <div className="action__button green">
+                                    <button>Approve</button>
+                                </div>
+                                <div className="action__button red">
+                                    <button>Reject</button>
+                                </div>
+                            </div>
+                            </>
+                            : (order?.status === 'approved' ) ? 
+                            <Badge status="success" text="Approved" />
+                            : (order?.status === 'cancelled' ) ?
+                            <Badge status="error" text="Cancelled" />
+                            : (order?.status === 'completed' ) ?
+                            <Badge status="success" text="Completed" />
+                            : "Error On Status"
+                        }
+                    </Descriptions.Item>
+                    <Descriptions.Item label="User Details">
+                        Name: {order?.user_id?.name}
+                        <br />
+                        Email: {(order?.user_id?.email) ? order?.user_id?.email : order?.user_id?.emailData}
+                        <br />
+                        Phone: {(order?.user_id?.phone) ? order?.user_id?.phone : order?.user_id?.phoneData}
+                        <br />
+                        Address: {order?.user_id?.address}
+                        <br />
+                        City: {order?.user_id?.city}
+                        <br />
+                        State: {order?.user_id?.state}
+                        <br />
+                    </Descriptions.Item>
+                </Descriptions>
+            }
             <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <p>Some contents...</p>
                 <p>Some contents...</p>
                 <p>Some contents...</p>
             </Modal>
         </>
+
     )
 };
 export default OrderDetails;

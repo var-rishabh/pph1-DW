@@ -95,7 +95,7 @@ const ProductDetails = () => {
           <Form.Item name="price" label="Price" wrapperCol={{ span: 8 }}>
             <InputNumber
               defaultValue={1000}
-              formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              formatter={(value) => `₹ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
             />
           </Form.Item>

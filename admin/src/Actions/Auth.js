@@ -18,7 +18,7 @@ export const Login = (email, password) => async (dispatch) => {
             type: "LoginSuccess",
             payload: data.user
         })
-        localStorage.setItem('accessToken', JSON.stringify(data.accessToken))
+        localStorage.setItem('accessToken', data?.accessToken)
         toast.success("Logged in successfully")
     } catch (error) {
         dispatch({
@@ -40,10 +40,11 @@ export const LoadUser = () => async (dispatch) => {
                 Authorization: `Bearer ${accessToken}`
             }
         }
-        const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/load`, config);
+        const data = await axios.get(`${process.env.REACT_APP_SERVER_URL}/load`, config);
+        localStorage.setItem('accessToken', data?.data?.accessToken)
         dispatch({
             type: "LoadUserSuccess",
-            payload: data.user
+            payload: data?.data?.user
         })
     } catch (error) {
         dispatch({
