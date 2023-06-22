@@ -73,6 +73,13 @@ button:active {
   border-radius: 8px;
 }
 
+.action__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
 .action__button button {
   font-family: "Mulish", sans-serif;
   font-style: normal;

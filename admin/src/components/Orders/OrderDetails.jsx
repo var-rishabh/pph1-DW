@@ -5,15 +5,25 @@ import { useState } from 'react';
 const currentOrder = products[0];
 const OrderDetails = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const handleCancel = () =>{
-
+    const handleCancel = () => {
+        isModalOpen(false);
     }
     const handleOk = () => {
-        
+        isModalOpen(false);
     }
     return (
         <>
-            <Descriptions title="Order Details" layout="vertical" bordered>
+            <div className="header">
+                <div className="heading">
+                   Order Details
+                </div>
+                <div className="header__button">
+                    <button onClick={() => window.location.href = '/orders'}>
+                        Back
+                    </button>
+                </div>
+            </div>
+            <Descriptions layout="vertical" bordered>
                 <Descriptions.Item label="Product">
                     <ProductItem
                         title={currentOrder.title}

@@ -5,6 +5,8 @@ import fullLogo from '../../Assets/fullLogo.png';
 import mainLogo from '../../Assets/mainLogo.png';
 import './MainLayout.css';
 import { Outlet } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Logout } from '../../Actions/Auth';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -29,6 +31,7 @@ const items = [
 ];
 
 const MainLayout = () => {
+  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   const currentKey = window.location.pathname.split('/')[1];
   const defaultSelectedKey = items.find((item) => item.label.toLowerCase() === currentKey)?.key || '1';
@@ -41,7 +44,7 @@ const MainLayout = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); window.location = '/login';
+    dispatch(Logout());
   }
   return (
     <Layout

@@ -40,14 +40,11 @@ const Payments = () => {
       sorter: (a, b) => a.transaction_type > b.transaction_type,
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <div className="action__button">
-          <button>More</button>
-        </div>
-      ),
-    }
+      title: 'Payment Response',
+      dataIndex: 'payment_response',
+      key: 'payment_response',
+      sorter: (a, b) => a.payment_response > b.payment_response,
+    },
   ];
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {

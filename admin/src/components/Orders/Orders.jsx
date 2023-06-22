@@ -11,7 +11,7 @@ const Orders = () => {
   const [selectedOption, setSelectedOption] = React.useState('all');
   const columns = [
     {
-      title: 'Name',
+      title: 'Product Name',
       dataIndex: 'title',
       key: 'title',
       width: 300,
