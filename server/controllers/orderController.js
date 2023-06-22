@@ -9,6 +9,7 @@ const {
   debitAmount,
 } = require("../services/walletServices");
 const { createOrder } = require("../services/orderServices");
+const { getUserDetail } = require("../services/userServices");
 
 module.exports.checkout = async (req, res) => {
   try {
@@ -115,6 +116,32 @@ module.exports.approveOrder = async (req, res) => {
   }
 };
 
+module.exports.completeOrder = async (req, res) => {
+  try {
+    const orderID = req.params.orderID;
+    const order = await Order.findById(orderID);
+    if (order) {
+      order["status"] = "completed";
+      await order.save();
+      return res.status(200).json({
+        status: "success",
+        message: "Order completed.",
+        data: order,
+      });
+    }
+    return res.status(404).json({
+      status: "failure",
+      message: "Order not found.",
+      data: null,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
 module.exports.cancelOrder = async (req, res) => {
   try {
     const orderID = req.params.orderID;
@@ -169,79 +196,6 @@ module.exports.addVacation = async (req, res) => {
           data: subscribeOrder,
         });
       }
-    }
-    return res.status(404).json({
-      status: "failure",
-      message: "Order not found.",
-      data: null,
-    });
-  } catch (err) {
-    return res.status(401).json({
-      status: "failure",
-      message: err.message,
-    });
-  }
-};
-
-module.exports.getAllOrders = async (req, res) => {
-  try {
-    const query = req.query.type;
-    var allOrders;
-    if (query === "buy") {
-      allOrders = await Order.find({ order_type: "buy" });
-    } else if (query === "trial") {
-      allOrders = await Order.find({ order_type: "trial" }).populate([
-        "trial_id",
-      ]);
-    } else if (query === "subscribe") {
-      allOrders = await Order.find({ order_type: "subscribe" }).populate([
-        "subscribe_id",
-      ]);
-    } else if (query === "all") {
-      allOrders = await Order.find();
-    } else if (query === "approved") {
-      allOrders = await Order.find({ status: "approved" });
-    } else if (query === "cancelled") {
-      allOrders = await Order.find({ status: "cancelled" });
-    } else if (query === "pending") {
-      allOrders = await Order.find({ status: "pending" });
-    } else {
-      allOrders = [];
-    }
-    if (allOrders.length > 0) {
-      return res.status(200).json({
-        status: "success",
-        message: "All orders found.",
-        data: allOrders,
-      });
-    }
-    return res.status(200).json({
-      status: "success",
-      message: "No orders yet.",
-      data: null,
-    });
-  } catch (err) {
-    return res.status(401).json({
-      status: "failure",
-      message: err.message,
-    });
-  }
-};
-
-module.exports.getOrder = async (req, res) => {
-  try {
-    const orderID = req.params.orderID;
-    const order = await Order.findById(orderID).populate([
-      "product_id",
-      "subscribe_id",
-      "trial_id",
-    ]);
-    if (order) {
-      return res.status(200).json({
-        status: "success",
-        message: "Order found successfully.",
-        data: order,
-      });
     }
     return res.status(404).json({
       status: "failure",
@@ -343,6 +297,83 @@ module.exports.getActiveServices = async (req, res) => {
         data: null,
       });
     }
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.getAllOrders = async (req, res) => {
+  try {
+    const query = req.query.type;
+    var allOrders;
+    if (query === "buy") {
+      allOrders = await Order.find({ order_type: "buy" });
+    } else if (query === "trial") {
+      allOrders = await Order.find({ order_type: "trial" }).populate([
+        "trial_id",
+      ]);
+    } else if (query === "subscribe") {
+      allOrders = await Order.find({ order_type: "subscribe" }).populate([
+        "subscribe_id",
+      ]);
+    } else if (query === "all") {
+      allOrders = await Order.find();
+    } else if (query === "approved") {
+      allOrders = await Order.find({ status: "approved" });
+    } else if (query === "cancelled") {
+      allOrders = await Order.find({ status: "cancelled" });
+    } else if (query === "completed") {
+      allOrders = await Order.find({ status: "completed" });
+    } else if (query === "pending") {
+      allOrders = await Order.find({ status: "pending" });
+    } else {
+      allOrders = [];
+    }
+    if (allOrders.length > 0) {
+      return res.status(200).json({
+        status: "success",
+        message: "All orders found.",
+        data: allOrders,
+      });
+    }
+    return res.status(200).json({
+      status: "success",
+      message: "No orders yet.",
+      data: null,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.getOrder = async (req, res) => {
+  try {
+    const orderID = req.params.orderID;
+    const order = await Order.findById(orderID).populate([
+      "product_id",
+      "subscribe_id",
+      "trial_id",
+    ]);
+    if (order) {
+      const getUser = await getUserDetail(order["user_id"]);
+      order._doc.user_id = getUser["data"];
+      return res.status(200).json({
+        status: "success",
+        message: "Order found successfully.",
+        data: order,
+      });
+    }
+    return res.status(404).json({
+      status: "failure",
+      message: "Order not found.",
+      data: null,
+    });
   } catch (err) {
     return res.status(401).json({
       status: "failure",
