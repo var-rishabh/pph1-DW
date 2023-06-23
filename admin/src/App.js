@@ -22,12 +22,12 @@ function App() {
   const { isAuthenticated } = useSelector((state) => state.authReducer);
   useEffect(() => {
     dispatch(LoadUser());
-  }, [dispatch]);
+  }, [dispatch, isAuthenticated]);
   return (
     <>
       <Router>
         <Routes>
-          {isAuthenticated ?
+          {!isAuthenticated ?
             <Route path="/" element={<Auth />} />
             :
             <Route path="/" element={<Layout />}>
