@@ -29,12 +29,20 @@ export const getProductDetails = (id) => async (dispatch) => {
         dispatch({ type: "ProductDetailsRequest" })
 
         const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/product/${id}`);
+        const imageList = data.data[0].images.map((image) => {
+            return {
+                uid: image,
+                name: image,
+                status: 'done',
+                url: image,
+            }
+        })
+        data.data[0].imageList = imageList;
 
         dispatch({
             type: "ProductDetailsSuccess",
-            payload: data.product
+            payload: data.data[0]
         })
-        toast.success("Product loaded successfully")
     } catch (error) {
         dispatch({
             type: "ProductDetailsFailure",
@@ -46,17 +54,42 @@ export const getProductDetails = (id) => async (dispatch) => {
 
 export const newProduct = (productData) => async (dispatch) => {
     try {
-
         dispatch({ type: "CreateProductRequest" })
+        const images = productData?.images?.fileList;
+        //Upload images to cloudinary 
+        const cloudinaryImages = [];
+        for (const element of images) {
+            const formData = new FormData();
+            formData.append('file', element.originFileObj);
+            formData.append('upload_preset', 'test-dudhwala');
+            formData.append('folder', 'products');
+            formData.append('cloud_name', 'dbxm13zgr');
+            const { data } = await axios.post('https://api.cloudinary.com/v1_1/dbxm13zgr/image/upload', formData);
+            cloudinaryImages.push(data.secure_url);
+        }
+        const uploadedImages = cloudinaryImages;
+        console.log(uploadedImages);
+        const details = {
+            title: productData.title,
+            category: productData.category,
+            description: productData.description,
+            price: productData.price,
+            size: productData.size_number + " " + productData.size_type,
+            in_stock: productData.inStock,
+            order_type: productData.orderTypes,
+            brand_name: productData.brand_name,
+            benefits: productData.benefits,
+            images: uploadedImages
+        }
+        console.log(details);
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`
             }
         }
 
-        const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/product/addProduct`, productData, config);
+        const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/product/addProduct`, details, config);
 
         dispatch({
             type: "CreateProductSuccess",
@@ -64,6 +97,7 @@ export const newProduct = (productData) => async (dispatch) => {
         })
         dispatch(getProducts())
         toast.success("Product created successfully")
+        window.location.href = "/products"
     } catch (error) {
         dispatch({
             type: "CreateProductFailure",
@@ -73,19 +107,46 @@ export const newProduct = (productData) => async (dispatch) => {
     }
 }
 
-export const updateProduct = (id, productData) => async (dispatch) => {
+export const updateProduct = (productData, id) => async (dispatch) => {
     try {
 
         dispatch({ type: "UpdateProductRequest" })
+        console.log(productData);
+        const images = productData?.images?.fileList;
+        const cloudinaryImages = [];
+        for (const element of images) {
+            const formData = new FormData();
+            formData.append('file', (element.originFileObj)? (element.originFileObj) :(element.url));
+            formData.append('upload_preset', 'test-dudhwala');
+            formData.append('folder', 'products');
+            formData.append('cloud_name', 'dbxm13zgr');
+            const {data } = await axios.post('https://api.cloudinary.com/v1_1/dbxm13zgr/image/upload', formData);
+            cloudinaryImages.push(data?.secure_url);
+        }
+        const uploadedImages = cloudinaryImages;
+        console.log(uploadedImages);
+        const details = {
+            title: productData.title,
+            category: productData.category,
+            description: productData.description,
+            price: productData.price,
+            size: productData.size_number + " " + productData.size_type,
+            in_stock: productData.inStock,
+            order_type: productData.orderTypes,
+            brand_name: productData.brand_name,
+            benefits: productData.benefits,
+            images: uploadedImages
+        }
+        console.log(details);
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`
             }
         }
 
-        const { data } = await axios.put(`${process.env.REACT_APP_SERVER_URL}/product/update/${id}`, productData, config);
+
+        const { data } = await axios.put(`${process.env.REACT_APP_SERVER_URL}/product/update/${id}`, details, config);
 
         dispatch({
             type: "UpdateProductSuccess",
@@ -93,12 +154,13 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         })
         dispatch(getProducts())
         toast.success("Product updated successfully")
+        window.location.href = "/products"
     } catch (error) {
         dispatch({
             type: "UpdateProductFailure",
-            payload: error.response.data.message
+            payload: error?.response?.data?.message
         })
-        toast.error(error.response.data.message)
+        toast.error(error?.response?.data?.message)
     }
 }
 
@@ -112,7 +174,7 @@ export const deleteProduct = (id) => async (dispatch) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        
+
         dispatch({
             type: "DeleteProductSuccess",
             payload: data.success

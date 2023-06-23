@@ -60,6 +60,7 @@ const Orders = () => {
       dataIndex: 'delivery_date',
       key: 'delivery_date',
       sorter: (a, b) => a.delivery_date > b.delivery_date,
+      defaultSortOrder: 'descend',
       render: (text, record) => (
         <>
           {new Date(record.delivery_date).toLocaleDateString()}
@@ -109,7 +110,7 @@ const Orders = () => {
         <Table
           dataSource={dataWithKey}
           columns={columns}
-          loading={false}
+          loading={loading}
           rowSelection={{
             type: 'checkbox',
             ...rowSelection,

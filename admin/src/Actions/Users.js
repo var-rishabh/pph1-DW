@@ -37,9 +37,8 @@ export const getUserDetails = (id) => async (dispatch) => {
         const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/user/${id}`, config);
         dispatch({
             type: "UserDetailsSuccess",
-            payload: data.user
+            payload: data?.data
         })
-        toast.success("User loaded successfully")
     } catch (error) {
         dispatch({
             type: "UserDetailsFailure",

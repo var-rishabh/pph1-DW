@@ -36,16 +36,12 @@ module.exports.loginAdmin = async (req, res) => {
       const isMatch = await bcrypt.compare(password, adminData["password"]);
       if (isMatch) {
         token = await adminData.generateAuthToken();
-        res.cookie("accessToken", token, {
-          expires: new Date(Date.now() + 2592000000),
-          httpOnly: true,
-        });
         return res.status(200).json({
           status: "success",
           message: "Admin logged in successfully.",
           data: {
             admin: adminData,
-            token: "Bearer " + token,
+            accessToken: token,
           },
         });
       } else {
@@ -62,6 +58,25 @@ module.exports.loginAdmin = async (req, res) => {
         data: null,
       });
     }
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.loadAdmin = async (req, res) => {
+  try {
+    let token;
+    token = await req.user.generateAuthToken();
+    return res.status(200).json({
+      status: "success",
+      message: "Admin logged in successfully.",
+      data: {
+        accessToken: token,
+      },
+    });
   } catch (err) {
     return res.status(401).json({
       status: "failure",
