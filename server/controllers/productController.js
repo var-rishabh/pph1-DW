@@ -110,7 +110,7 @@ module.exports.getProductsByCategory = async (req, res) => {
   try {
     var allProducts = [];
     const category = req.query.category;
-    const products = await Product.find({ category: category });
+    const products = await Product.find({ category: category }).limit(3);
     if (products.length > 0) {
       if (req.user) {
         const userData = await User.findOne({
