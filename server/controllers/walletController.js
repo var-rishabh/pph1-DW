@@ -5,6 +5,7 @@ const shortid = require("shortid");
 const crypto = require("crypto");
 const { instance } = require("../config/razorpay");
 const { getCurrentBalance } = require("../services/walletServices");
+const { getUserDetail } = require("../services/userServices");
 
 module.exports.getBalance = async (req, res) => {
   try {
@@ -141,6 +142,32 @@ module.exports.userverification = async (req, res) => {
         data: null,
       });
     }
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.getAllTransaction = async (req, res) => {
+  try {
+    const transactions = await Transaction.find({});
+    if (transactions.length > 0) {
+      for (const doc of transactions) {
+        const getUser = await getUserDetail(doc["user_id"]);
+        doc._doc.user_id = getUser["data"];
+      }
+      return res.status(200).json({
+        status: "success",
+        message: "Transaction history found.",
+        data: transactions,
+      });
+    }
+    return res.status(200).json({
+      status: "success",
+      message: "No Transaction history.",
+    });
   } catch (err) {
     return res.status(401).json({
       status: "failure",

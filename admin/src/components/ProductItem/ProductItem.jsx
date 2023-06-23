@@ -11,7 +11,7 @@ const ProductItem = ({ title, image, size }) => {
           {title}
         </div>
         <div className='product-item__details__size'>
-          weight: {size}
+          Weight: {size}
         </div>
       </div>
     </div>

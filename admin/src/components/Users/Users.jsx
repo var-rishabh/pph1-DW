@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { products } from '../../SampleData/products';
 import { Table } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../Actions/Users';
 
 
 const Users = () => {
-  const generateKey = (pre) => {
-    return `${pre}_${Math.random()}`;
-  }
-  const dataWithKey = products.map((product) => ({ ...product, key: generateKey(product.title) }));
-  const [tableData, setTableData] = React.useState(dataWithKey);
+  const dispatch = useDispatch();
+  const { users, loading } = useSelector((state) => state.userReducer);
+  const dataWithKey = users?.map((user) => {
+    return {
+      ...user,
+      key: user._id,
+    };
+  });
   const columns = [
     {
       title: 'Name',
@@ -21,12 +26,22 @@ const Users = () => {
       dataIndex: 'phone',
       key: 'phone',
       sorter: (a, b) => a.phone > b.phone,
+      render: (text, record) => (
+        <>
+          {record.phone ? record.phone : record.phoneData}
+        </>
+      )
     },
     {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
       sorter: (a, b) => a.email > b.email,
+      render: (text, record) => (
+        <>
+          {record.email ? record.email : record.emailData}
+        </>
+      )
     },
     {
       title: 'Address',
@@ -39,7 +54,9 @@ const Users = () => {
       key: 'action',
       render: (text, record) => (
         <div className="action__button">
-          <button>More</button>
+          <button onClick={() => window.location.href = `/users/${record._id}`}>
+            More
+          </button>
         </div>
       ),
     }
@@ -52,6 +69,9 @@ const Users = () => {
       name: record.title,
     }),
   };
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
   return (
     <div className="products">
       <div className="header">
@@ -61,9 +81,9 @@ const Users = () => {
       </div>
       <div className="table">
         <Table
-          dataSource={tableData}
+          dataSource={dataWithKey}
           columns={columns}
-          loading={false}
+          loading={loading}
           rowSelection={{
             type: 'checkbox',
             ...rowSelection,

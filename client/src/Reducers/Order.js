@@ -37,6 +37,18 @@ export const orderReducer = createReducer(initialState, (builder) => {
             state.loading = false;
             state.error = action.payload;
         })
+        .addCase("VacationRequest", (state) => {
+            state.loading = true;
+        })
+        .addCase("VacationFailure", (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+        .addCase("VacationSuccess", (state, action) => {
+            state.loading = false;
+            state.message = action.payload;
+            state.error = null;
+        })
         .addCase("OrderCreationRequest", (state) => {
             state.loading = true;
         })

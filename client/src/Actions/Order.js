@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { auth } from "../firebase";
 import { getIdToken } from 'firebase/auth';
+import { getCart } from './Cart';
 
 export const createOrder = (phone, address) => async (dispatch) => {
     try {
@@ -31,6 +32,7 @@ export const createOrder = (phone, address) => async (dispatch) => {
         dispatch({ type: "OrderCreationSuccess", payload: orderCreation.data.message });
         localStorage.removeItem("promo");
         toast.success(orderCreation.data.message);
+        dispatch(getCart());
     }
     catch (error) {
         console.log(error);
@@ -95,6 +97,43 @@ export const getServices = () => async (dispatch) => {
     catch (error) {
         console.log(error);
         dispatch({ type: "ServicesFailure", payload: error.response?.data.message });
+        toast.error(error.response?.data.message);
+    }
+}
+
+export const vacation = (subscribe_id, start_date, end_date) => async (dispatch) => {
+    try {
+        dispatch({ type: "VacationRequest" });
+        let token;
+        await getIdToken(auth.currentUser)
+            .then((idToken) => {
+                token = idToken;
+            })
+            .catch((error) => {
+                dispatch({ type: "VacationFailure", payload: error.message });
+                toast.error(error.message);
+            });
+        const vacation = await axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/order/vacation`,
+            {
+                subscribe_id,
+                start_date,
+                end_date,
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        dispatch({ type: "VacationSuccess", payload: vacation.data.message });
+        toast.success(vacation.data.message);
+        dispatch(getServices());
+    }
+    catch (error) {
+        console.log(error);
+        dispatch({ type: "VacationFailure", payload: error.response?.data.message });
         toast.error(error.response?.data.message);
     }
 }

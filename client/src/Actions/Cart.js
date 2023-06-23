@@ -3,7 +3,6 @@ import { getIdToken } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { auth } from '../firebase';
 import { getAllProducts, getProductByCategory, getProductDetails } from './Product';
-import { compose } from '@reduxjs/toolkit';
 
 export const getCart = () => async (dispatch) => {
     try {

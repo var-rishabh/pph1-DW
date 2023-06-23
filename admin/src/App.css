@@ -73,6 +73,30 @@ button:active {
   border-radius: 8px;
 }
 
+.action__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.action__button--group {
+  display: flex;
+  align-items: center;
+}
+
+.action__button--group .green button{
+  margin-right: 1rem;
+  color: green;
+  border: 2px solid green;
+}
+
+.action__button--group .red button{
+  margin-right: 1rem;
+  color: red;
+  border: 2px solid red;
+}
+
 .action__button button {
   font-family: "Mulish", sans-serif;
   font-style: normal;
