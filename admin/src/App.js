@@ -14,6 +14,8 @@ import ProductDetails from './components/ProductDetails/ProductDetails';
 import Auth from './components/Auth/Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoadUser } from './Actions/Auth';
+import UserDetails from './components/Users/UserDetails';
+import CouponDetails from './components/Coupons/CouponDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +40,8 @@ function App() {
               <Route path="/messages" element={<Messages />} />
               <Route path="/orders/:id" element={<OrderDetails />} />
               <Route path="/products/:id" element={<ProductDetails />} />
+              <Route path="/users/:id" element={<UserDetails/>}/>
+              <Route path="/coupons/add" element={<CouponDetails/>}/>
             </Route>
           }
         </Routes>

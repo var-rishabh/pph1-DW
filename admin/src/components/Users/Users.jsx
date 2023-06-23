@@ -7,7 +7,7 @@ import { getUsers } from '../../Actions/Users';
 
 const Users = () => {
   const dispatch = useDispatch();
-  const {users, loading} = useSelector((state) => state.userReducer);
+  const { users, loading } = useSelector((state) => state.userReducer);
   const dataWithKey = users?.map((user) => {
     return {
       ...user,
@@ -26,9 +26,9 @@ const Users = () => {
       dataIndex: 'phone',
       key: 'phone',
       sorter: (a, b) => a.phone > b.phone,
-      render : (text, record) => (
+      render: (text, record) => (
         <>
-          {record.phone? record.phone : record.phoneData}
+          {record.phone ? record.phone : record.phoneData}
         </>
       )
     },
@@ -37,9 +37,9 @@ const Users = () => {
       dataIndex: 'email',
       key: 'email',
       sorter: (a, b) => a.email > b.email,
-      render : (text, record) => (
+      render: (text, record) => (
         <>
-          {record.email? record.email : record.emailData}
+          {record.email ? record.email : record.emailData}
         </>
       )
     },
@@ -54,7 +54,9 @@ const Users = () => {
       key: 'action',
       render: (text, record) => (
         <div className="action__button">
-          <button>More</button>
+          <button onClick={() => window.location.href = `/users/${record._id}`}>
+            More
+          </button>
         </div>
       ),
     }

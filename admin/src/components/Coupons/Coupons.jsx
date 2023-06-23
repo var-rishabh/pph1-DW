@@ -93,7 +93,7 @@ const Coupons = () => {
       width: 200,
       render: (text, record) => (
         <div className="action__buttons">
-          <div className="action__button" onClick={() => {setCouponId(record._id); setIsModalOpen(true)}}>
+          <div className="action__button" onClick={() => { setCouponId(record._id); setIsModalOpen(true) }}>
             <button>Delete</button>
           </div>
         </div>
@@ -119,7 +119,9 @@ const Coupons = () => {
             Coupons
           </div>
           <div className="header__button">
-            <button>Add Coupon<span>+</span></button>
+            <button onClick={() => { window.location.href = "/coupons/add" }}>
+              Add Coupon<span>+</span>
+            </button>
           </div>
         </div>
         <div className="table">
@@ -137,7 +139,7 @@ const Coupons = () => {
             sticky={true}
             sortDirections={['descend', 'ascend']}
             scroll={{ x: 1250, y: 430 }}
-  
+
           />
         </div>
       </div>
