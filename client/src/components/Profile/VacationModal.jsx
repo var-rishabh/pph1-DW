@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 const VacationModal = ({ open, setOpen, order }) => {
   const dispatch = useDispatch();
   const formatDate = (date) => {
+    if (!date) return "Not Specified";
     const d = new Date(date);
     const day = d.getDate();
     const month = d.getMonth() + 1;
@@ -20,6 +21,7 @@ const VacationModal = ({ open, setOpen, order }) => {
   const [endDate, setEndDate] = useState();
   const handleSubmit = () => {
     dispatch(vacation(order._id, startDate, endDate));
+    setOpen(false);
   };
   return (
     <ModalContainer open={open} setOpen={setOpen}>

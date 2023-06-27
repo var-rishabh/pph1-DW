@@ -47,7 +47,6 @@ const Checkout = () => {
     const [address, setAddress] = React.useState((addressDetails) ? addressDetails : '');
     const [city, setCity] = React.useState((cityDetails) ? cityDetails : '');
     const [zip, setZip] = React.useState((zipDetails) ? zipDetails : '');
-    const [country, setCountry] = React.useState((countryDetails) ? countryDetails : '');
     const [promo, setPromo] = React.useState(localStorage.getItem("promo") || '');
     const [isPromo, setIsPromo] = React.useState(cart?.discount ? true : false);
     const checkoutHandler = () => {
@@ -56,12 +55,16 @@ const Checkout = () => {
                 toast.error("Enter Phone Number");
                 return;
             }
-            if (address==="" || city==="" || zip==="" || country==="") {
+            if (address==="" || city==="" || zip==="" ) {
                 toast.error("Enter Address Details");
                 return;
             }
-            dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "", country: country || "" }));
-            const addressLine = `${address}, ${city}, ${zip}, ${country}`;
+            if (zip.length !== 6) {
+                toast.error("Enter Valid Zip Code");
+                return;
+            }
+            dispatch(updateUserProfile({ name: name || "", address: address || "", altAddress: user.altAddress || "", phoneData: phone || "", alternatePhone: user.alternatePhone || "", emailData: email || "", zip: zip || "", city: city || "" }));
+            const addressLine = `${address}, ${city}, ${zip}`;
             dispatch(createOrder(phone, addressLine))
         } else {
             toast.error("Cart is Empty");
@@ -122,7 +125,7 @@ const Checkout = () => {
                                 <FormInput label='City' type='text' id='city' value={city} setInputValue={setCity} />
                             </div>
                             <div className='checkout__left--form--cp--zip'>
-                                <FormInput label='Zip Code' type='text' id='zip' value={zip} setInputValue={setZip} />
+                                <FormInput label='Zip Code' type='text' id='zip' value={zip} setInputValue={setZip}  pattern="^[0-9]{0,6}$" />
                             </div>
                         </div>
                         {/* <div className='checkout__left--form--item'>

@@ -14,7 +14,7 @@ import {
 
 //import firestore
 import { doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
-
+import axios from "axios";
 import { toast } from 'react-toastify';
 
 const addUser = async () => {
@@ -45,6 +45,33 @@ export const loginWithGoogle = () => async (dispatch) => {
         .then(async (result) => {
             // Redirect to home page after login
             await addUser();
+            const uid = result.user.uid;
+            const db = store;
+            const docRef = doc(db, "users", uid);
+            const snapshot = await getDoc(docRef);
+            if (snapshot.exists()) {
+                const userData = {
+                    ...result.user,
+                    ...snapshot.data()
+                }
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: userData
+                });
+            } else {
+                await setDoc(doc(db, "users", uid), {
+                    city: "",
+                    area: "",
+                    email: result.user.email,
+                    name: result.user.displayName,
+                    photo: result.user.photoURL,
+                });
+            
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: result.user
+                });
+            }
             window.location.href = "/";
             dispatch({
                 type: "LoginSuccess",
@@ -83,6 +110,33 @@ export const verifyOTP = (otp) => async (dispatch) => {
         .then(async (result) => {
             // Redirect to home page after login
             await addUser();
+            const uid = result.user.uid;
+            const db = store;
+            const docRef = doc(db, "users", uid);
+            const snapshot = await getDoc(docRef);
+            if (snapshot.exists()) {
+                const userData = {
+                    ...result.user,
+                    ...snapshot.data()
+                }
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: userData
+                });
+            } else {
+                await setDoc(doc(db, "users", uid), {
+                    city: "",
+                    area: "",
+                    email: result.user.email,
+                    name: result.user.displayName,
+                    photo: result.user.photoURL,
+                });
+            
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: result.user
+                });
+            }
             window.location.href = "/";
 
             dispatch({
@@ -292,6 +346,82 @@ export const updateUserProfile = (data) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: "UpdateProfileFailure",
+            payload: error.message
+        });
+        toast.error(error.message);
+    }
+}
+
+export const updateProfileImage = (file) => async (dispatch) => {
+    dispatch({ type: "UpdateProfileImageRequest" });
+    const user = auth.currentUser;
+    const userDetails = user.reloadUserInfo;
+    try {
+        // Upload image to Cloudinary
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "test-dudhwala");
+        formData.append("folder", "users");
+        formData.append("cloud_name", "dbxm13zgr");
+        const { data } = await axios.post(
+            `https://api.cloudinary.com/v1_1/dbxm13zgr/image/upload`,
+            formData
+        );
+
+        // Update user info in firestore
+        const db = store;
+        const docRef = doc(db, "users", user.uid);
+        getDoc(docRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                updateDoc(docRef, {
+                    ...userDetails,
+                    profileImage: data.secure_url
+                }).then(() => {
+                    const userData = {
+                        ...userDetails,
+                        profileImage: data.secure_url
+                    }
+                    dispatch({
+                        type: "UpdateProfileImageSuccess",
+                        payload: userData
+                    });
+                    dispatch(loadUser());
+                    toast.success("Profile Image Updated");
+                }).catch((error) => {
+                    dispatch({
+                        type: "UpdateProfileImageFailure",
+                        payload: error.message
+                    });
+                    toast.error(error.message);
+                });
+            } else {
+                setDoc(doc(db, "users", user.uid), {
+                    ...userDetails,
+                    profileImage: data.secure_url
+                }).then(() => {
+                    const userData = {
+                        ...userDetails,
+                        profileImage: data.secure_url
+                    }
+                    dispatch({
+                        type: "UpdateProfileImageSuccess",
+                        payload: userData
+                    });
+                    toast.success("Profile Image Updated");
+                    dispatch(loadUser());
+                }).catch((error) => {
+                    dispatch({
+                        type: "UpdateProfileImageFailure",
+                        payload: error.message
+                    });
+                    toast.error(error.message);
+                });
+            }
+        }
+        );
+    } catch (error) {
+        dispatch({
+            type: "UpdateProfileImageFailure",
             payload: error.message
         });
         toast.error(error.message);

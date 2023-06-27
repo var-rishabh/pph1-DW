@@ -54,7 +54,7 @@ const HeaderMain = () => {
             </div>
           ) : user ? (
             <a href="/profile">
-              <img src={(user.photoUrl) ? (user.photoUrl) : (profileSample)} alt="profile" />
+              <img src={user?.photoUrl ? user?.photoUrl : user?.profileImage || profileSample} alt="profile" />
             </a>) : (
             <a href="/login" className='header-main__profile--button'>
               Login

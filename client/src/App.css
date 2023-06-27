@@ -55,6 +55,10 @@ button:active {
   transform: scale(0.98);
 }
 
+button:disabled {
+  transform: none;
+}
+
 @keyframes loading {
   to {
     transform: rotate(360deg);
