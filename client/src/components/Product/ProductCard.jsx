@@ -13,6 +13,7 @@ const ProductCard = ({
   size,
   _id,
   orderType,
+  order_type,
   quantity = 0,
 }) => {
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ const ProductCard = ({
       <CartModal
         open={showCartModal}
         setOpen={setShowCartModal}
-        product={{ images, description, title, _id }}
+        product={{ images, description, title, _id, order_type}}
       />
     </>
   );
