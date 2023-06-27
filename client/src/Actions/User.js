@@ -45,6 +45,33 @@ export const loginWithGoogle = () => async (dispatch) => {
         .then(async (result) => {
             // Redirect to home page after login
             await addUser();
+            const uid = result.user.uid;
+            const db = store;
+            const docRef = doc(db, "users", uid);
+            const snapshot = await getDoc(docRef);
+            if (snapshot.exists()) {
+                const userData = {
+                    ...result.user,
+                    ...snapshot.data()
+                }
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: userData
+                });
+            } else {
+                await setDoc(doc(db, "users", uid), {
+                    city: "",
+                    area: "",
+                    email: result.user.email,
+                    name: result.user.displayName,
+                    photo: result.user.photoURL,
+                });
+            
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: result.user
+                });
+            }
             window.location.href = "/";
             dispatch({
                 type: "LoginSuccess",
@@ -83,6 +110,33 @@ export const verifyOTP = (otp) => async (dispatch) => {
         .then(async (result) => {
             // Redirect to home page after login
             await addUser();
+            const uid = result.user.uid;
+            const db = store;
+            const docRef = doc(db, "users", uid);
+            const snapshot = await getDoc(docRef);
+            if (snapshot.exists()) {
+                const userData = {
+                    ...result.user,
+                    ...snapshot.data()
+                }
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: userData
+                });
+            } else {
+                await setDoc(doc(db, "users", uid), {
+                    city: "",
+                    area: "",
+                    email: result.user.email,
+                    name: result.user.displayName,
+                    photo: result.user.photoURL,
+                });
+            
+                dispatch({
+                    type: "LoginSuccess",
+                    payload: result.user
+                });
+            }
             window.location.href = "/";
 
             dispatch({
