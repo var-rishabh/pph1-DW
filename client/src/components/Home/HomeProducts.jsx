@@ -6,8 +6,8 @@ import { getProductByCategory } from '../../Actions/Product';
 
 const HomeProducts = () => {
     const dispatch = useDispatch();
-    const products = useSelector(state => state.productReducer.products);
-    const {isAuthenticated} = useSelector(state => state.userReducer);
+    const { productsByCategory, loading } = useSelector(state => state.productReducer);
+    const { isAuthenticated } = useSelector(state => state.userReducer);
     useEffect(() => {
         dispatch(getProductByCategory("Dairy"));
     }, [dispatch, isAuthenticated]);
@@ -19,13 +19,17 @@ const HomeProducts = () => {
                     Dairy
                 </div>
                 <div className='home-products__list--items'>
-                    {products.map((product) => {
-                        return (
-                            <div className='home-products__list--items--item' key={product._id}>
-                                <HomeProductCard product={product} />
-                            </div>
-                        )
-                    })}
+
+                    {loading ? <div className="loading">
+                        <div className="loading__circle"></div>
+                    </div> :
+                        productsByCategory.map((product) => {
+                            return (
+                                <div className='home-products__list--items--item' key={product._id}>
+                                    <HomeProductCard product={product} />
+                                </div>
+                            )
+                        })}
                 </div>
             </div>
         </div>

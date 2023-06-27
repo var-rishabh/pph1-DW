@@ -23,7 +23,7 @@ const HistoryModal = ({ open, setOpen }) => {
                     <div className="history-modal__list">
                         {   (!history || history?.length === 0) ? <div className="history-modal__list--empty">No orders yet</div> :
                             history?.map((item) => (
-                                <HistoryItem key={item} data={item} />
+                                <HistoryItem key={item._id} data={item} />
                             ))
                         }
                     </div>
