@@ -148,6 +148,10 @@ module.exports.getCartDiscount = async (coupon_code, userCart) => {
     } else if (getCoupon["discount_type"] === "fixed") {
       discountAmount = getCoupon["discount"];
     }
+    const cartTotal = userCart["sub_total"] + userCart["gst"]
+    if (cartTotal < discountAmount) {
+      discountAmount = cartTotal;
+    }
     response["status"] = "success";
     response["message"] = "Coupon code applied";
     response["data"] = discountAmount;
