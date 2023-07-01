@@ -124,8 +124,7 @@ const VacationModal = ({ open, setOpen, order }) => {
                 will be made during the vacation period.
               </div>
               <div className="vacation-modal__form--vacation--terms--item">
-                2. Once any service is vacant for specific date then vacant date
-                will not be changed.
+                2. Adding new vacation dates will override the previous ones.
               </div>
             </div>
           </div>

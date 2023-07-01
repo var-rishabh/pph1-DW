@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import Profile from './components/Profile/Profile';
 import HowWeDo from './components/HowWeDo/HowWeDo';
 import WhatWeDo from './components/WhatWeDo/WhatWeDo';
+import Gallery from './components/Gallery/Gallery';
 import PleaseLogin from './components/PleaseLogin/PleaseLogin';
 import Contact from './components/Contact/Contact';
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/howwedo" element={<HowWeDo />} />
           <Route path="/whatwedo" element={<WhatWeDo />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/product" element={<ProductCatalogue />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/process" element={<Process />} />
