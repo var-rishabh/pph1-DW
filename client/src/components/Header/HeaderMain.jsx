@@ -36,6 +36,9 @@ const HeaderMain = () => {
               </div>
             </li>
             <li>
+              <a href="/gallery">Gallery</a>
+            </li>
+            <li>
               <a href="/product">Product</a>
             </li>
             <li>
