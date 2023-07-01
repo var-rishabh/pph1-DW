@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Cart = require("../models/cartModel");
 
 const admin = require("../config/firebase");
 const db = admin.firestore();
@@ -47,4 +48,18 @@ module.exports.getUserDetail = async (userID) => {
       data: null,
     };
   }
+};
+
+module.exports.createUserWithFireID = async (userFireID) => {
+  const newUser = new User();
+  newUser["user_firebase_id"] = userFireID;
+  await newUser.save();
+
+  const addToCart = new Cart({
+    user_id: newUser._id,
+    items: [],
+    total: 0,
+  });
+  await addToCart.save();
+  return newUser;
 };

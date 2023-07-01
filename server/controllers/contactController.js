@@ -1,12 +1,15 @@
 const Contact = require("../models/contactModal");
 const User = require("../models/userModel");
 
-const { getCurrentBalance } = require("../services/walletServices");
+const { createUserWithFireID } = require("../services/userServices");
 
 module.exports.sendMessage = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userFireId && !userData) {
+      userData = await createUserWithFireID(userFireId);
+    }
     if (userData) {
       const userMessage = new Contact({
         user_id: userData._id,

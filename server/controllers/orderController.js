@@ -9,13 +9,16 @@ const {
   debitAmount,
 } = require("../services/walletServices");
 const { createOrder } = require("../services/orderServices");
-const { getUserDetail } = require("../services/userServices");
+const { getUserDetail, createUserWithFireID } = require("../services/userServices");
 
 module.exports.checkout = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const { phone, address } = req.body;
     const userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userFireId && !userData) {
+      userData = await createUserWithFireID(userFireId);
+    }
     if (userData) {
       const userCart = await Cart.findOne({ user_id: userData._id });
       if (userCart) {
@@ -227,6 +230,9 @@ module.exports.getOrdersOfUser = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userFireId && !userData) {
+      userData = await createUserWithFireID(userFireId);
+    }
     if (userData) {
       const query = req.query.orderType;
       var allOrders;
@@ -287,6 +293,9 @@ module.exports.getActiveServices = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userFireId && !userData) {
+      userData = await createUserWithFireID(userFireId);
+    }
     if (userData) {
       const userID = userData._id;
       const activeServices = { trials: "", subscribes: "" };

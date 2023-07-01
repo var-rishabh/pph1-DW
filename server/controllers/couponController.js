@@ -4,6 +4,7 @@ const Cart = require("../models/cartModel");
 
 const voucher_codes = require("voucher-code-generator");
 const { getCartDiscount } = require("../services/cartServices");
+const { createUserWithFireID } = require("../services/userServices");
 
 module.exports.generateCoupon = async (req, res) => {
   try {
@@ -81,6 +82,9 @@ module.exports.applyCoupon = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userFireId && !userData) {
+      userData = await createUserWithFireID(userFireId);
+    }
     if (userData) {
       const { coupon_code, cartID } = req.body;
       const userCart = await Cart.findOne({ _id: cartID });
@@ -136,6 +140,9 @@ module.exports.removeCoupon = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userFireId && !userData) {
+      userData = await createUserWithFireID(userFireId);
+    }
     if (userData) {
       const { coupon_code, cartID } = req.body;
       const coupon = await Coupon.findOne({ coupon_code: coupon_code });
