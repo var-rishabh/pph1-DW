@@ -159,7 +159,7 @@ const Product = () => {
               </ul>
             </div>
           </div>
-          <div className="mobiile_view_buttons">
+          <div className="mobile_view_buttons">
             {product.quantity > 0 ? (
               <div className="product__content--item">
                 <div className="product__content--item-type">

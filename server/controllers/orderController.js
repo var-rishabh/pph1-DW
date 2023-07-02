@@ -9,7 +9,10 @@ const {
   debitAmount,
 } = require("../services/walletServices");
 const { createOrder } = require("../services/orderServices");
-const { getUserDetail, createUserWithFireID } = require("../services/userServices");
+const {
+  getUserDetail,
+  createUserWithFireID,
+} = require("../services/userServices");
 
 module.exports.checkout = async (req, res) => {
   try {

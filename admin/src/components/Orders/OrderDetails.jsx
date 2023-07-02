@@ -63,10 +63,10 @@ const OrderDetails = () => {
                                     </div>
                                 </div>
                             </Descriptions.Item>
-                            : <Descriptions.Item label="Trail Details">
+                            : <Descriptions.Item label="Trial Details">
                                 <div className="action__buttons">
                                     <div className="action__button">
-                                        <button onClick={() => { setIsModalOpen(true); setModalType("trail") }}>
+                                        <button onClick={() => { setIsModalOpen(true); setModalType("trial") }}>
                                             Open To View
                                         </button>
                                     </div>

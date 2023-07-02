@@ -99,7 +99,7 @@
 }
 .product__info--left--buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 2% 0;
 }
 
@@ -132,6 +132,7 @@
   background-color: var(--primary-color);
   border-radius: 5px;
   border: none;
+  margin: 0 3%;
 }
 
 .product__info--left--buttons--buy:hover {
@@ -220,7 +221,7 @@
 }
 
 .product__info--top--title,
-.mobiile_view_buttons {
+.mobile_view_buttons {
   display: none;
 }
 
