@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Cart = require("../models/cartModel");
 
 const { getOrderTypeAndQuantity } = require("../services/cartServices");
+const { createUserWithFireID } = require("../services/userServices");
 
 module.exports.addProduct = async (req, res) => {
   try {
@@ -110,12 +111,20 @@ module.exports.getProductsByCategory = async (req, res) => {
   try {
     var allProducts = [];
     const category = req.query.category;
-    const products = await Product.find({ category: category }).limit(3);
+    const products = await Product.find({
+      category: category,
+      order_type: {
+        $all: ["buy", "subscribe", "trial"],
+      },
+    }).limit(3);
     if (products.length > 0) {
       if (req.user) {
-        const userData = await User.findOne({
+        let userData = await User.findOne({
           user_firebase_id: req.user.user_id,
         });
+        if (req.user.user_id && !userData) {
+          userData = await createUserWithFireID(userFireId);
+        }
         var userCart = await Cart.findOne({ user_id: userData._id });
         if (!userCart) {
           userCart = new Cart({

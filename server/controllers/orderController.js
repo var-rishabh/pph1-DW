@@ -10,6 +10,7 @@ const {
 } = require("../services/walletServices");
 const { createOrder } = require("../services/orderServices");
 const { getUserDetail } = require("../services/userServices");
+const Referral = require("../models/referralModel");
 
 module.exports.checkout = async (req, res) => {
   try {
@@ -19,6 +20,7 @@ module.exports.checkout = async (req, res) => {
     if (userData) {
       const userCart = await Cart.findOne({ user_id: userData._id });
       if (userCart) {
+        const referralCode = userCart["coupon_code"];
         if (userCart["items"].length > 0) {
           const currentBalance = await getCurrentBalance(userData._id);
           if (currentBalance >= userCart["total"]) {
@@ -49,6 +51,15 @@ module.exports.checkout = async (req, res) => {
             userCart["discount"] = 0;
             userCart["total"] = 0;
             await userCart.save();
+
+            const referralCodeDetails = await Referral.findOne({ referral_code: referralCode });
+            referralCodeDetails["referrals"].push(userCart["user_id"]);
+            await referralCodeDetails.save();
+
+            const userRef = await Referral.findOne({ user_id: userCart["user_id"]});
+            userRef["refree"] = referralCodeDetails["user_id"];
+            await userRef.save();
+            
             return res.status(200).json({
               status: "success",
               message: "Checkout successful.",
@@ -176,15 +187,22 @@ module.exports.addVacation = async (req, res) => {
       var { start_date, end_date } = req.body;
       start_date = new Date(start_date);
       end_date = new Date(end_date);
+      let startMonth = start_date.getMonth() + 1;
+      let endMonth = end_date.getMonth() + 1;
+      let startDate = start_date.getDate();
+      let endDate = end_date.getDate();
       if (
-        start_date >= subscribeOrder["start_date"] &&
-        end_date <= subscribeOrder["end_date"]
+        startMonth === subscribeOrder["start_date"].getMonth() + 1 &&
+        endMonth === subscribeOrder["end_date"].getMonth() + 1 &&
+        startDate >= subscribeOrder["start_date"].getDate() &&
+        endDate <= subscribeOrder["end_date"].getDate()
       ) {
         subscribeOrder["vacation"] = {
           start_date,
           end_date,
         };
         subscribeOrder["deliveries"].forEach((delivery) => {
+          delivery["user_need"] = true;
           if (delivery["date"] >= start_date && delivery["date"] <= end_date) {
             delivery["user_need"] = false;
           }
@@ -194,6 +212,12 @@ module.exports.addVacation = async (req, res) => {
           status: "success",
           message: "Vacation added successfully.",
           data: subscribeOrder,
+        });
+      } else {
+        return res.status(400).json({
+          status: "failure",
+          message: "Wrong vacation dates.",
+          data: null,
         });
       }
     }
@@ -316,29 +340,27 @@ module.exports.getAllOrders = async (req, res) => {
     } else if (query === "trial") {
       allOrders = await Order.find({ order_type: "trial" }).populate([
         "trial_id",
-        "product_id"
+        "product_id",
       ]);
     } else if (query === "subscribe") {
       allOrders = await Order.find({ order_type: "subscribe" }).populate([
         "subscribe_id",
-        "product_id"
-      ]);
-    } else if (query === "all") {
-      allOrders = await Order.find().populate([
         "product_id",
       ]);
+    } else if (query === "all") {
+      allOrders = await Order.find().populate(["product_id"]);
     } else if (query === "approved") {
       allOrders = await Order.find({ status: "approved" }).populate([
         "product_id",
-      ]);;
+      ]);
     } else if (query === "cancelled") {
       allOrders = await Order.find({ status: "cancelled" }).populate([
         "product_id",
-      ]);;
+      ]);
     } else if (query === "completed") {
       allOrders = await Order.find({ status: "completed" }).populate([
         "product_id",
-      ]);;
+      ]);
     } else if (query === "pending") {
       allOrders = await Order.find({ status: "pending" }).populate([
         "product_id",

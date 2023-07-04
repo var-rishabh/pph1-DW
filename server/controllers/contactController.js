@@ -1,8 +1,6 @@
 const Contact = require("../models/contactModal");
 const User = require("../models/userModel");
 
-const { getCurrentBalance } = require("../services/walletServices");
-
 module.exports.sendMessage = async (req, res) => {
   try {
     const userFireId = req.user.user_id;

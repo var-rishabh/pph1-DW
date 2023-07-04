@@ -55,6 +55,9 @@ const HistoryItem = ({ data }) => {
         <div className="history-item__right--price">
           Price: ₹ {data?.final_price}
         </div>
+        <div className="history-item__right--price">
+          Quantity: {data?.quantity}
+        </div>
       </div>
     </div>
   );

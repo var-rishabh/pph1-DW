@@ -20,9 +20,31 @@ const Product = () => {
   const [showTryModal, setShowTryModal] = React.useState(false);
   const [showBuyModal, setShowBuyModal] = React.useState(false);
   const [showSubscribeModal, setShowSubscribeModal] = React.useState(false);
+  const imageLength = product.images?.length || 0;
+  const [imageIndex, setImageIndex] = React.useState(0);
+  const [leftButton, setLeftButton] = React.useState(false);
+  const [rightButton, setRightButton] = React.useState(false);
+  const handleImageLeft = () => {
+      setImageIndex(imageIndex - 1);
+  };
+  const handleImageRight = () => {
+      setImageIndex(imageIndex + 1);
+  };
   const handleDelete = () => {
     dispatch(removeFromCart(id));
   };
+  useEffect(() => {
+    if (imageIndex === 0) {
+      setLeftButton(false);
+    } else {
+      setLeftButton(true);
+    }
+    if (imageIndex === imageLength - 1) {
+      setRightButton(false);
+    } else {
+      setRightButton(true);
+    }
+  }, [imageIndex, imageLength, product.images, loading]);
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getProductDetails(id));
@@ -39,7 +61,11 @@ const Product = () => {
           <div className="product__info--left">
             <div className="product__info--top--title">{product.title}</div>
             <div className="product__info--left--image">
-              <img src={product.images && product.images[0]} alt={product.title} />
+              <button className="product__info--left--image--button" onClick={handleImageLeft} disabled={!leftButton}>
+                {"<"}</button>
+              <img src={product.images && product.images[imageIndex]} alt={product.title} />
+              <button className="product__info--left--image--button" onClick={handleImageRight} disabled={!rightButton}>
+                {">"}</button>
             </div>
             <div className="product__info--left--title">{product.title}</div>
             <div className="webview_buttons">
@@ -52,8 +78,8 @@ const Product = () => {
                     {product.orderType === "buy"
                       ? "Quantity: " + product.quantity
                       : product.orderType === "trial"
-                      ? "Days: " + product.quantity
-                      : "Months: " + product.quantity}
+                        ? "Days: " + product.quantity
+                        : "Months: " + product.quantity}
                   </div>
                   <button
                     className="product__content--item-button"
@@ -64,30 +90,30 @@ const Product = () => {
                 </div>
               ) : (
                 <div className="product__info--left--buttons">
-                  <button
+                  {product.order_type?.includes("trial") && <button
                     className="product__info--left--buttons--try"
                     onClick={() => {
                       setShowTryModal(true);
                     }}
                   >
                     Try
-                  </button>
-                  <button
+                  </button>}
+                  {product.order_type?.includes("buy") &&<button
                     className="product__info--left--buttons--buy"
                     onClick={() => {
                       setShowBuyModal(true);
                     }}
                   >
                     Buy
-                  </button>
-                  <button
+                  </button>}
+                  {product.order_type?.includes("subscribe") &&<button
                     className="product__info--left--buttons--subscribe"
                     onClick={() => {
                       setShowSubscribeModal(true);
                     }}
                   >
                     Subscribe
-                  </button>
+                  </button>}
                 </div>
               )}
             </div>
@@ -133,7 +159,7 @@ const Product = () => {
               </ul>
             </div>
           </div>
-          <div className="mobiile_view_buttons">
+          <div className="mobile_view_buttons">
             {product.quantity > 0 ? (
               <div className="product__content--item">
                 <div className="product__content--item-type">
@@ -143,8 +169,8 @@ const Product = () => {
                   {product.orderType === "buy"
                     ? "Quantity: " + product.quantity
                     : product.orderType === "trial"
-                    ? "Days: " + product.quantity
-                    : "Months: " + product.quantity}
+                      ? "Days: " + product.quantity
+                      : "Months: " + product.quantity}
                 </div>
                 <button
                   className="product__content--item-button"

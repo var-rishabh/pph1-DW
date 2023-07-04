@@ -2,6 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
     products: [],
+    productsByCategory: [],
     product: {},
     loading: false,
     error: null
@@ -44,7 +45,7 @@ export const productReducer = createReducer(initialState, (builder) => {
         })
         .addCase("ProductByCategorySuccess", (state, action) => {
             state.loading = false;
-            state.products = action.payload;
+            state.productsByCategory = action.payload;
             state.error = null;
         })
         .addCase("ClearProductError", (state) => {

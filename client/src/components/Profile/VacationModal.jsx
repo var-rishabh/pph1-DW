@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 const VacationModal = ({ open, setOpen, order }) => {
   const dispatch = useDispatch();
   const formatDate = (date) => {
+    if (!date) return "Not Specified";
     const d = new Date(date);
     const day = d.getDate();
     const month = d.getMonth() + 1;
@@ -20,6 +21,7 @@ const VacationModal = ({ open, setOpen, order }) => {
   const [endDate, setEndDate] = useState();
   const handleSubmit = () => {
     dispatch(vacation(order._id, startDate, endDate));
+    setOpen(false);
   };
   return (
     <ModalContainer open={open} setOpen={setOpen}>
@@ -122,8 +124,7 @@ const VacationModal = ({ open, setOpen, order }) => {
                 will be made during the vacation period.
               </div>
               <div className="vacation-modal__form--vacation--terms--item">
-                2. Once any service is vacant for specific date then vacant date
-                will not be changed.
+                2. Adding new vacation dates will override the previous ones.
               </div>
             </div>
           </div>

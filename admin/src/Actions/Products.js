@@ -60,15 +60,14 @@ export const newProduct = (productData) => async (dispatch) => {
     const images = productData?.images?.fileList;
     //Upload images to cloudinary
     const cloudinaryImages = [];
-    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
     for (const element of images) {
       const formData = new FormData();
       formData.append("file", element.originFileObj);
       formData.append("upload_preset", "test-dudhwala");
       formData.append("folder", "products");
-      formData.append("cloud_name", cloudName);
+      formData.append("cloud_name", "dbxm13zgr");
       const { data } = await axios.post(
-        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        `https://api.cloudinary.com/v1_1/dbxm13zgr/image/upload`,
         formData
       );
       cloudinaryImages.push(data.secure_url);
@@ -123,7 +122,6 @@ export const updateProduct = (productData, id) => async (dispatch) => {
     console.log(productData);
     const images = productData?.images?.fileList;
     const cloudinaryImages = [];
-    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
     for (const element of images) {
       const formData = new FormData();
       formData.append(
@@ -132,9 +130,9 @@ export const updateProduct = (productData, id) => async (dispatch) => {
       );
       formData.append("upload_preset", "test-dudhwala");
       formData.append("folder", "products");
-      formData.append("cloud_name", cloudName);
+      formData.append("cloud_name", "dbxm13zgr");
       const { data } = await axios.post(
-        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        `https://api.cloudinary.com/v1_1/dbxm13zgr/image/upload`,
         formData
       );
       cloudinaryImages.push(data?.secure_url);

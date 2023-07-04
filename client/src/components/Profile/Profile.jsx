@@ -11,6 +11,8 @@ import HistoryModal from "./HistoryModal";
 import { walletBalance, walletHistory } from "../../Actions/Wallet";
 import { getServices } from "../../Actions/Order";
 import VacationModal from "./VacationModal";
+import ProfileImageModal from "./ProfileImageModal";
+import Wallet from "../../Assets/Icons/wallet.svg";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -21,10 +23,9 @@ const Profile = () => {
   const { balance, loading, history } = useSelector(
     (state) => state.walletReducer
   );
-  const {
-    services,
-    loading: orderLoading,
-  } = useSelector((state) => state.orderReducer);
+  const { services, loading: orderLoading } = useSelector(
+    (state) => state.orderReducer
+  );
   const [name, setName] = useState(
     user.displayName ? user.displayName : user.name
   );
@@ -38,6 +39,7 @@ const Profile = () => {
   const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showVacationModal, setShowVacationModal] = useState(false);
+  const [showProfileImageModal, setShowProfileImageModal] = useState(false);
   const [vacationOrder, setVacationOrder] = useState(null);
   const profileUpdateHanlder = () => {
     dispatch(
@@ -62,45 +64,56 @@ const Profile = () => {
         <div className="profile__left">
           <div className="profile__left__image">
             <img
-              src={user?.photoUrl ? user?.photoUrl : profileSample}
+              src={
+                user?.photoUrl
+                  ? user?.photoUrl
+                  : user?.profileImage || profileSample
+              }
               alt="profile"
             />
           </div>
-          <div className="profile__left__name">{user?.displayName}</div>
-          <button className="profile__left__logout" onClick={handleLogout}>
-            Logout
-          </button>
-          <div className="profile__left__wallet">
-            <div className="profile__left__wallet--icon">
+          {user?.photoUrl ? null : (
+            <button
+              className="profile__left__image--button"
+              onClick={() => setShowProfileImageModal(true)}
+            >
               <svg
-                width="35"
-                height="31"
-                viewBox="0 0 35 31"
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M18.9001 10H9"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M26.5422 12.6326C25.8492 13.3091 25.4532 14.2826 25.5522 15.3221C25.7007 17.1041 27.3342 18.4076 29.1162 18.4076H32.3503V20.8002C32.3503 25.7502 29.0502 29.0502 24.1002 29.0502H9.25007C4.30003 29.0502 1 25.7502 1 20.8002V9.25007C1 4.76203 3.70602 1.62701 7.91356 1.099C8.34256 1.033 8.78807 1 9.25007 1H24.1002C24.5292 1 24.9417 1.01648 25.3377 1.08248C29.5947 1.57749 32.3503 4.72903 32.3503 9.25007V11.6426H28.9182C27.9942 11.6426 27.1527 12.0056 26.5422 12.6326Z"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M33.7502 13.2503V16.6495C33.7502 17.557 33.0242 18.2994 32.1002 18.3324H28.866C27.084 18.3324 25.4507 17.0289 25.3022 15.2469C25.2032 14.2074 25.599 13.2338 26.292 12.5573C26.9025 11.9303 27.7442 11.5674 28.6682 11.5674H32.1002C33.0242 11.6004 33.7502 12.3428 33.7502 13.2503Z"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M13.9612 0.917504C13.1314 0.0876422 11.786 0.0876351 10.9561 0.917504L9.76621 2.10736L4.16612 7.70741C4.07534 7.79822 4.01095 7.91198 3.97981 8.0365L3.27148 10.8698C3.21113 11.1112 3.28185 11.3666 3.45779 11.5425C3.63373 11.7184 3.88907 11.7892 4.13046 11.7288L6.96376 11.0205C7.08836 10.9893 7.20205 10.9249 7.29285 10.8341L12.8522 5.27483L14.0828 4.04424C14.9127 3.21437 14.9127 1.86889 14.0828 1.03903L13.9612 0.917504ZM11.9578 1.91924C12.2344 1.64262 12.6829 1.64262 12.9595 1.91924L13.0811 2.04076C13.3577 2.31739 13.3577 2.76589 13.0811 3.0425L12.3611 3.76254L11.2593 2.61774L11.9578 1.91924ZM10.2574 3.61965L11.3591 4.76445L6.42989 9.69372L4.93217 10.0681L5.30659 8.57044L10.2574 3.61965ZM1.83366 4.66663C1.83366 4.27544 2.15079 3.9583 2.54199 3.9583H6.08366C6.47487 3.9583 6.79199 3.64117 6.79199 3.24997C6.79199 2.85877 6.47487 2.54163 6.08366 2.54163H2.54199C1.36839 2.54163 0.416992 3.49303 0.416992 4.66663V12.4583C0.416992 13.6319 1.36839 14.5833 2.54199 14.5833H10.3337C11.5073 14.5833 12.4587 13.6319 12.4587 12.4583V8.9166C12.4587 8.52546 12.1415 8.20827 11.7503 8.20827C11.3591 8.20827 11.042 8.52546 11.042 8.9166V12.4583C11.042 12.8495 10.7249 13.1666 10.3337 13.1666H2.54199C2.15079 13.1666 1.83366 12.8495 1.83366 12.4583V4.66663Z"
+                  fill="white"
                 />
               </svg>
+            </button>
+          )}
+          <div className="profile__left__name">{user?.displayName}</div>
+          <button className="profile__left__logout" onClick={handleLogout}>
+            Logout
+          </button>
+
+          <div>
+            {loading ? (
+              <div className="loading">
+                <div className="loading__circle"></div>
+              </div>
+            ) : (
+              <div className="profile__left__referral">
+                <div className="profile__left-text">Referral Code: {balance}</div>
+                <div className="profile__left-text">Total Referrals: {balance}</div>
+              </div>
+            )}
+          </div>
+
+          <div className="profile__left__wallet">
+            <div className="profile__left__wallet--icon">
+              <img src={Wallet} alt="cart" />
             </div>
             <div className="profile__left__wallet--amount">
               {loading ? (
@@ -203,7 +216,9 @@ const Profile = () => {
                         size={orderDetails?.product?.size}
                         orderType={"trial"}
                         quantity={orderDetails?.days}
-                        price={orderDetails?.product?.price * orderDetails?.days}
+                        price={
+                          orderDetails?.product?.price * orderDetails?.days
+                        }
                       />
                     </div>
                   ))}
@@ -222,7 +237,9 @@ const Profile = () => {
                         orderType={"subscribe"}
                         quantity={orderDetails?.months}
                         price={
-                          orderDetails?.product?.price * orderDetails?.months * 30
+                          orderDetails?.product?.price *
+                          orderDetails?.months *
+                          30
                         }
                       />
                     </div>
@@ -253,6 +270,10 @@ const Profile = () => {
         open={showVacationModal}
         setOpen={setShowVacationModal}
         order={vacationOrder}
+      />
+      <ProfileImageModal
+        open={showProfileImageModal}
+        setOpen={setShowProfileImageModal}
       />
     </>
   );

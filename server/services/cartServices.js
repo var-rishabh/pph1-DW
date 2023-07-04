@@ -1,7 +1,9 @@
 const Product = require("../models/productModel");
 const Coupon = require("../models/couponModel");
+const Referral = require("../models/referralModel");
 
 const { checkFirstOrder } = require("../services/orderServices");
+const { checkReferUsed } = require("../services/referralServices");
 
 module.exports.getQuantity = async (productList, cartList) => {
   const allProducts = [];
@@ -99,6 +101,7 @@ module.exports.getCartDiscount = async (coupon_code, userCart) => {
   let response = { status: "", message: "", data: null };
 
   const getCoupon = await Coupon.findOne({ coupon_code: coupon_code });
+  const getReferral = await Referral.findOne({ referral_code: coupon_code });
   if (coupon_code && getCoupon) {
     if (getCoupon["expiry"]) {
       const currentDate = new Date();
@@ -148,12 +151,38 @@ module.exports.getCartDiscount = async (coupon_code, userCart) => {
     } else if (getCoupon["discount_type"] === "fixed") {
       discountAmount = getCoupon["discount"];
     }
+    const cartTotal = userCart["sub_total"] + userCart["gst"]
+    if (cartTotal < discountAmount) {
+      discountAmount = cartTotal;
+    }
     response["status"] = "success";
     response["message"] = "Coupon code applied";
     response["data"] = discountAmount;
+
+  } else if (coupon_code && getReferral && !(getReferral["user_id"].equals(userCart["user_id"]))) {
+    const checkRefer = await checkReferUsed(userCart["user_id"]);
+    if (checkRefer || checkRefer === null) {
+      response["status"] = "failure";
+      response["message"] = "You have used a referral before.";
+      return response;
+    }
+    const firstOrder = await checkFirstOrder(userCart["user_id"]);
+    if (!firstOrder) {
+      response["status"] = "failure";
+      response["message"] = "Valid for only first order.";
+      return response;
+    }
+    var discountAmount = process.env.REFERRAL_AMOUNT;
+    const cartTotal = userCart["sub_total"] + userCart["gst"]
+    if (cartTotal < discountAmount) {
+      discountAmount = cartTotal;
+    }
+    response["status"] = "success";
+    response["message"] = "Referral code applied";
+    response["data"] = discountAmount;
   } else {
     response["status"] = "failure";
-    response["message"] = "No coupon code.";
+    response["message"] = "Wrong code.";
   }
 
   return response;

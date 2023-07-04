@@ -8,12 +8,15 @@ const {
   getCartGST,
   getCartDiscount,
 } = require("../services/cartServices");
-const { checkFirstTrial } = require("../services/userServices");
+const { checkFirstTrial, createUserWithFireID } = require("../services/userServices");
 
 module.exports.getCart = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
-    const userData = await User.findOne({ user_firebase_id: userFireId });
+    let userData = await User.findOne({ user_firebase_id: userFireId });
+    if (userFireId && !userData) {
+      userData = await createUserWithFireID(userFireId);
+    }
     if (userData) {
       var fullCart = {};
       const userCart = await Cart.findOne({ user_id: userData._id }).populate([
