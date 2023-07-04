@@ -4,6 +4,8 @@ const Cart = require("../models/cartModel");
 const admin = require("../config/firebase");
 const db = admin.firestore();
 
+const { createReferralCode } = require("../services/referralServices");
+
 module.exports.checkFirstTrial = async (userID) => {
   const user = await User.findById(userID);
   return user["first_trial"];
@@ -13,11 +15,12 @@ module.exports.getAllUserDetails = async () => {
   const allUsers = [];
   const snapshot = await db.collection("users").get();
   for (const doc of snapshot.docs) {
-    const user = await User.findOne({ user_firebase_id: doc.id });
+    const user = await User.findOne({ user_firebase_id: doc.id }).populate(["referral"]);
     var userData = {
       _id: user._id,
       vip: user.vip,
       first_trial: user.first_trial,
+      referral: user.referral,
       ...doc.data(),
     };
     allUsers.push(userData);
@@ -53,12 +56,15 @@ module.exports.getUserDetail = async (userID) => {
 module.exports.createUserWithFireID = async (userFireID) => {
   const newUser = new User();
   newUser["user_firebase_id"] = userFireID;
+  
+  const refCode = await createReferralCode(newUser["_id"]);
+
+  newUser["referral"] = refCode["_id"];
   await newUser.save();
 
   const addToCart = new Cart({
     user_id: newUser._id,
     items: [],
-    total: 0,
   });
   await addToCart.save();
   return newUser;

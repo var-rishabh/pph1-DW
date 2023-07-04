@@ -9,22 +9,18 @@ const {
   debitAmount,
 } = require("../services/walletServices");
 const { createOrder } = require("../services/orderServices");
-const {
-  getUserDetail,
-  createUserWithFireID,
-} = require("../services/userServices");
+const { getUserDetail } = require("../services/userServices");
+const Referral = require("../models/referralModel");
 
 module.exports.checkout = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const { phone, address } = req.body;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       const userCart = await Cart.findOne({ user_id: userData._id });
       if (userCart) {
+        const referralCode = userCart["coupon_code"];
         if (userCart["items"].length > 0) {
           const currentBalance = await getCurrentBalance(userData._id);
           if (currentBalance >= userCart["total"]) {
@@ -55,6 +51,15 @@ module.exports.checkout = async (req, res) => {
             userCart["discount"] = 0;
             userCart["total"] = 0;
             await userCart.save();
+
+            const referralCodeDetails = await Referral.findOne({ referral_code: referralCode });
+            referralCodeDetails["referrals"].push(userCart["user_id"]);
+            await referralCodeDetails.save();
+
+            const userRef = await Referral.findOne({ user_id: userCart["user_id"]});
+            userRef["refree"] = referralCodeDetails["user_id"];
+            await userRef.save();
+            
             return res.status(200).json({
               status: "success",
               message: "Checkout successful.",
@@ -233,9 +238,6 @@ module.exports.getOrdersOfUser = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       const query = req.query.orderType;
       var allOrders;
@@ -296,9 +298,6 @@ module.exports.getActiveServices = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       const userID = userData._id;
       const activeServices = { trials: "", subscribes: "" };

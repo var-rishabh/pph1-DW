@@ -3,14 +3,16 @@ const User = require("../models/userModel");
 
 const shortid = require("shortid");
 const crypto = require("crypto");
+
 const { instance } = require("../config/razorpay");
+
 const { getCurrentBalance } = require("../services/walletServices");
-const { getUserDetail, createUserWithFireID } = require("../services/userServices");
+const { createUserWithFireID } = require("../services/userServices");
 
 module.exports.getBalance = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
-    const userData = await User.findOne({ user_firebase_id: userFireId });
+    let userData = await User.findOne({ user_firebase_id: userFireId });
     if (userFireId && !userData) {
       userData = await createUserWithFireID(userFireId);
     }
@@ -40,9 +42,6 @@ module.exports.checkout = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       const currentBalance = await getCurrentBalance(userData._id);
       const options = {
@@ -186,9 +185,6 @@ module.exports.transactionHistory = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       var userTransactions = await Transaction.find({
         user_id: userData._id,
@@ -226,9 +222,6 @@ module.exports.cancelTransaction = async (req, res) => {
   try {
     const userFireId = req.user.user_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       const { razorpay_order_id } = req.body;
       const transaction = await Transaction.findOne({

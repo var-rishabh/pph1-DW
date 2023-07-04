@@ -63,9 +63,6 @@ module.exports.addToCart = async (req, res) => {
     const quantity = req.body.quantity;
     const orderType = req.body.order_type;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       const product = await Product.findOne({ _id: productId });
       if (product) {
@@ -145,9 +142,6 @@ module.exports.removeFromCart = async (req, res) => {
     const userFireId = req.user.user_id;
     const productId = req.body.product_id;
     const userData = await User.findOne({ user_firebase_id: userFireId });
-    if (userFireId && !userData) {
-      userData = await createUserWithFireID(userFireId);
-    }
     if (userData) {
       const product = await Product.findOne({ _id: productId });
       if (product) {

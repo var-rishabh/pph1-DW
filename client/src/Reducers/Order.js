@@ -19,7 +19,6 @@ export const orderReducer = createReducer(initialState, (builder) => {
             state.loading = false;
             state.error = action.payload;
         })
-        
         .addCase("OrderHistorySuccess", (state, action) => {
             state.loading = false;
             state.history = action.payload;

@@ -10,5 +10,6 @@ router.get("/all", adminAuth, couponController.getAllCoupons);
 router.delete("/delete/:couponID", adminAuth, couponController.deleteCoupon);
 router.post("/apply", checkAuth, couponController.applyCoupon);
 router.post("/remove", checkAuth, couponController.removeCoupon);
+router.get("/referralcode", checkAuth, couponController.getReferralCode);
 
 module.exports = router;
