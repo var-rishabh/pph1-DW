@@ -15,6 +15,11 @@ const UserSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    referral: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Referral",
+      required: true,
+    },
   },
   { timestamps: true }
 );

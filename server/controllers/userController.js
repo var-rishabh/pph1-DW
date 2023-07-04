@@ -1,10 +1,13 @@
 const User = require("../models/userModel");
 const Cart = require("../models/cartModel");
+const Referral = require("../models/referralModel");
 
 const {
   getAllUserDetails,
   getUserDetail,
 } = require("../services/userServices");
+
+const { createReferralCode } = require("../services/referralServices");
 
 module.exports.addUser = async (req, res) => {
   try {
@@ -13,6 +16,10 @@ module.exports.addUser = async (req, res) => {
     if (!userData) {
       const newUser = new User();
       newUser["user_firebase_id"] = userFireId;
+      
+      const refCode = await createReferralCode(newUser["_id"]);
+
+      newUser["referral"] = refCode["_id"];
       await newUser.save();
 
       const addToCart = new Cart({

@@ -1,8 +1,10 @@
 const Coupon = require("../models/couponModel");
 const User = require("../models/userModel");
 const Cart = require("../models/cartModel");
+const Referral = require("../models/referralModel");
 
 const voucher_codes = require("voucher-code-generator");
+
 const { getCartDiscount } = require("../services/cartServices");
 
 module.exports.generateCoupon = async (req, res) => {
@@ -94,6 +96,7 @@ module.exports.applyCoupon = async (req, res) => {
         }
         const cartDiscount = await getCartDiscount(coupon_code, userCart);
         if (cartDiscount["status"] === "success") {
+          userCart["coupon_code"] = coupon_code;
           userCart["discount"] = cartDiscount["data"];
           userCart["total"] =
             userCart["sub_total"] + userCart["gst"] - userCart["discount"];
@@ -138,7 +141,10 @@ module.exports.removeCoupon = async (req, res) => {
     const userData = await User.findOne({ user_firebase_id: userFireId });
     if (userData) {
       const { coupon_code, cartID } = req.body;
-      const coupon = await Coupon.findOne({ coupon_code: coupon_code });
+      let coupon = await Coupon.findOne({ coupon_code: coupon_code });
+      if (!coupon) {
+        coupon = await Referral.findOne({ referral_code: coupon_code });
+      }
       if (coupon) {
         const userCart = await Cart.findOne({ _id: cartID });
         if (userCart) {
@@ -161,10 +167,38 @@ module.exports.removeCoupon = async (req, res) => {
       } else {
         return res.status(404).json({
           status: "failure",
-          message: "Coupon code invalid.",
+          message: "Code invalid.",
           data: null,
         });
       }
+    } else {
+      return res.status(404).json({
+        status: "failure",
+        message: "User not found.",
+        data: null,
+      });
+    }
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.getReferralCode = async (req, res) => {
+  try {
+    const userFireId = req.user.user_id;
+    const userData = await User.findOne({ user_firebase_id: userFireId }).populate(["referral"]);
+    if (userData) {
+      return res.status(200).json({
+        status: "success",
+        message: "Users referral code.",
+        data: [{
+          referral_code: userData["referral"]["referral_code"],
+          number_of_referrals: userData["referral"]["referrals"].length
+        }],
+      });
     } else {
       return res.status(404).json({
         status: "failure",

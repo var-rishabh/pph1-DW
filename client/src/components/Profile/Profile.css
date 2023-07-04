@@ -27,8 +27,8 @@
 .profile__left__image--button {
   background: #124975;
   border-radius: 50%;
-  width: 5vh;
-  height: 5vh;
+  width: 4vh;
+  height: 4vh;
   border: none;
   margin: -15% 0 0 60%;
   color: #ffffff;
@@ -36,8 +36,8 @@
 }
 
 .profile__left__image--button svg {
-  width: 3vh;
-  height: 3vh;
+  width: 2vh;
+  height: 2vh;
   color: #ffffff;
 }
 
@@ -53,6 +53,17 @@
   font-weight: 500;
   font-size: 1.5rem;
   line-height: 1.75rem;
+  padding: 2% 0;
+}
+
+.profile__left__referral {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 2% 0 5%;
+}
+
+.profile__left-text {
   padding: 2% 0;
 }
 

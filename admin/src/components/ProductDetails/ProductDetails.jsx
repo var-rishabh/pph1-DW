@@ -148,9 +148,9 @@ const ProductDetails = () => {
                 <Row>
                   <Col span={8}>
                     <Checkbox
-                      value="trail"
+                      value="trial"
                     >
-                      Trail
+                      Trial
                     </Checkbox>
                   </Col>
                   <Col span={8}>

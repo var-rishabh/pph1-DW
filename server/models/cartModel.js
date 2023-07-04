@@ -29,6 +29,7 @@ const CartSchema = mongoose.Schema(
     ],
     coupon_code: {
       type: String,
+      default: ""
     },
     sub_total: {
       type: Number,
