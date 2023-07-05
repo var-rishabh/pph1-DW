@@ -15,6 +15,8 @@ router.post("/vacation", checkAuth, orderController.addVacation);
 router.get("/userorders", checkAuth, orderController.getOrdersOfUser);
 router.get("/activeservices", checkAuth, orderController.getActiveServices);
 
+router.get("/stats", adminAuth, orderController.getOrderStats);
+
 router.get("/", adminAuth, orderController.getAllOrders);
 router.get("/:orderID", adminAuth, orderController.getOrder);
 

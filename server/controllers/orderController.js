@@ -56,10 +56,10 @@ module.exports.checkout = async (req, res) => {
             referralCodeDetails["referrals"].push(userCart["user_id"]);
             await referralCodeDetails.save();
 
-            const userRef = await Referral.findOne({ user_id: userCart["user_id"]});
+            const userRef = await Referral.findOne({ user_id: userCart["user_id"] });
             userRef["refree"] = referralCodeDetails["user_id"];
             await userRef.save();
-            
+
             return res.status(200).json({
               status: "success",
               message: "Checkout successful.",
@@ -409,6 +409,45 @@ module.exports.getOrder = async (req, res) => {
       status: "failure",
       message: "Order not found.",
       data: null,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.getOrderStats = async (req, res) => {
+  try {
+    const orderStats = {
+      total_orders: 0,
+      pending_orders: 0,
+      cancelled_orders: 0,
+      approved_orders: 0,
+      completed_orders: 0,
+    }
+
+    const allOrders = await Order.find({});
+    if (allOrders.length > 0) {
+      for (const order of allOrders) {
+        if (order["status"] === "pending") {
+          orderStats["pending_orders"] += 1;
+        } else if (order["status"] === "cancelled") {
+          orderStats["cancelled_orders"] += 1;
+        } else if (order["status"] === "approved") {
+          orderStats["approved_orders"] += 1;
+        } else if (order["status"] === "completed") {
+          orderStats["completed_orders"] += 1;
+        }
+        orderStats["total_orders"] += 1;
+      }
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message: "Orders found successfully.",
+      data: orderStats,
     });
   } catch (err) {
     return res.status(401).json({

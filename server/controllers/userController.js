@@ -1,6 +1,5 @@
 const User = require("../models/userModel");
 const Cart = require("../models/cartModel");
-const Referral = require("../models/referralModel");
 
 const {
   getAllUserDetails,
@@ -16,7 +15,7 @@ module.exports.addUser = async (req, res) => {
     if (!userData) {
       const newUser = new User();
       newUser["user_firebase_id"] = userFireId;
-      
+
       const refCode = await createReferralCode(newUser["_id"]);
 
       newUser["referral"] = refCode["_id"];
@@ -80,6 +79,24 @@ module.exports.getUser = async (req, res) => {
         data: null,
       });
     }
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.getUserStats = async (req, res) => {
+  try {
+    const getUsers = await User.find({});
+    return res.status(200).json({
+      status: "success",
+      message: "User stats.",
+      data: {
+        total_users: getUsers.length
+      },
+    });
   } catch (err) {
     return res.status(401).json({
       status: "failure",
