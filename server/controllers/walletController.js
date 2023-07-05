@@ -7,7 +7,7 @@ const crypto = require("crypto");
 const { instance } = require("../config/razorpay");
 
 const { getCurrentBalance } = require("../services/walletServices");
-const { createUserWithFireID } = require("../services/userServices");
+const { getUserDetail, createUserWithFireID } = require("../services/userServices");
 
 module.exports.getBalance = async (req, res) => {
   try {
@@ -245,6 +245,79 @@ module.exports.cancelTransaction = async (req, res) => {
       return res.status(404).json({
         status: "failure",
         message: "User not found.",
+        data: null,
+      });
+    }
+  } catch (err) {
+    return res.status(401).json({
+      status: "failure",
+      message: err.message,
+    });
+  }
+};
+
+module.exports.getStats = async (req, res) => {
+  try {
+    const statType = req.query.type;
+    if (statType === "months") {
+      const monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ];
+      const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      const monthlyStats = {};
+      for (const month of months) {
+        monthlyStats[monthNames[month - 1]] = 0;
+      }
+      const transactions = await Transaction.find({
+        payment_response: "success",
+        transaction_type: "debit",
+        order_type: "order",
+      });
+      for (const transaction of transactions) {
+        const monthString = monthNames[new Date(transaction.createdAt).getMonth()];
+        monthlyStats[monthString] += transaction.amount;
+      }
+      return res.status(200).json({
+        status: "success",
+        message: "Monthly stats.",
+        data: monthlyStats,
+      });
+    } else if (statType === "years") {
+      const currentYear = new Date().getFullYear();
+      const years = [currentYear - 4, currentYear - 3, currentYear - 2, currentYear - 1, currentYear];
+      const yearlyStats = {};
+      for (const year of years) {
+        yearlyStats[year] = 0;
+      }
+      const transactions = await Transaction.find({
+        payment_response: 'success',
+        transaction_type: 'debit',
+        order_type: 'order',
+      });
+      for (const transaction of transactions) {
+        const year = new Date(transaction.createdAt).getFullYear();
+        yearlyStats[year] += transaction.amount;
+      }
+      return res.status(200).json({
+        status: "success",
+        message: "Yearly stats.",
+        data: yearlyStats,
+      });
+    } else {
+      return res.status(404).json({
+        status: "failure",
+        message: "Wrong Parameter.",
         data: null,
       });
     }
