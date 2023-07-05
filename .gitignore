@@ -1,3 +1,6 @@
+# custom files
+*.htaccess
+
 # Logs
 logs
 *.log

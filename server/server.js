@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -6,6 +7,7 @@ const colors = require("colors");
 
 const app = express();
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -13,6 +15,15 @@ dotenv.config();
 
 const connectDB = require("./config/db");
 connectDB();
+
+const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+const walletRoutes = require("./routes/walletRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const contactRoutes = require("./routes/contactRoutes");
+const couponRoutes = require("./routes/couponRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 app.get("/", async (req, res) => {
   try {
@@ -29,6 +40,15 @@ app.get("/", async (req, res) => {
     });
   }
 });
+
+app.use("/user", userRoutes);
+app.use("/product", productRoutes);
+app.use("/cart", cartRoutes);
+app.use("/wallet", walletRoutes);
+app.use("/order", orderRoutes);
+app.use("/contact", contactRoutes);
+app.use("/coupon", couponRoutes);
+app.use("/admin", adminRoutes);
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
