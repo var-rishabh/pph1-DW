@@ -19,6 +19,19 @@ module.exports.checkFirstOrder = async (userID) => {
   return firstOrder;
 };
 
+module.exports.checkStock = async (items) => {
+  const inStock = { message: "", data: true};
+  for (const prod of items) {
+    const productInfo = await Product.findOne({ _id: prod["product_id"]});
+    if (productInfo["in_stock"] === false) {
+      inStock["message"] = `${productInfo["title"]} is not available.`
+      inStock["data"] = false;
+      break;
+    }
+  }
+  return inStock;
+};
+
 module.exports.createOrder = async (userID, item, phone, address, userCart) => {
   const product = await Product.findOne({
     _id: userCart["items"][item]["product_id"],

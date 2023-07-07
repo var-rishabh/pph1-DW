@@ -9,7 +9,7 @@ const {
   debitAmount,
   creditReferral
 } = require("../services/walletServices");
-const { createOrder } = require("../services/orderServices");
+const { createOrder, checkStock } = require("../services/orderServices");
 const { getUserDetail } = require("../services/userServices");
 const Referral = require("../models/referralModel");
 
@@ -25,6 +25,15 @@ module.exports.checkout = async (req, res) => {
         if (userCart["items"].length > 0) {
           const currentBalance = await getCurrentBalance(userData._id);
           if (currentBalance >= userCart["total"]) {
+            const inStock = await checkStock(userCart["items"]);
+            if (inStock["data"] === false) {
+              return res.status(400).json({
+                status: "failure",
+                message: inStock["message"],
+                data: null,
+              });
+            }
+            
             const orders = [];
             for (const item in userCart["items"]) {
               const userOrder = await createOrder(

@@ -28,7 +28,7 @@ export const getUserReferral = () => async (dispatch) => {
         })
     } catch (error) {
         dispatch({
-            type: "WalletHistoryFailure",
+            type: "ReferralFailure",
             payload: error.response?.data.message,
         });
         toast.error(error.response?.data.message);

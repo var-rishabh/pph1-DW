@@ -26,7 +26,7 @@ const Process = () => {
       <div className="process__points">
         <div className="process__points--title">Our Process</div>
         <div className="process__points--description">
-          Milk the way, it’s meant to be. We follow a streamlined process end to
+          Milk the way, it&#39;s meant to be. We follow a streamlined process end to
           end, to ensure that our customers receive the freshest and highest
           quality milk.
         </div>
