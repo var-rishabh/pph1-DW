@@ -6,6 +6,7 @@ import { paymentReducer } from './Reducers/Payments';
 import { productReducer } from './Reducers/Products';
 import { userReducer } from './Reducers/Users';
 import { messageReducer } from './Reducers/Messages';
+import { dashboardReducer } from './Reducers/Dashboard';
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         orderReducer: orderReducer,
         couponReducer: couponReducer,
         messageReducer: messageReducer,
+        dashboardReducer: dashboardReducer
 
     },
 });
