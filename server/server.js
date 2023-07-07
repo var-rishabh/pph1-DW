@@ -24,6 +24,7 @@ const orderRoutes = require("./routes/orderRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const couponRoutes = require("./routes/couponRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const galleryRoutes = require("./routes/galleryRoutes");
 
 app.get("/", async (req, res) => {
   try {
@@ -49,6 +50,7 @@ app.use("/order", orderRoutes);
 app.use("/contact", contactRoutes);
 app.use("/coupon", couponRoutes);
 app.use("/admin", adminRoutes);
+app.use("/gallery", galleryRoutes);
 
 app.listen(process.env.PORT, (err) => {
   if (err) {

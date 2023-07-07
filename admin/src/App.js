@@ -9,6 +9,8 @@ import Users from './components/Users/Users';
 import Coupons from './components/Coupons/Coupons';
 import Payments from './components/Payments/Payments';
 import Messages from './components/Messages/Messages';
+import Gallery from './components/Gallery/Gallery';
+import GalleryAdd from './components/Gallery/GalleryAdd';
 import OrderDetails from './components/Orders/OrderDetails';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import Auth from './components/Auth/Auth';
@@ -38,6 +40,8 @@ function App() {
               <Route path="/coupons" element={<Coupons />} />
               <Route path="/payments" element={<Payments />} />
               <Route path="/messages" element={<Messages />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/gallery/add" element={<GalleryAdd />} />
               <Route path="/orders/:id" element={<OrderDetails />} />
               <Route path="/products/:id" element={<ProductDetails />} />
               <Route path="/users/:id" element={<UserDetails/>}/>

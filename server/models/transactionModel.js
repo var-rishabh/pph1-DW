@@ -9,11 +9,22 @@ const TransactionSchema = mongoose.Schema(
     },
     order_type: {
       type: String,
-      enum: ["refund", "recharge", "order"],
+      enum: ["refund", "recharge", "order", "referral"],
       default: "recharge",
       required: true,
     },
-    transaction_type:{
+    orders: [
+      {
+        order_id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Order",
+        },
+        order_type: {
+          type: String,
+        },
+      },
+    ],
+    transaction_type: {
       type: String,
       enum: ["credit", "debit"],
       required: true,

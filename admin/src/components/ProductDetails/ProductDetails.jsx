@@ -19,14 +19,7 @@ import { getProductDetails, newProduct, updateProduct } from '../../Actions/Prod
 import { useEffect } from 'react';
 const { Option } = Select;
 
-const formItemLayout = {
-  // labelCol: {
-  //   span: 6,
-  // },
-  // wrapperCol: {
-  //   span: 14,
-  // },
-};
+const formItemLayout = {};
 
 const ProductDetails = () => {
   const { TextArea } = Input;
@@ -135,7 +128,7 @@ const ProductDetails = () => {
               <InputNumber
                 defaultValue={1000}
                 formatter={(value) => `₹ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+                parser={(value) => value.replace(/₹\s?|(,*)/g, '')}
               />
             </Form.Item>
 

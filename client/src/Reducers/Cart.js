@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-const initialState = { 
+const initialState = {
     loading: false,
     error: null,
     message: "",
@@ -8,9 +8,7 @@ const initialState = {
     promoData: null
 }
 
-
 export const cartReducer = createReducer(initialState, (builder) => {
-
     builder
         .addCase("GetCartRequest", (state) => {
             state.loading = true;

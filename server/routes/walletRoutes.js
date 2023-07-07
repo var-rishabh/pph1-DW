@@ -21,5 +21,6 @@ router.post(
   checkAuth,
   walletController.cancelTransaction
 );
+router.get("/stats", adminAuth, walletController.getStats);
 
 module.exports = router;
