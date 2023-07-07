@@ -5,6 +5,7 @@ import { walletReducer } from './Reducers/Wallet';
 import { orderReducer } from './Reducers/Order';
 import { cartReducer } from './Reducers/Cart';
 import { contactReducer } from './Reducers/Contact';
+import { referralReducer } from './Reducers/Referral';
 
 const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
         orderReducer: orderReducer,
         cartReducer: cartReducer,
         contactReducer: contactReducer,
+        referralReducer: referralReducer,
     },
 });
 

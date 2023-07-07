@@ -25,3 +25,16 @@ module.exports.debitAmount = async (userID, amount, currentBalance, orders) => {
   });
   await userTransaction.save();
 };
+
+module.exports.creditReferral = async (userID, balance) => {
+  const userTransaction = new Transaction({
+    user_id: userID,
+    order_type: "referral",
+    orders: [],
+    transaction_type: "credit",
+    amount: process.env.REFERRAL_AMOUNT,
+    balance: balance + process.env.REFERRAL_AMOUNT,
+    payment_response: "success",
+  });
+  await userTransaction.save();
+};

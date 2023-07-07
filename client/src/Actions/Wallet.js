@@ -28,7 +28,7 @@ export const walletCheckout =
             },
           }
         );
-          
+
         dispatch({ type: "WalletCheckoutSuccess", payload: order.data.data.id });
 
         dispatch({ type: "WalletAddRequest" });

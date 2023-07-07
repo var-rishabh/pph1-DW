@@ -261,18 +261,18 @@ module.exports.getStats = async (req, res) => {
     const statType = req.query.type;
     if (statType === "months") {
       const monthNames = [
-        'January',
-        'February',
-        'March',
-        'April',
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
         'May',
         'June',
         'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
+        'Aug',
+        'Sept',
+        'Oct',
+        'Nov',
+        'Dec',
       ];
       const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
       const monthlyStats = {};

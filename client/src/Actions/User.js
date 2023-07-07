@@ -66,7 +66,7 @@ export const loginWithGoogle = () => async (dispatch) => {
                     name: result.user.displayName,
                     photo: result.user.photoURL,
                 });
-            
+
                 dispatch({
                     type: "LoginSuccess",
                     payload: result.user
@@ -131,7 +131,7 @@ export const verifyOTP = (otp) => async (dispatch) => {
                     name: result.user.displayName,
                     photo: result.user.photoURL,
                 });
-            
+
                 dispatch({
                     type: "LoginSuccess",
                     payload: result.user

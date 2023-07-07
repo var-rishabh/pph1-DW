@@ -10,6 +10,7 @@ import AddMoneyModal from "./AddMoneyModal";
 import HistoryModal from "./HistoryModal";
 import { walletBalance, walletHistory } from "../../Actions/Wallet";
 import { getServices } from "../../Actions/Order";
+import { getUserReferral } from "../../Actions/Referral";
 import VacationModal from "./VacationModal";
 import ProfileImageModal from "./ProfileImageModal";
 import Wallet from "../../Assets/Icons/wallet.svg";
@@ -22,6 +23,9 @@ const Profile = () => {
   const { user, isAuthenticated } = useSelector((state) => state.userReducer);
   const { balance, loading, history } = useSelector(
     (state) => state.walletReducer
+  );
+  const { referral } = useSelector(
+    (state) => state.referralReducer
   );
   const { services, loading: orderLoading } = useSelector(
     (state) => state.orderReducer
@@ -57,6 +61,7 @@ const Profile = () => {
     dispatch(walletBalance());
     dispatch(walletHistory());
     dispatch(getServices());
+    dispatch(getUserReferral());
   }, [dispatch, isAuthenticated]);
   return (
     <>
@@ -105,8 +110,12 @@ const Profile = () => {
               </div>
             ) : (
               <div className="profile__left__referral">
-                <div className="profile__left-text">Referral Code: {balance}</div>
-                <div className="profile__left-text">Total Referrals: {balance}</div>
+                <div className="profile__left-text">
+                Referral Code: <code>{referral[0]?.referral_code}</code>
+                </div>
+                <div className="profile__left-text">
+                Total Referrals: {referral[0]?.number_of_referrals}
+                </div>
               </div>
             )}
           </div>

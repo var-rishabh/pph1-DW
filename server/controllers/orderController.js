@@ -7,6 +7,7 @@ const Subscribe = require("../models/subscribeModel");
 const {
   getCurrentBalance,
   debitAmount,
+  creditReferral
 } = require("../services/walletServices");
 const { createOrder } = require("../services/orderServices");
 const { getUserDetail } = require("../services/userServices");
@@ -53,12 +54,17 @@ module.exports.checkout = async (req, res) => {
             await userCart.save();
 
             const referralCodeDetails = await Referral.findOne({ referral_code: referralCode });
-            referralCodeDetails["referrals"].push(userCart["user_id"]);
-            await referralCodeDetails.save();
+            if (referralCodeDetails) {
+              referralCodeDetails["referrals"].push(userCart["user_id"]);
+              await referralCodeDetails.save(); 
 
-            const userRef = await Referral.findOne({ user_id: userCart["user_id"] });
-            userRef["refree"] = referralCodeDetails["user_id"];
-            await userRef.save();
+              const userRef = await Referral.findOne({ user_id: userCart["user_id"] });
+              userRef["refree"] = referralCodeDetails["user_id"];
+              await userRef.save();
+
+              const refreeBalance = await getCurrentBalance(referralCodeDetails["user_id"]);
+              const addRefAmount = await creditReferral(referralCodeDetails["user_id"], refreeBalance);
+            }
 
             return res.status(200).json({
               status: "success",

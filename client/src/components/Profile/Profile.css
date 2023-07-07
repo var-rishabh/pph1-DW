@@ -61,10 +61,17 @@
   font-weight: 400;
   font-size: 1rem;
   padding: 2% 0 5%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .profile__left-text {
   padding: 2% 0;
+}
+
+code {
+  font-weight: 800;
 }
 
 .profile__left__logout {
