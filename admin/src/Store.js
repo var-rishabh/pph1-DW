@@ -7,6 +7,7 @@ import { productReducer } from './Reducers/Products';
 import { userReducer } from './Reducers/Users';
 import { messageReducer } from './Reducers/Messages';
 import { dashboardReducer } from './Reducers/Dashboard';
+import { galleryReducer } from './Reducers/Gallery';
 
 const store = configureStore({
     reducer: {
@@ -17,8 +18,8 @@ const store = configureStore({
         orderReducer: orderReducer,
         couponReducer: couponReducer,
         messageReducer: messageReducer,
-        dashboardReducer: dashboardReducer
-
+        dashboardReducer: dashboardReducer,
+        galleryReducer: galleryReducer
     },
 });
 

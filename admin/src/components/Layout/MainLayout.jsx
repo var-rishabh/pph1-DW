@@ -1,4 +1,4 @@
-import { PieChartOutlined, UserOutlined, DesktopOutlined, OrderedListOutlined, TagOutlined, MoneyCollectOutlined, MessageOutlined } from '@ant-design/icons';
+import { PieChartOutlined, UserOutlined, DesktopOutlined, OrderedListOutlined, TagOutlined, MoneyCollectOutlined, MessageOutlined, PictureOutlined } from '@ant-design/icons';
 import { Avatar, Layout, Menu, Popover, Typography } from 'antd';
 import { useState } from 'react';
 import fullLogo from '../../Assets/fullLogo.png';
@@ -28,6 +28,7 @@ const items = [
   getItem('Coupons', '5', <TagOutlined />),
   getItem('Payments', '6', <MoneyCollectOutlined />),
   getItem('Messages', '7', <MessageOutlined />),
+  getItem('Gallery', '8', <PictureOutlined />),
 ];
 
 const MainLayout = () => {

@@ -7,8 +7,9 @@ const Subscribe = require("../models/subscribeModel");
 const {
   getCurrentBalance,
   debitAmount,
+  creditReferral
 } = require("../services/walletServices");
-const { createOrder } = require("../services/orderServices");
+const { createOrder, checkStock } = require("../services/orderServices");
 const { getUserDetail } = require("../services/userServices");
 const Referral = require("../models/referralModel");
 
@@ -24,6 +25,15 @@ module.exports.checkout = async (req, res) => {
         if (userCart["items"].length > 0) {
           const currentBalance = await getCurrentBalance(userData._id);
           if (currentBalance >= userCart["total"]) {
+            const inStock = await checkStock(userCart["items"]);
+            if (inStock["data"] === false) {
+              return res.status(400).json({
+                status: "failure",
+                message: inStock["message"],
+                data: null,
+              });
+            }
+            
             const orders = [];
             for (const item in userCart["items"]) {
               const userOrder = await createOrder(
@@ -53,12 +63,17 @@ module.exports.checkout = async (req, res) => {
             await userCart.save();
 
             const referralCodeDetails = await Referral.findOne({ referral_code: referralCode });
-            referralCodeDetails["referrals"].push(userCart["user_id"]);
-            await referralCodeDetails.save();
+            if (referralCodeDetails) {
+              referralCodeDetails["referrals"].push(userCart["user_id"]);
+              await referralCodeDetails.save(); 
 
-            const userRef = await Referral.findOne({ user_id: userCart["user_id"] });
-            userRef["refree"] = referralCodeDetails["user_id"];
-            await userRef.save();
+              const userRef = await Referral.findOne({ user_id: userCart["user_id"] });
+              userRef["refree"] = referralCodeDetails["user_id"];
+              await userRef.save();
+
+              const refreeBalance = await getCurrentBalance(referralCodeDetails["user_id"]);
+              const addRefAmount = await creditReferral(referralCodeDetails["user_id"], refreeBalance);
+            }
 
             return res.status(200).json({
               status: "success",

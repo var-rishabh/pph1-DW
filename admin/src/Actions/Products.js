@@ -6,11 +6,9 @@ const token = localStorage.getItem("accessToken");
 export const getProducts = () => async (dispatch) => {
   try {
     dispatch({ type: "AllProductsRequest" });
-
     const { data } = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/product/getAllProducts`
     );
-
     dispatch({
       type: "AllProductsSuccess",
       payload: data.data,
@@ -27,7 +25,6 @@ export const getProducts = () => async (dispatch) => {
 export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: "ProductDetailsRequest" });
-
     const { data } = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/product/${id}`
     );
@@ -39,8 +36,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         url: image,
       };
     });
-    data.data[0].imageList = imageList;
-
+    data.data[0].imageList = imageList
     dispatch({
       type: "ProductDetailsSuccess",
       payload: data.data[0],
@@ -73,7 +69,6 @@ export const newProduct = (productData) => async (dispatch) => {
       cloudinaryImages.push(data.secure_url);
     }
     const uploadedImages = cloudinaryImages;
-    console.log(uploadedImages);
     const details = {
       title: productData.title,
       category: productData.category,
@@ -93,13 +88,11 @@ export const newProduct = (productData) => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     };
-
     const { data } = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/product/addProduct`,
       details,
       config
     );
-
     dispatch({
       type: "CreateProductSuccess",
       payload: data,
@@ -119,7 +112,6 @@ export const newProduct = (productData) => async (dispatch) => {
 export const updateProduct = (productData, id) => async (dispatch) => {
   try {
     dispatch({ type: "UpdateProductRequest" });
-    console.log(productData);
     const images = productData?.images?.fileList;
     const cloudinaryImages = [];
     for (const element of images) {
@@ -192,7 +184,6 @@ export const deleteProduct = (id) => async (dispatch) => {
         },
       }
     );
-
     dispatch({
       type: "DeleteProductSuccess",
       payload: data.success,
