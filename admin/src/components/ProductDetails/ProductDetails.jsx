@@ -50,8 +50,8 @@ const ProductDetails = () => {
       'price': 0,
       'inStock': true,
       'orderTypes': [],
+      'images': { fileList: [] },
       'description': '',
-      'images': [],
       'benefits': [],
     }) : ({
       'title': product?.title,
@@ -63,8 +63,8 @@ const ProductDetails = () => {
       'inStock': product?.in_stock,
       'orderTypes': product?.order_type,
       'description': product?.description,
-      'images': [],
-      'benefits': product?.benefits
+      'benefits': product?.benefits,
+      'images': { fileList: product?.imageList },
     })
   return (
     <>
@@ -115,7 +115,7 @@ const ProductDetails = () => {
                   name={'size_type'}
                   noStyle
                 >
-                  <Select defaultValue="g">
+                  <Select>
                     <Option value="g">g</Option>
                     <Option value="ml">ml</Option>
                     <Option value="kg">kg</Option>
@@ -126,13 +126,12 @@ const ProductDetails = () => {
             </Form.Item>
             <Form.Item name="price" label="Price" wrapperCol={{ span: 8 }}>
               <InputNumber
-                defaultValue={1000}
                 formatter={(value) => `₹ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 parser={(value) => value.replace(/₹\s?|(,*)/g, '')}
               />
             </Form.Item>
 
-            <Form.Item name="inStock" label="Stock" valuePropName="checked" initialValue>
+            <Form.Item name="inStock" label="Stock" valuePropName="checked">
               <Switch />
             </Form.Item>
 
@@ -177,7 +176,7 @@ const ProductDetails = () => {
             </Form.Item>
             {/* <Form.Item valuePropName="fileList" getValueFromEvent={normFile} noStyle> */}
             <Form.Item label="Upload Images" name="images">
-              <Upload.Dragger beforeUpload={() => false} listType="picture" defaultFileList={product?.imageList}>
+              <Upload.Dragger beforeUpload={() => false} listType="picture" fileList={product?.imageList}>
                 <p className="ant-upload-drag-icon">
                   <InboxOutlined />
                 </p>
